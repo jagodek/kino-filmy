@@ -1,10 +1,9 @@
-package pl.edu.agh.to.kinofilmy.films;
+package pl.edu.agh.to.kinofilmy.Film;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.awt.image.BufferedImage;
 import java.time.LocalTime;
 
 @Entity
