@@ -1,9 +1,8 @@
 package pl.edu.agh.to.kinofilmy.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.edu.agh.to.kinofilmy.Roles.Roles;
+
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -13,7 +12,7 @@ public class Employee {
 
     private String lastname;
 
-    private Long roleId;
+    private Roles role;
 
     private String email;
 
@@ -45,13 +44,6 @@ public class Employee {
         this.lastname = lastname;
     }
 
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
 
     public String getEmail() {
         return email;
@@ -67,5 +59,14 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @ManyToOne
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles roles) {
+        this.role = roles;
     }
 }
