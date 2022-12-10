@@ -4,6 +4,7 @@ import pl.edu.agh.to.kinofilmy.Roles.Roles;
 
 import javax.persistence.*;
 
+
 @Entity
 public class Employee {
     private Long id;
@@ -17,6 +18,18 @@ public class Employee {
     private String email;
 
     private String phoneNumber;
+
+    public Employee(String firstname, String lastname, Roles role, String email, String phoneNumber) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Employee() {
+
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -68,5 +81,15 @@ public class Employee {
 
     public void setRole(Roles roles) {
         this.role = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

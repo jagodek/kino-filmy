@@ -17,6 +17,17 @@ public class Roles {
 
     private boolean manageDatabase;
 
+    public Roles(String roleName, boolean manageUsers, boolean manageTickets, boolean manageDatabase) {
+        this.roleName = roleName;
+        this.manageUsers = manageUsers;
+        this.manageTickets = manageTickets;
+        this.manageDatabase = manageDatabase;
+    }
+
+    public Roles() {
+
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -57,5 +68,12 @@ public class Roles {
 
     public void setManageDatabase(boolean manageDatabase) {
         this.manageDatabase = manageDatabase;
+    }
+
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' + '}';
     }
 }
