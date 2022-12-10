@@ -1,17 +1,22 @@
 package pl.edu.agh.to.kinofilmy.Ticket;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.edu.agh.to.kinofilmy.Seance.Seance;
+
+import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Ticket is the class that represents ticket that customers buy for certain movie.
+ * It stores information about which showing customer is allowed to watch with this ticket,
+ * where will he/she should seat (row and seat number),
+ * price of the ticket, when this ticket has been sold,
+ * to which customer it belongs,
+ * and in which state it is (sold, returned, etc.)
+ */
 @Entity
 public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long seanceId;
+    private Seance seance;
     private Long clientId;
     private float price;
     private Date saleDate;
@@ -19,63 +24,55 @@ public class Ticket {
     private int seat;
     private String state;
 
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setSeanceId(Long seanceId) {
-        this.seanceId = seanceId;
-    }
-
-    public void setClientId(Long clientId) {
+    public Ticket(Seance seance, Long clientId, float price, Date saleDate, int seatRow, int seat, String state) {
+        this.seance = seance;
         this.clientId = clientId;
-    }
-
-    public void setPrice(float price) {
         this.price = price;
-    }
-
-    public void setSaleDate(Date saleDate) {
         this.saleDate = saleDate;
-    }
-
-    public void setSeat(int seat) {
+        this.seatRow = seatRow;
         this.seat = seat;
-    }
-
-    public void setState(String state) {
         this.state = state;
     }
 
+    public Ticket() {    }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
 
-    public Long getSeanceId() {
-        return seanceId;
+    @ManyToOne
+    public Seance getSeance() {
+        return seance;
+    }
+
+    public void setSeance(Seance seance) {
+        this.seance = seance;
     }
 
     public Long getClientId() {
         return clientId;
     }
 
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
     public float getPrice() {
         return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public Date getSaleDate() {
         return saleDate;
     }
 
-    public int getSeat() {
-        return seat;
-    }
-
-    public String getState() {
-        return state;
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
 
     public int getSeatRow() {
@@ -84,5 +81,21 @@ public class Ticket {
 
     public void setSeatRow(int seatRow) {
         this.seatRow = seatRow;
+    }
+
+    public int getSeat() {
+        return seat;
+    }
+
+    public void setSeat(int seat) {
+        this.seat = seat;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
