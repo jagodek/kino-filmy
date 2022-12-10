@@ -4,17 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Ticket {
-
+    @Id
     private Long id;
 
     private Long seanceId;
     private Long clientId;
     private float price;
-    private Date saleDate;
+    private LocalDate saleDate;
     private int row;
     private int seat;
     private String state;
@@ -35,7 +35,7 @@ public class Ticket {
         this.price = price;
     }
 
-    public void setSaleDate(Date saleDate) {
+    public void setSaleDate(LocalDate saleDate) {
         this.saleDate = saleDate;
     }
 
@@ -69,7 +69,7 @@ public class Ticket {
         return price;
     }
 
-    public Date getSaleDate() {
+    public LocalDate getSaleDate() {
         return saleDate;
     }
 
