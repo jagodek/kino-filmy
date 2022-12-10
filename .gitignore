@@ -37,3 +37,4 @@ out/
 .vscode/
 /gradle/wrapper/gradle-wrapper.jar
 /kino.mv.db
+/kino.trace.db
