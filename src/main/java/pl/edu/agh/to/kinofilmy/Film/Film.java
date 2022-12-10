@@ -9,7 +9,7 @@ import java.time.LocalTime;
 @Entity
 public class Film {
     @Id
-    private int id;
+    private long id;
     private String title;
     private LocalTime runtime;
     private String genre;
@@ -23,11 +23,11 @@ public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Screen {
     @Id
-    private int id;
+    private Long id;
     private String name;
     private int seatsNumber;
     private int rowNumber;
@@ -26,7 +26,7 @@ public class Screen {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class Screen {
     }
 
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
