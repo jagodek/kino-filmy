@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Screen {
+    @Id
     private int id;
     private String name;
     private int seatsNumber;

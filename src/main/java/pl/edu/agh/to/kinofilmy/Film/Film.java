@@ -8,6 +8,7 @@ import java.time.LocalTime;
 
 @Entity
 public class Film {
+    @Id
     private int id;
     private String title;
     private LocalTime runtime;
