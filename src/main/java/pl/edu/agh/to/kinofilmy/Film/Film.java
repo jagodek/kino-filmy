@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import java.time.LocalTime;
 import java.util.Arrays;
 
+/**
+ * Film represents each movie with title, duration, director and other basic movie info
+ */
+
 @Entity
 public class Film {
     @Id

@@ -5,6 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ *  Screen represents each room where the movies are played, mainly capacity and name
+ *
+ */
+
+
 @Entity
 public class Screen {
     @Id
