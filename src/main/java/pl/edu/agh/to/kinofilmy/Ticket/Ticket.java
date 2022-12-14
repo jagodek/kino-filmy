@@ -1,6 +1,8 @@
 package pl.edu.agh.to.kinofilmy.Ticket;
 
-import pl.edu.agh.to.kinofilmy.Seance.Seance;
+
+
+import pl.edu.agh.to.kinofilmy.Showing.Showing;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,7 +18,7 @@ import java.util.Date;
 @Entity
 public class Ticket {
     private Long id;
-    private Seance seance;
+    private Showing showing;
     private Long clientId;
     private float price;
     private Date saleDate;
@@ -24,8 +26,8 @@ public class Ticket {
     private int seat;
     private String state;
 
-    public Ticket(Seance seance, Long clientId, float price, Date saleDate, int seatRow, int seat, String state) {
-        this.seance = seance;
+    public Ticket(Showing showing, Long clientId, float price, Date saleDate, int seatRow, int seat, String state) {
+        this.showing = showing;
         this.clientId = clientId;
         this.price = price;
         this.saleDate = saleDate;
@@ -42,13 +44,17 @@ public class Ticket {
         return id;
     }
 
-    @ManyToOne
-    public Seance getSeance() {
-        return seance;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setSeance(Seance seance) {
-        this.seance = seance;
+    @ManyToOne
+    public Showing getShowing() {
+        return showing;
+    }
+
+    public void setShowing(Showing showing) {
+        this.showing = showing;
     }
 
     public Long getClientId() {
