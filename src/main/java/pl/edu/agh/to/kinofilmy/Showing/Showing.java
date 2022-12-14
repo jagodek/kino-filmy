@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Seance;
+package pl.edu.agh.to.kinofilmy.Showing;
 
 import pl.edu.agh.to.kinofilmy.Film.Film;
 import pl.edu.agh.to.kinofilmy.Screen.Screen;
@@ -11,11 +11,11 @@ import java.util.Date;
 
 
 /**
- * Seance is the class that represents a showing that user can attend,
+ * Showing is the class that represents a showing that user can attend,
  * It stores infromation about which movie will be displayed, on witch screen and when.
  */
 @Entity
-public class Seance {
+public class Showing {
     private Long id;
     private Screen screen;
     private Film film;
@@ -25,6 +25,10 @@ public class Seance {
     @GeneratedValue
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @ManyToOne
