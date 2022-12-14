@@ -20,9 +20,7 @@ public class Screen {
         this.rowNumber = rowNumber;
     }
 
-    public Screen() {
-
-    }
+    public Screen() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,5 +55,15 @@ public class Screen {
 
     public void setRowNumber(int rowNumber) {
         this.rowNumber = rowNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Screen{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", seatsNumber=" + seatsNumber +
+                ", rowNumber=" + rowNumber +
+                '}';
     }
 }

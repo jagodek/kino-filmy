@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalTime;
+import java.util.Arrays;
 
 @Entity
 public class Film {
@@ -38,10 +39,6 @@ public class Film {
         this.director = director;
         this.icon = icon;
     }
-
-//    public int getId() {
-//        return id;
-//    }
 
     public String getTitle() {
         return title;
@@ -81,5 +78,17 @@ public class Film {
 
     public void setIcon(byte[] icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", runtime=" + runtime +
+                ", genre='" + genre + '\'' +
+                ", director='" + director + '\'' +
+                ", icon=" + Arrays.toString(icon) +
+                '}';
     }
 }
