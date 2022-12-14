@@ -4,7 +4,10 @@ import pl.edu.agh.to.kinofilmy.Roles.Roles;
 
 import javax.persistence.*;
 
-
+/**
+ * The data model class for a record in the Employee database, containing general information about employees.
+ *
+ */
 @Entity
 public class Employee {
     private Long id;

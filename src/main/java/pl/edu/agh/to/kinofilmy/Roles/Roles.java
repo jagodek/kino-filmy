@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * The data model class for a record in the Roles database, containing info about permissions assigned to each employee role.
+ *
+ */
 @Entity
 public class Roles {
     private Long id;
