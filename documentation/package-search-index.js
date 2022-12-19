@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"pl.edu.agh.to.kinofilmy"},{"l":"pl.edu.agh.to.kinofilmy.Employee"},{"l":"pl.edu.agh.to.kinofilmy.Film"},{"l":"pl.edu.agh.to.kinofilmy.Roles"},{"l":"pl.edu.agh.to.kinofilmy.Screen"},{"l":"pl.edu.agh.to.kinofilmy.Showing"},{"l":"pl.edu.agh.to.kinofilmy.Ticket"}];updateSearchResults();

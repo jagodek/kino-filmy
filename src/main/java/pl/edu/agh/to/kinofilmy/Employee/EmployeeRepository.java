@@ -7,6 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * The Repository for the Employee database, allowing for operations on said database,
+ * such as getting records and persisting changes.
+ */
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
