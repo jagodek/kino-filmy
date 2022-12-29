@@ -33,7 +33,7 @@ public class KinoFilmyApplication extends Application {
 				rolesRepository.save(roles);
 			}
 			System.out.println(rolesRepository.findAll());
-			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "jank@mail.pl", "+48 123 123 123");
+			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "admin", "admin", "jank@mail.pl", "+48 123 123 123");
 			employeeRepository.save(employee);
 			System.out.println(employeeRepository.findAll());
 		};
