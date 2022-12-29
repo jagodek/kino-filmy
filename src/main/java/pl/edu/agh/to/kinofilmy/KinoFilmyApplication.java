@@ -1,20 +1,18 @@
 package pl.edu.agh.to.kinofilmy;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.EventListener;
-import pl.edu.agh.to.kinofilmy.Employee.Employee;
-import pl.edu.agh.to.kinofilmy.Employee.EmployeeRepository;
-import pl.edu.agh.to.kinofilmy.Roles.Roles;
-import pl.edu.agh.to.kinofilmy.Roles.RolesRepository;
+import pl.edu.agh.to.kinofilmy.model.Employee.Employee;
+import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeRepository;
+import pl.edu.agh.to.kinofilmy.model.Roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.Roles.RolesRepository;
 
 @SpringBootApplication
-public class KinoFilmyApplication {
+public class KinoFilmyApplication extends Application {
 
 
 
@@ -34,5 +32,10 @@ public class KinoFilmyApplication {
 			employeeRepository.save(employee);
 			System.out.println(employeeRepository.findAll());
 		};
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
 	}
 }

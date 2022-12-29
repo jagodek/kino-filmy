@@ -1,6 +1,6 @@
-package pl.edu.agh.to.kinofilmy.Employee;
+package pl.edu.agh.to.kinofilmy.model.Employee;
 
-import pl.edu.agh.to.kinofilmy.Roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.Roles.Roles;
 
 import javax.persistence.*;
 

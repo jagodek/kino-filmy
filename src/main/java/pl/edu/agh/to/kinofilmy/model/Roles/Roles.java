@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Roles;
+package pl.edu.agh.to.kinofilmy.model.Roles;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

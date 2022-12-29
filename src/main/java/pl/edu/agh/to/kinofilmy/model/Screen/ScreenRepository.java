@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Screen;
+package pl.edu.agh.to.kinofilmy.model.Screen;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

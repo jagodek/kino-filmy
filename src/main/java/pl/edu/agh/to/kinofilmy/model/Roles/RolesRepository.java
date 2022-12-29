@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Roles;
+package pl.edu.agh.to.kinofilmy.model.Roles;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

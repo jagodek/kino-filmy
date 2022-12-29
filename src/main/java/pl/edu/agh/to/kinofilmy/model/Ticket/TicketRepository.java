@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Ticket;
+package pl.edu.agh.to.kinofilmy.model.Ticket;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

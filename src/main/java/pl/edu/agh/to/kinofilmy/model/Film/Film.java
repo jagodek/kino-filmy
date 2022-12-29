@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Film;
+package pl.edu.agh.to.kinofilmy.model.Film;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
