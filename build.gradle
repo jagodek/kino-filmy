@@ -17,7 +17,7 @@ repositories {
 }
 
 application {
-	mainClassName = 'KinoFilmyApplication'
+	mainClassName = 'pl.edu.agh.to.kinofilmy.KinoFilmyApplication'
 }
 
 javafx {
