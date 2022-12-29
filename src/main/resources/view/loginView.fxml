@@ -6,7 +6,7 @@
 
 <BorderPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.Controllers.LoginPresenter">
    <bottom>
-      <Button fx:id="loginButton" mnemonicParsing="false" text="OK" BorderPane.alignment="CENTER">
+      <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleOkAction" text="OK" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>

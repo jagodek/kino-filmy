@@ -59,6 +59,7 @@ public class KinoFilmyApplicationController {
 
             LoginPresenter presenter = loader.getController();
             presenter.setLoginStage(loginStage);
+            presenter.setApplicationController(this);
 
             loginStage.showAndWait();
 
@@ -68,5 +69,28 @@ public class KinoFilmyApplicationController {
         return new Roles("None", false, false, false);
     }
 
+    public void displayMessage(Stage parentStage, String message){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(KinoFilmyApplicationController.class.getResource("/view/messageView.fxml"));
+            BorderPane page = loader.load();
+
+            Stage messageStage = new Stage();
+            messageStage.setTitle("Message");
+            messageStage.initModality(Modality.WINDOW_MODAL);
+            messageStage.initOwner(parentStage);
+            Scene scene = new Scene(page);
+            messageStage.setScene(scene);
+
+            MessageController presenter = loader.getController();
+            presenter.setMessage(message);
+            presenter.setMessageStage(messageStage);
+
+            messageStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
