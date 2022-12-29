@@ -3,6 +3,7 @@ package pl.edu.agh.to.kinofilmy.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class LoginPresenter {
     private TextField usernameText;
 
     @FXML
-    private TextField passwordText;
+    private PasswordField passwordText;
 
     @FXML
     private Button loginButton;
