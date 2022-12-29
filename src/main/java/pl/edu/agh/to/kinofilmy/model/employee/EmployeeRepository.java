@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Model.Employee;
+package pl.edu.agh.to.kinofilmy.model.employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

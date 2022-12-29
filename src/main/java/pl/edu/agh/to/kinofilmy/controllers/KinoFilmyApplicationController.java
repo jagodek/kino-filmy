@@ -1,11 +1,11 @@
-package pl.edu.agh.to.kinofilmy.Controllers;
+package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import pl.edu.agh.to.kinofilmy.Model.Roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import java.io.IOException;
 

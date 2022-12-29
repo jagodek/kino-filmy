@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.Controllers;
+package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

@@ -1,8 +1,8 @@
-package pl.edu.agh.to.kinofilmy.Model.Ticket;
+package pl.edu.agh.to.kinofilmy.model.ticket;
 
 
 
-import pl.edu.agh.to.kinofilmy.Model.Showing.Showing;
+import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import javax.persistence.*;
 import java.util.Date;
