@@ -92,6 +92,7 @@ public class Employee {
         this.role = roles;
     }
 
+    @Column(unique = true)
     public String getUsername() {
         return username;
     }
