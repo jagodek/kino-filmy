@@ -1,28 +1,24 @@
 package pl.edu.agh.to.kinofilmy;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationContextInitializedEvent;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.EventListener;
-import pl.edu.agh.to.kinofilmy.Employee.Employee;
-import pl.edu.agh.to.kinofilmy.Employee.EmployeeRepository;
-import pl.edu.agh.to.kinofilmy.Roles.Roles;
-import pl.edu.agh.to.kinofilmy.Roles.RolesRepository;
+import pl.edu.agh.to.kinofilmy.Model.Employee.Employee;
+import pl.edu.agh.to.kinofilmy.Model.Employee.EmployeeRepository;
+import pl.edu.agh.to.kinofilmy.Model.Roles.Roles;
+import pl.edu.agh.to.kinofilmy.Model.Roles.RolesRepository;
 
 @SpringBootApplication
 public class KinoFilmyApplication extends Application {
 
 
-
-	public static void main(String[] args) {
-		SpringApplication.run(KinoFilmyApplication.class, args);
-	}
+	private ConfigurableApplicationContext springContext;
 
 	@Bean
 	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
@@ -40,6 +36,24 @@ public class KinoFilmyApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		springContext = SpringApplication.run(KinoFilmyApplication.class);
 
+		primaryStage.setTitle("Kino-Filmy");
+
+		VBox root = new VBox();
+
+		Scene scene = new Scene(root, 800, 600);
+		primaryStage.setScene(scene);
+
+		primaryStage.show();
+	}
+
+	@Override
+	public void stop() throws Exception {
+		springContext.stop();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
 	}
 }
