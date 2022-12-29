@@ -40,16 +40,17 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             // add layout to a scene and show them all
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
-            this.userRole = login();
-            primaryStage.show();
-
+            login();
+            if(userRole != null){
+                primaryStage.show();
+            }
         } catch (IOException e) {
             // don't do this in common apps
             e.printStackTrace();
         }
     }
 
-    public Roles login(){
+    public void login(){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(KinoFilmyApplicationController.class.getResource("/view/loginView.fxml"));
@@ -70,7 +71,6 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new Roles("None", false, false, false);
     }
 
     public void displayMessage(Stage parentStage, String message){
@@ -105,5 +105,13 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     @Autowired
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    public Roles getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Roles userRole) {
+        this.userRole = userRole;
     }
 }

@@ -46,7 +46,8 @@ public class LoginPresenter {
         Optional<Roles> rolesOptional = employeeService.login(usernameText.getText(), passwordText.getText());
         if(rolesOptional.isEmpty()){
             applicationController.displayMessage(loginStage, "Incorrect username or password.");
-        } else{
+        } else {
+            applicationController.setUserRole(rolesOptional.get());
             loginStage.close();
         }
     }
