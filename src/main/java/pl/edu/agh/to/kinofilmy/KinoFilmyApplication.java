@@ -1,5 +1,7 @@
 package pl.edu.agh.to.kinofilmy;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +16,7 @@ import pl.edu.agh.to.kinofilmy.Roles.Roles;
 import pl.edu.agh.to.kinofilmy.Roles.RolesRepository;
 
 @SpringBootApplication
-public class KinoFilmyApplication {
+public class KinoFilmyApplication extends Application {
 
 
 
@@ -34,5 +36,10 @@ public class KinoFilmyApplication {
 			employeeRepository.save(employee);
 			System.out.println(employeeRepository.findAll());
 		};
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+
 	}
 }
