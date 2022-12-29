@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import pl.edu.agh.to.kinofilmy.Controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.Model.Employee.Employee;
 import pl.edu.agh.to.kinofilmy.Model.Employee.EmployeeRepository;
 import pl.edu.agh.to.kinofilmy.Model.Roles.Roles;
@@ -19,6 +20,10 @@ public class KinoFilmyApplication extends Application {
 
 
 	private ConfigurableApplicationContext springContext;
+
+	private KinoFilmyApplicationController appController;
+
+	private Stage primaryStage;
 
 	@Bean
 	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
@@ -38,14 +43,11 @@ public class KinoFilmyApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		springContext = SpringApplication.run(KinoFilmyApplication.class);
 
-		primaryStage.setTitle("Kino-Filmy");
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Kino-Filmy");
 
-		VBox root = new VBox();
-
-		Scene scene = new Scene(root, 800, 600);
-		primaryStage.setScene(scene);
-
-		primaryStage.show();
+		this.appController = new KinoFilmyApplicationController(primaryStage);
+		this.appController.initRootLayout();
 	}
 
 	@Override
