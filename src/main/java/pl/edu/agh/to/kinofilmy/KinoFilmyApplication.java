@@ -24,6 +24,7 @@ public class KinoFilmyApplication extends Application {
 
 	private Stage primaryStage;
 
+
 	/*
 	@Bean
 	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
@@ -39,6 +40,9 @@ public class KinoFilmyApplication extends Application {
 		};
 	}
 	 */
+
+
+
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
