@@ -3,6 +3,7 @@ package pl.edu.agh.to.kinofilmy.controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.BeansException;
@@ -36,6 +37,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
 
             // set initial data into controller
             MainController controller = loader.getController();
+            controller.setMainStage(primaryStage);
 
             // add layout to a scene and show them all
             Scene scene = new Scene(rootLayout);
@@ -93,6 +95,28 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             messageStage.showAndWait();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showAddUserForm(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/newUserView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            GridPane layout = loader.load();
+
+            Stage addUserStage = new Stage();
+            addUserStage.setTitle("Add new user");
+            addUserStage.initModality(Modality.WINDOW_MODAL);
+            addUserStage.initOwner(parent);
+            NewUserController controller = loader.getController();
+            controller.setNewUserStage(addUserStage);
+            Scene scene = new Scene(layout);
+            addUserStage.setScene(scene);
+            addUserStage.showAndWait();
+        } catch (IOException e) {
+            // TODO don't do this in common apps
             e.printStackTrace();
         }
     }
