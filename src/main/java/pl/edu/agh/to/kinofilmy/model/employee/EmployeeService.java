@@ -1,22 +1,28 @@
 package pl.edu.agh.to.kinofilmy.model.employee;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
-    private static final EmployeeService instance = new EmployeeService();
-    private EmployeeRepository employeeRepository;
 
-    private EmployeeService() {}
+    @Autowired
+    EmployeeRepository repository;
 
-    public static EmployeeService getInstance(){
-        return EmployeeService.instance;
+    public Optional<Roles> login(String username, String password) {
+        Optional<Employee> employee = repository.findByUsername(username);
+        if(employee.isPresent()){
+            if (employee.get().getPassword().equals(password)){
+                return Optional.of(employee.get().getRole());
+            }
+        }
+        return Optional.empty();
     }
 
-    public void setEmployeeRepository(EmployeeRepository employeeRepository){
-        this.employeeRepository = employeeRepository;
-    }
-    public void addEmployee(Employee employee){
-        this.employeeRepository.save(employee);
+    public void addEmployee(Employee employee) {
+        this.repository.save(employee);
     }
 }
