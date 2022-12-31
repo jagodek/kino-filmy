@@ -8,7 +8,7 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pl.edu.agh.to.kinofilmy.controller.NewUserController"
+            fx:controller="pl.edu.agh.to.kinofilmy.controllers.NewUserController"
             prefHeight="400.0" prefWidth="600.0">
     <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
     <TextField fx:id="firstNameInput" GridPane.rowIndex="0" GridPane.columnIndex="1"/>

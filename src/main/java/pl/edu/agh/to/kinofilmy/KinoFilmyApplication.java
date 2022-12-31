@@ -1,21 +1,17 @@
 package pl.edu.agh.to.kinofilmy;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.edu.agh.to.kinofilmy.controller.AppController;
-import pl.edu.agh.to.kinofilmy.controller.NewUserController;
-import pl.edu.agh.to.kinofilmy.model.Employee.Employee;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeRepository;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeService;
-import pl.edu.agh.to.kinofilmy.model.Roles.Roles;
-import pl.edu.agh.to.kinofilmy.model.Roles.RolesRepository;
+import pl.edu.agh.to.kinofilmy.controllers.AppController;
+import pl.edu.agh.to.kinofilmy.model.employee.Employee;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeRepository;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.roles.RolesRepository;
 
 @SpringBootApplication
 public class KinoFilmyApplication extends Application {

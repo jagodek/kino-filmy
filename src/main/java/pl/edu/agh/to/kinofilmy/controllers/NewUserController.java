@@ -1,12 +1,12 @@
-package pl.edu.agh.to.kinofilmy.controller;
+package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import pl.edu.agh.to.kinofilmy.model.Employee.Employee;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeService;
-import pl.edu.agh.to.kinofilmy.model.Roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.employee.Employee;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 
 public class NewUserController {

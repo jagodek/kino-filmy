@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.model.Employee;
+package pl.edu.agh.to.kinofilmy.model.employee;
 
 import org.springframework.stereotype.Service;
 

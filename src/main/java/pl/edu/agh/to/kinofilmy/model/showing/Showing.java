@@ -1,7 +1,7 @@
-package pl.edu.agh.to.kinofilmy.model.Showing;
+package pl.edu.agh.to.kinofilmy.model.showing;
 
-import pl.edu.agh.to.kinofilmy.model.Film.Film;
-import pl.edu.agh.to.kinofilmy.model.Screen.Screen;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
+import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

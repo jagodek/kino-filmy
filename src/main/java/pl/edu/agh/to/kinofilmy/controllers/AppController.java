@@ -1,10 +1,10 @@
-package pl.edu.agh.to.kinofilmy.controller;
+package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeService;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 
 import java.io.IOException;
 

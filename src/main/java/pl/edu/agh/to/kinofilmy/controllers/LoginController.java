@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.controller;
+package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.fxml.FXML;
 
