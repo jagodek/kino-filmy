@@ -2,13 +2,13 @@ package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
 @Controller
 public class NewUserController {
@@ -16,6 +16,8 @@ public class NewUserController {
     private final KinoFilmyApplicationController applicationController;
 
     private final EmployeeService employeeService;
+
+    private final RolesService rolesService;
 
     private Stage newUserStage;
 
@@ -26,7 +28,7 @@ public class NewUserController {
     private TextField lastNameInput;
 
     @FXML
-    private TextField roleInput;
+    private ChoiceBox<Roles> roleInput;
 
     @FXML
     private TextField usernameInput;
@@ -43,9 +45,11 @@ public class NewUserController {
     @FXML
     private Button submit;
 
-    public NewUserController(KinoFilmyApplicationController applicationController, EmployeeService employeeService){
+    public NewUserController(KinoFilmyApplicationController applicationController, EmployeeService employeeService, RolesService rolesService){
         this.applicationController = applicationController;
         this.employeeService = employeeService;
+        this.rolesService = rolesService;
+
     }
 
     public void setNewUserStage(Stage newUserStage) {
@@ -54,7 +58,12 @@ public class NewUserController {
 
     @FXML
     public void initialize(){
+        for (Roles role :
+                this.rolesService.findAll()) {
 
+//            new MenuItem().setText(role.getRoleName())
+            this.roleInput.getItems().add(role);
+        }
     }
 
     @FXML
@@ -62,7 +71,7 @@ public class NewUserController {
         Employee newEmployee = new Employee(
                 firstNameInput.getText(),
                 lastNameInput.getText(),
-                new Roles(roleInput.getText(), false, false, false),
+                roleInput.getValue(),
                 usernameInput.getText(),
                 passwordInput.getText(),
                 emailInput.getText(),

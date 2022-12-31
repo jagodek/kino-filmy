@@ -18,7 +18,6 @@ import java.io.IOException;
 
 @Controller
 public class KinoFilmyApplicationController implements ApplicationContextAware {
-
     private Stage primaryStage;
 
     private Roles userRole;
@@ -141,20 +140,5 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     }
 
 
-    public void addUserView(){
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(KinoFilmyApplicationController.class.getResource("/view/addUserView.fxml"));
-            loader.setControllerFactory(applicationContext::getBean);
-            BorderPane rootLayout = loader.load();
 
-            AddUserController controller = loader.getController();
-
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
