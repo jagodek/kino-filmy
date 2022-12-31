@@ -9,16 +9,23 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    EmployeeRepository repository;
+    final EmployeeRepository repository;
+
+    public EmployeeService(EmployeeRepository repository) {
+        this.repository = repository;
+    }
 
     public Optional<Roles> login(String username, String password) {
-        Optional<Employee> employee = repository.findByUsername(username);
+        Optional<Employee> employee = repository.findEmployeeByUsername(username);
         if(employee.isPresent()){
             if (employee.get().getPassword().equals(password)){
                 return Optional.of(employee.get().getRole());
             }
         }
         return Optional.empty();
+    }
+
+    public void addEmployee(Employee employee) {
+        this.repository.save(employee);
     }
 }

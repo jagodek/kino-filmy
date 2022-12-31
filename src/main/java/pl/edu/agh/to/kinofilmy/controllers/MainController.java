@@ -1,24 +1,33 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import org.springframework.beans.factory.annotation.Autowired;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private KinoFilmyApplicationController applicationController;
+    private final KinoFilmyApplicationController applicationController;
+
+    private Stage mainStage;
 
 
-    @FXML
-    private Button addUserButton;
-
-    @FXML
-    public void addUserView(){
-        this.applicationController.addUserView();
+    public MainController(KinoFilmyApplicationController applicationController) {
+        this.applicationController = applicationController;
     }
 
+    public void setMainStage(Stage mainStage) {
+        this.mainStage = mainStage;
+    }
 
+    @FXML
+    private Button newUserButton;
+
+    @FXML
+    public void handleNewUserAction(ActionEvent event){
+        applicationController.showAddUserForm(mainStage);
+    }
 }

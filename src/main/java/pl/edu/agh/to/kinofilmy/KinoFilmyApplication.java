@@ -25,19 +25,23 @@ public class KinoFilmyApplication extends Application {
 	private Stage primaryStage;
 
 
-//	@Bean
-//	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
-//		return args -> {
-//			Roles roles = new Roles("Admin", true, true, true);
-//			if(rolesRepository.count() == 0) {
-//				rolesRepository.save(roles);
-//			}
-//			System.out.println(rolesRepository.findAll());
-//			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "admin", "admin", "jank@mail.pl", "+48 123 123 123");
-//			employeeRepository.save(employee);
-//			System.out.println(employeeRepository.findAll());
-//		};
-//	}
+	/*
+	@Bean
+	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
+		return args -> {
+			Roles roles = new Roles("Admin", true, true, true);
+			if(rolesRepository.count() == 0) {
+				rolesRepository.save(roles);
+			}
+			System.out.println(rolesRepository.findAll());
+			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "admin", "admin", "jank@mail.pl", "+48 123 123 123");
+			employeeRepository.save(employee);
+			System.out.println(employeeRepository.findAll());
+		};
+	}
+	 */
+
+
 
 
 	@Override
@@ -50,7 +54,6 @@ public class KinoFilmyApplication extends Application {
 
 		this.appController.setPrimaryStage(primaryStage);
 		this.appController.initRootLayout();
-
 	}
 
 	@Override
