@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.MenuBar;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -113,5 +114,23 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
 
     public void setUserRole(Roles userRole) {
         this.userRole = userRole;
+    }
+
+
+    public void addUserView(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(KinoFilmyApplicationController.class.getResource("/view/addUserView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane rootLayout = loader.load();
+
+            AddUserController controller = loader.getController();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
