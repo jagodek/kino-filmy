@@ -1,9 +1,6 @@
 package pl.edu.agh.to.kinofilmy.model.film;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.Arrays;
 
@@ -60,6 +57,8 @@ public class Film {
         return director;
     }
 
+    @Lob
+    @Column(length = 10485760)
     public byte[] getIcon() {
         return icon;
     }

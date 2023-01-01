@@ -1,9 +1,6 @@
 package pl.edu.agh.to.kinofilmy.model.roles;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * The data model class for a record in the Roles database, containing info about permissions assigned to each employee role.
@@ -42,6 +39,7 @@ public class Roles {
         return id;
     }
 
+    @Column(unique = true)
     public String getRoleName() {
         return roleName;
     }
@@ -76,8 +74,6 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "Roles{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' + '}';
+        return roleName;
     }
 }

@@ -28,6 +28,6 @@ public class MainController {
 
     @FXML
     public void handleNewUserAction(ActionEvent event){
-        applicationController.showAddUserForm(mainStage);
+        applicationController.showNewUserForm(mainStage);
     }
 }

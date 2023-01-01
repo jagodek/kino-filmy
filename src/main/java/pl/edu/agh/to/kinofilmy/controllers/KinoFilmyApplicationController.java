@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.control.MenuBar;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,6 @@ import java.io.IOException;
 
 @Controller
 public class KinoFilmyApplicationController implements ApplicationContextAware {
-
     private Stage primaryStage;
 
     private Roles userRole;
@@ -99,7 +99,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
-    public void showAddUserForm(Stage parent){
+    public void showNewUserForm(Stage parent){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/newUserView.fxml"));
@@ -138,4 +138,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     public void setUserRole(Roles userRole) {
         this.userRole = userRole;
     }
+
+
+
 }

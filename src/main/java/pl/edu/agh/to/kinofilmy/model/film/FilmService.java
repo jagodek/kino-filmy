@@ -1,15 +1,19 @@
 package pl.edu.agh.to.kinofilmy.model.film;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@Service
+
 public class FilmService {
 
-    final FilmRepostory filmRepostory;
+    @Autowired
+    private FilmRepository repository;
 
-    public FilmService(FilmRepostory filmRepostory) {
-        this.filmRepostory = filmRepostory;
+
+    public Iterable<Film> findAll(){
+        return this.repository.findAll();
     }
 
-
+    public void save(Film film) {
+        this.repository.save(film);
+    }
 }
