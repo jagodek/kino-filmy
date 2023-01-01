@@ -1,5 +1,6 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +10,8 @@ import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
+
+import javax.validation.constraints.NotEmpty;
 
 @Controller
 public class NewUserController {
@@ -64,6 +67,9 @@ public class NewUserController {
 //            new MenuItem().setText(role.getRoleName())
             this.roleInput.getItems().add(role);
         }
+        this.roleInput.setOnAction((event -> {
+            this.roleInput.setValue(this.roleInput.getValue());
+        }));
     }
 
     @FXML

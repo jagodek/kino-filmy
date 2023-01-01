@@ -99,7 +99,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
-    public void showAddUserForm(Stage parent){
+    public void showNewUserForm(Stage parent){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/newUserView.fxml"));

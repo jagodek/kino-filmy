@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.NewUserController">
+<GridPane alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.NewUserController" stylesheets="./../css/newUserStyle.css">
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <GridPane.margin>
          <Insets left="10.0" />
@@ -70,7 +70,10 @@
          <Insets left="10.0" />
       </GridPane.margin>
    </Label>
-   <ChoiceBox fx:id="roleInput" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <ChoiceBox fx:id="roleInput" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin></ChoiceBox>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints maxWidth="164.0" minWidth="164.0" prefWidth="164.0" />
