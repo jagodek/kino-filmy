@@ -27,7 +27,20 @@ public class MainController {
     private Button newUserButton;
 
     @FXML
+    private Button manageFilmsButton;
+
+    @FXML
+    private void initialize(){
+
+    }
+
+    @FXML
     public void handleNewUserAction(ActionEvent event){
         applicationController.showNewUserForm(mainStage);
+    }
+
+    @FXML
+    public void handleManageFilmsAction(ActionEvent event){
+        applicationController.showFilmManagement(mainStage);
     }
 }

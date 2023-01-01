@@ -6,7 +6,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.control.MenuBar;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -116,7 +115,27 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             addUserStage.setScene(scene);
             addUserStage.showAndWait();
         } catch (IOException e) {
-            // TODO don't do this in common apps
+            e.printStackTrace();
+        }
+    }
+
+    public void showFilmManagement(Stage parent){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/filmManagementView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage manageFilmsStage = new Stage();
+            manageFilmsStage.setTitle("Film management");
+            manageFilmsStage.initModality(Modality.NONE);
+            manageFilmsStage.initOwner(parent);
+            FilmManagementController controller = loader.getController();
+            controller.setFilmManagementStage(manageFilmsStage);
+            Scene scene = new Scene(layout);
+            manageFilmsStage.setScene(scene);
+            manageFilmsStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
