@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.model.Roles;
+package pl.edu.agh.to.kinofilmy.model.roles;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -76,8 +76,6 @@ public class Roles {
 
     @Override
     public String toString() {
-        return "Roles{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' + '}';
+        return roleName;
     }
 }

@@ -1,22 +1,37 @@
-package pl.edu.agh.to.kinofilmy.model.Employee;
+package pl.edu.agh.to.kinofilmy.model.employee;
 
 import org.springframework.stereotype.Service;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
-    private static final EmployeeService instance = new EmployeeService();
-    private EmployeeRepository employeeRepository;
 
-    private EmployeeService() {}
+    final EmployeeRepository repository;
 
-    public static EmployeeService getInstance(){
-        return EmployeeService.instance;
+    public EmployeeService(EmployeeRepository repository) {
+        this.repository = repository;
     }
 
-    public void setEmployeeRepository(EmployeeRepository employeeRepository){
-        this.employeeRepository = employeeRepository;
+    public Optional<Roles> login(String username, String password) {
+        Optional<Employee> employee = repository.findEmployeeByUsername(username);
+        if(employee.isPresent()){
+            if (employee.get().getPassword().equals(password)){
+                return Optional.of(employee.get().getRole());
+            }
+        }
+        return Optional.empty();
     }
-    public void addEmployee(Employee employee){
-        this.employeeRepository.save(employee);
+
+    public List<Employee> getEmployees(){
+        return this.repository.findAll();
     }
+
+    public void addEmployee(Employee employee) {
+        this.repository.save(employee);
+    }
+
+    public void deleteEmployee(Employee employee){this.repository.delete(employee);}
 }

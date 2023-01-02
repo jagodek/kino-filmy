@@ -1,33 +1,31 @@
 package pl.edu.agh.to.kinofilmy;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.edu.agh.to.kinofilmy.controller.AppController;
-import pl.edu.agh.to.kinofilmy.controller.NewUserController;
-import pl.edu.agh.to.kinofilmy.model.Employee.Employee;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeRepository;
-import pl.edu.agh.to.kinofilmy.model.Employee.EmployeeService;
-import pl.edu.agh.to.kinofilmy.model.Roles.Roles;
-import pl.edu.agh.to.kinofilmy.model.Roles.RolesRepository;
+import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
+import pl.edu.agh.to.kinofilmy.model.employee.Employee;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeRepository;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.roles.RolesRepository;
 
 @SpringBootApplication
 public class KinoFilmyApplication extends Application {
 
+
+	private ConfigurableApplicationContext springContext;
+
+	private KinoFilmyApplicationController appController;
+
 	private Stage primaryStage;
-	private AppController appController;
 
-	public static void main(String[] args) {
-		SpringApplication.run(KinoFilmyApplication.class, args);
-		Application.launch(args);
-	}
 
+	/*
 	@Bean
 	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
 		return args -> {
@@ -36,17 +34,34 @@ public class KinoFilmyApplication extends Application {
 				rolesRepository.save(roles);
 			}
 			System.out.println(rolesRepository.findAll());
-			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "jank@mail.pl", "+48 123 123 123");
+			Employee employee = new Employee("Jan", "Kowalski", rolesRepository.getReferenceById((long) 1), "admin", "admin", "jank@mail.pl", "+48 123 123 123");
 			employeeRepository.save(employee);
 			System.out.println(employeeRepository.findAll());
-			EmployeeService.getInstance().setEmployeeRepository(employeeRepository);
 		};
 	}
+	 */
+
+
+
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		springContext = SpringApplication.run(KinoFilmyApplication.class);
+
 		this.primaryStage = primaryStage;
-		this.appController = new AppController(this.primaryStage);
-		this.appController.showAddUserForm();
+		this.primaryStage.setTitle("Kino-Filmy");
+		this.appController = springContext.getBean(KinoFilmyApplicationController.class);
+
+		this.appController.setPrimaryStage(primaryStage);
+		this.appController.initRootLayout();
+	}
+
+	@Override
+	public void stop() throws Exception {
+		springContext.stop();
+	}
+
+	public static void main(String[] args) {
+		launch(args);
 	}
 }
