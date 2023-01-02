@@ -10,15 +10,12 @@ import java.util.Arrays;
 
 @Entity
 public class Film {
-
+    @Id
     private Long id;
     private String title;
     private LocalTime runtime;
     private String genre;
     private String director;
-
-    @Lob
-    @Column(length = 10485760)
     private byte[] icon;
 
     public Film() {
@@ -60,8 +57,6 @@ public class Film {
         return director;
     }
 
-    @Lob
-    @Column(length = 10485760)
     public byte[] getIcon() {
         return icon;
     }
