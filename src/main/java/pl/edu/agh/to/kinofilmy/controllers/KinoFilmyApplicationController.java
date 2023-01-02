@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import java.io.IOException;
@@ -140,7 +141,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
-    public boolean showNewFilmForm(Stage parent){
+    public boolean showFilmForm(Stage parent, Film film, boolean newFilm){
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/filmFormView.fxml"));
@@ -148,11 +149,13 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             BorderPane layout = loader.load();
 
             Stage filmFormStage = new Stage();
-            filmFormStage.setTitle("Add new film");
+            if(newFilm) filmFormStage.setTitle("Add new film");
+            else filmFormStage.setTitle("Edit film");
             filmFormStage.initModality(Modality.WINDOW_MODAL);
             filmFormStage.initOwner(parent);
             FilmFormPresenter presenter = loader.getController();
             presenter.setFilmFormStage(filmFormStage);
+            presenter.setFilm(film, newFilm);
             Scene scene = new Scene(layout);
             filmFormStage.setScene(scene);
             filmFormStage.showAndWait();

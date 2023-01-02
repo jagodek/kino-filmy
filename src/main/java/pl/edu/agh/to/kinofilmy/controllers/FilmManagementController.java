@@ -12,8 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
 import pl.edu.agh.to.kinofilmy.model.film.FilmService;
 
@@ -112,17 +112,25 @@ public class FilmManagementController {
 
     @FXML
     public void handleNewFilmAction(ActionEvent event){
-        applicationController.showNewFilmForm(filmManagementStage);
+        Film film = new Film();
+        applicationController.showFilmForm(filmManagementStage, film, true);
+        filmService.save(film);
+        refreshFilmData();
     }
 
     @FXML
     public void handleEditFilmAction(ActionEvent event){
-
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        applicationController.showFilmForm(filmManagementStage, film, false);
+        filmService.save(film);
+        refreshFilmData();
     }
 
     @FXML
     public void handleDeleteFilmAction(ActionEvent event){
-
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        filmService.delete(film);
+        refreshFilmData();
     }
 
 }
