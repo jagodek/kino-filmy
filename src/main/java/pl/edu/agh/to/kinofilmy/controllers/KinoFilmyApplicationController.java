@@ -64,8 +64,8 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             loginStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             loginStage.setScene(scene);
-            LoginPresenter presenter = loader.getController();
-            presenter.setLoginStage(loginStage);
+            LoginController controller = loader.getController();
+            controller.setLoginStage(loginStage);
 
             loginStage.showAndWait();
 
@@ -137,6 +137,29 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             manageFilmsStage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean showNewFilmForm(Stage parent){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/filmFormView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage filmFormStage = new Stage();
+            filmFormStage.setTitle("Add new film");
+            filmFormStage.initModality(Modality.WINDOW_MODAL);
+            filmFormStage.initOwner(parent);
+            FilmFormPresenter presenter = loader.getController();
+            presenter.setFilmFormStage(filmFormStage);
+            Scene scene = new Scene(layout);
+            filmFormStage.setScene(scene);
+            filmFormStage.showAndWait();
+            return presenter.isApproved();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

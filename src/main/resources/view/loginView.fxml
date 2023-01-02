@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.LoginPresenter">
+<BorderPane prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.LoginController">
    <bottom>
       <Button fx:id="loginButton" defaultButton="true" mnemonicParsing="false" onAction="#handleOkAction" text="OK" BorderPane.alignment="CENTER">
          <BorderPane.margin>

@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
 import pl.edu.agh.to.kinofilmy.model.film.FilmService;
@@ -26,6 +27,8 @@ public class FilmManagementController {
     private Stage filmManagementStage;
 
     private ObservableList<FilmDisplay> filmList;
+
+    final KinoFilmyApplicationController applicationController;
 
     @FXML
     private Button newFilmButton;
@@ -57,8 +60,9 @@ public class FilmManagementController {
     @FXML
     private TableColumn<FilmDisplay, String> directorColumn;
 
-    public FilmManagementController(FilmService filmService) {
+    public FilmManagementController(FilmService filmService, KinoFilmyApplicationController applicationController) {
         this.filmService = filmService;
+        this.applicationController = applicationController;
     }
 
     private void refreshFilmData(){
@@ -108,7 +112,7 @@ public class FilmManagementController {
 
     @FXML
     public void handleNewFilmAction(ActionEvent event){
-
+        applicationController.showNewFilmForm(filmManagementStage);
     }
 
     @FXML

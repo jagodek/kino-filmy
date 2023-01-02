@@ -17,7 +17,7 @@ import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import java.util.Optional;
 
 @Controller
-public class LoginPresenter {
+public class LoginController {
 
     @Autowired
     private KinoFilmyApplicationController applicationController;
