@@ -3,6 +3,9 @@ package pl.edu.agh.to.kinofilmy.model.employee;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 /**
  * The data model class for a record in the Employee database, containing general information about employees.
@@ -12,14 +15,21 @@ import javax.persistence.*;
 public class Employee {
     private Long id;
 
+//    @NotBlank(message = "First name is mandatory")
     private String firstname;
 
+//    @NotBlank(message = "Last name is mandatory")
     private String lastname;
 
+//    @NotBlank(message = "Role is mandatory")
     private Roles role;
 
+//    @Email(message = "Email is incorrect")
+//    @NotBlank(message = "Email is mandatory")
     private String email;
 
+//    @Size(min = 9, max = 15)
+//    @NotBlank(message = "Phone number is mandatory")
     private String phoneNumber;
 
     private String username;

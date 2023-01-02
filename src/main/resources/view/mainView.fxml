@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.MainController">
+   <top>
+      <HBox BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="newUserButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleNewUserAction" text="New User">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></Button>
+            <Button fx:id="manageFilmsButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleManageFilmsAction" text="Manage films">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

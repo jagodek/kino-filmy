@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.NewUserController" stylesheets="./../css/newUserStyle.css">
+    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="firstNameInput" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+      </GridPane.margin></TextField>
+
+    <Label text="Surname:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="lastNameInput" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin></TextField>
+
+    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin></Label>
+
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="emailInput" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin></TextField>
+
+    <Label text="Phone number:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+      <GridPane.margin>
+         <Insets left="10.0" right="10.0" />
+      </GridPane.margin></Label>
+    <TextField fx:id="phoneInput" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin></TextField>
+
+    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="Dodaj" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </GridPane.margin></Button>
+   <TextField fx:id="usernameInput" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin>
+   </TextField>
+   <TextField fx:id="passwordInput" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin>
+   </TextField>
+   <Label text="Username:" GridPane.rowIndex="3">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin>
+   </Label>
+   <Label text="Password:" GridPane.rowIndex="4">
+      <GridPane.margin>
+         <Insets left="10.0" />
+      </GridPane.margin>
+   </Label>
+   <ChoiceBox fx:id="roleInput" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+      </GridPane.margin></ChoiceBox>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="164.0" minWidth="164.0" prefWidth="164.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
