@@ -133,4 +133,7 @@ public class FilmManagementController {
         refreshFilmData();
     }
 
+    public Stage getFilmManagementStage() {
+        return filmManagementStage;
+    }
 }

@@ -132,10 +132,19 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             manageFilmsStage.initModality(Modality.NONE);
             manageFilmsStage.initOwner(parent);
             FilmManagementController controller = loader.getController();
-            controller.setFilmManagementStage(manageFilmsStage);
-            Scene scene = new Scene(layout);
-            manageFilmsStage.setScene(scene);
-            manageFilmsStage.show();
+            if(controller.getFilmManagementStage() == null) {
+                controller.setFilmManagementStage(manageFilmsStage);
+                Scene scene = new Scene(layout);
+                manageFilmsStage.setScene(scene);
+                manageFilmsStage.show();
+            } else {
+                if(!controller.getFilmManagementStage().isShowing()){
+                    controller.setFilmManagementStage(manageFilmsStage);
+                    Scene scene = new Scene(layout);
+                    manageFilmsStage.setScene(scene);
+                    manageFilmsStage.show();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
