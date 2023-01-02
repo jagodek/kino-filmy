@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ClassPathResource;
 import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeRepository;
@@ -50,7 +51,7 @@ public class KinoFilmyApplication extends Application {
 	@Bean
 	public CommandLineRunner insertMovies(FilmRepository repository) {
 		return args -> {
-			File fi = new File("/home/michal/Documents/sem5/to/Projekt/jk-sr-1120-kino-filmy/src/main/resources/posters/interstellar.jpg");
+			File fi = new ClassPathResource("posters/interstellar.jpg").getFile();
 			byte[] fileContent = Files.readAllBytes(fi.toPath());
 			Film film = new Film("Interstellar",LocalTime.of(2,49,0,0),"Science Fiction","Christopher Nolan",fileContent);
 
