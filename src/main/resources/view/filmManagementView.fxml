@@ -5,13 +5,17 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.FilmManagementController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.FilmManagementController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="newFilmButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleNewFilmAction" text="Add new film">
+            <Button fx:id="refreshButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleRefreshAction" text="Refresh">
                <VBox.margin>
                   <Insets bottom="5.0" left="10.0" top="15.0" />
+               </VBox.margin></Button>
+            <Button fx:id="newFilmButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleNewFilmAction" text="Add new film">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="10.0" top="5.0" />
                </VBox.margin>
             </Button>
             <Button fx:id="editFilmButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleEditFilmAction" text="Edit film">
@@ -24,21 +28,22 @@
                   <Insets bottom="5.0" left="10.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <ImageView fx:id="filmPosterImageDisplay" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true">
+            <ImageView fx:id="filmImageDisplay" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
-                  <Insets left="5.0" top="40.0" />
-               </VBox.margin></ImageView>
+                  <Insets left="10.0" top="100.0" />
+               </VBox.margin>
+            </ImageView>
          </children>
       </VBox>
    </left>
    <center>
       <TableView fx:id="filmsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumn" text="ID" />
-          <TableColumn fx:id="titleColumn" prefWidth="100.0" text="Title" />
-            <TableColumn fx:id="runtimeColumn" prefWidth="100.0" text="Runtime" />
-            <TableColumn fx:id="genreColumn" prefWidth="100.0" text="Genre" />
-            <TableColumn fx:id="directorColumn" prefWidth="100.0" text="Director" />
+          <TableColumn fx:id="idColumn" editable="false" prefWidth="90.0" text="ID" />
+          <TableColumn fx:id="titleColumn" editable="false" prefWidth="150.0" text="Title" />
+            <TableColumn fx:id="runtimeColumn" editable="false" prefWidth="130.0" text="Runtime" />
+            <TableColumn fx:id="genreColumn" editable="false" prefWidth="150.0" text="Genre" />
+            <TableColumn fx:id="directorColumn" editable="false" prefWidth="150.0" text="Director" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

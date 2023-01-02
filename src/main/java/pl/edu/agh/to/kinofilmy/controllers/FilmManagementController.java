@@ -1,6 +1,7 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
@@ -34,6 +37,9 @@ public class FilmManagementController {
     private Button deleteFilmButton;
 
     @FXML
+    private ImageView filmImageDisplay;
+
+    @FXML
     private TableView<FilmDisplay> filmsTable;
 
     @FXML
@@ -55,7 +61,8 @@ public class FilmManagementController {
         this.filmService = filmService;
     }
 
-    public void refreshFilmData(){
+    private void refreshFilmData(){
+        filmsTable.getSelectionModel().clearSelection();
         this.filmList = filmService.findAllAsFilmDisplay();
         filmsTable.setItems(filmList);
     }
@@ -63,6 +70,13 @@ public class FilmManagementController {
     @FXML
     public void initialize(){
         filmsTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        filmsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection != null){
+                displayFilmImage(newSelection);
+            } else {
+                filmImageDisplay.setImage(null);
+            }
+        });
 
         idColumn.setCellValueFactory(filmValue -> filmValue.getValue().idProperty().asObject());
         titleColumn.setCellValueFactory(filmValue -> filmValue.getValue().titleProperty());
@@ -74,10 +88,22 @@ public class FilmManagementController {
         editFilmButton.disableProperty().bind(Bindings.isEmpty(filmsTable.getSelectionModel().getSelectedItems()));
 
         refreshFilmData();
+
     }
 
     public void setFilmManagementStage(Stage filmManagementStage) {
         this.filmManagementStage = filmManagementStage;
+    }
+
+    private void displayFilmImage(FilmDisplay filmDisplay){
+        Image filmImage = filmService.getFilmImageById(filmDisplay.getId());
+        filmImageDisplay.setImage(filmImage);
+    }
+
+    @FXML
+    public void handleRefreshAction(ActionEvent event){
+        filmsTable.setItems(FXCollections.emptyObservableList());
+        refreshFilmData();
     }
 
     @FXML

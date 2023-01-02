@@ -2,14 +2,18 @@ package pl.edu.agh.to.kinofilmy.model.film;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
+@Transactional
 public class FilmService {
 
     private final FilmRepository repository;
@@ -37,6 +41,12 @@ public class FilmService {
 
     public Film filmDisplayToFilm(FilmDisplay filmDisplay){
         return new Film();
+    }
+
+    public Image getFilmImageById(long id){
+        Film film = repository.getReferenceById(id);
+        byte[] byteImg = film.getIcon();
+        return new Image(new ByteArrayInputStream(byteImg));
     }
 
 }

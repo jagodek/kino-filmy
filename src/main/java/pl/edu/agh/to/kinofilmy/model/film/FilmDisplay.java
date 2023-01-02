@@ -37,7 +37,6 @@ public class FilmDisplay {
         return title;
     }
 
-
     public LocalTime getRuntime() {
         return runtime.get();
     }
