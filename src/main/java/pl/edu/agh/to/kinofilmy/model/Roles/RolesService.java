@@ -11,7 +11,6 @@ public class RolesService {
 
     @Autowired
     private RolesRepository repository;
-
     public Optional<Roles> getRole(String name){
         return repository.findRolesByRoleName(name);
     }
