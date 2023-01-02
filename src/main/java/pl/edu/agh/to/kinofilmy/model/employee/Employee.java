@@ -17,21 +17,21 @@ import javax.validation.constraints.Size;
 public class Employee {
     private Long id;
 
-//    @NotBlank(message = "First name is mandatory")
+    @NotBlank(message = "First name is mandatory")
     private String firstname;
 
-//    @NotBlank(message = "Last name is mandatory")
+    @NotBlank(message = "Last name is mandatory")
     private String lastname;
 
-//    @NotBlank(message = "Role is mandatory")
+
     private Roles role;
 
-//    @Email(message = "Email is incorrect")
-//    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email is incorrect")
+    @NotBlank(message = "Email is mandatory")
     private String email;
 
-//    @Size(min = 9, max = 15)
-//    @NotBlank(message = "Phone number is mandatory")
+    @Size(min = 9, max = 15)
+    @NotBlank(message = "Phone number is mandatory")
     private String phoneNumber;
 
     private String username;
