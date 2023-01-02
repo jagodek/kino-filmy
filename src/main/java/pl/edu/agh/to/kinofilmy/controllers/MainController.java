@@ -35,8 +35,8 @@ public class MainController {
     }
 
     @FXML
-    public void handleNewUserAction(ActionEvent event){
-        applicationController.showNewUserForm(mainStage);
+    public void handleManageUsersAction(ActionEvent event){
+        applicationController.showUserManagement(mainStage);
     }
 
     @FXML

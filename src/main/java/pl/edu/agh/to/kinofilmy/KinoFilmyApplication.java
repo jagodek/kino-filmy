@@ -55,6 +55,7 @@ public class KinoFilmyApplication extends Application {
 		return args -> {
 			File fi = new File(KinoFilmyApplication.class.getResource("/posters/interstellar.jpg").toURI());
 			byte[] fileContent = Files.readAllBytes(fi.toPath());
+			System.out.println("----------------------------" + fileContent);
 			Film film = new Film("Interstellar",LocalTime.of(2,49,0,0),"Science Fiction","Christopher Nolan",fileContent);
 
 			repository.save(film);

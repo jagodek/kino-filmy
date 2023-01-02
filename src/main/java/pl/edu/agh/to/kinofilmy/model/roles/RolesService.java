@@ -2,7 +2,8 @@ package pl.edu.agh.to.kinofilmy.model.roles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.to.kinofilmy.model.employee.Employee;
+
+import java.util.Optional;
 
 @Service
 public class RolesService {
@@ -13,5 +14,4 @@ public class RolesService {
     public Iterable<Roles> findAll(){
         return this.repository.findAll();
     }
-
 }
