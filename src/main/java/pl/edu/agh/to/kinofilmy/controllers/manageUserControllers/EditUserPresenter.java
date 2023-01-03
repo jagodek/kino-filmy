@@ -308,7 +308,7 @@ public class EditUserPresenter {
             }
 
             if(isEdited){
-                this.employeeService.addEmployee(this.user);
+                this.employeeService.update(this.user);
             }
 
             this.editUserStage.close();

@@ -96,4 +96,15 @@ public class UserManagementPresenter {
         this.employees = employeeService.findAllAsEmployeeDisplay();
         this.usersTable.setItems(this.employees);
     }
+
+    @FXML
+    private void handleRefreshAction(ActionEvent event){
+        refresh();
+    }
+
+    @FXML
+    private void handleManageRolesAction(ActionEvent event){
+        applicationController.showRolesManagement(userManagementStage);
+    }
+
 }

@@ -349,7 +349,7 @@ public class NewUserController {
                 phoneInput.getText()
         );
 
-        this.employeeService.addEmployee(newEmployee);
+        this.employeeService.save(newEmployee);
         this.newUserStage.close();
     }
 }

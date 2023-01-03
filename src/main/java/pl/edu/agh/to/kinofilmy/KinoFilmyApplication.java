@@ -36,7 +36,7 @@ public class KinoFilmyApplication extends Application {
 	@Bean
 	public CommandLineRunner testEmployeeInsert(RolesRepository rolesRepository, EmployeeRepository employeeRepository) {
 		return args -> {
-			Roles roles = new Roles("Admin", true, true, true);
+			Roles roles = new Roles("Admin", true, true, true,true,true,true);
 			if(rolesRepository.findAll().isEmpty()) {
 				if (rolesRepository.count() == 0) {
 					rolesRepository.save(roles);
