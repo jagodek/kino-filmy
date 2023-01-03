@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.NewUserController" stylesheets="./../css/newUserStyle.css">
+<GridPane alignment="CENTER" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController" stylesheets="./../css/newUserStyle.css">
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <GridPane.margin>
          <Insets left="10.0" />

@@ -1,4 +1,4 @@
-package pl.edu.agh.to.kinofilmy.controllers;
+package pl.edu.agh.to.kinofilmy.controllers.manageUserControllers;
 
 
 import javafx.event.ActionEvent;
@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;

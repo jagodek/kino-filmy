@@ -15,6 +15,7 @@ import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.EditShowingC
 import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.NewShowingController;
 import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.ShowingManagementPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.EditScreenController;
 import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController;
