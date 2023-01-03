@@ -21,6 +21,20 @@ public class Showing {
     private Film film;
     private Date date;
 
+    public Showing(Screen screen, Film film, Date date) {
+        this.screen = screen;
+        this.film = film;
+        this.date = date;
+    }
+
+    public Showing(ShowingDisplay showingDisplay){
+        this.setId(showingDisplay.getId());
+        this.setDate(showingDisplay.getDate());
+        this.setFilm(showingDisplay.getFilm());
+        this.setScreen(showingDisplay.getScreen());
+    }
+
+    public  Showing(){}
     @Id
     @GeneratedValue
     public Long getId() {

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.NewShowingController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <HBox>
+            <TableView fx:id="filmList">
+                <columns>
+                    <TableColumn fx:id="filmTitleColumn"/>
+                </columns>
+            </TableView>
+            <TableView fx:id="screenList">
+                <columns >
+                    <TableColumn fx:id="screenNameColumn"/>
+                </columns>
+            </TableView>
+        </HBox>
+    </center>
+    <bottom>
+        <VBox>
+            <DatePicker fx:id="datePicker"/>
+            <TextField fx:id="timeInput"/>
+        </VBox>
+
+    </bottom>
+    <right>
+        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Add showing" prefWidth="100">
+            <VBox.margin>
+                <Insets bottom="10" left="10" right="10"/>
+            </VBox.margin>
+        </Button>
+    </right>
+</BorderPane>

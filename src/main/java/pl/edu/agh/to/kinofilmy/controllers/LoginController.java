@@ -48,31 +48,7 @@ public class LoginController {
 
     @FXML
     public void initialize(){
-        usernameText.textProperty().addListener((arg0,oldValue,newValue) -> {
-            System.out.println("change");
-            //when focus lost
-                System.out.println("sth happening");
-                if(usernameText.getText().isBlank()){
-                    this.loginLabel.setVisible(true);
-                }
-                else{
-                    this.loginLabel.setVisible(false);
-                }
 
-        });
-
-//        UnaryOperator<TextFormatter.Change> loginRequired = (change -> {
-//            if(change.getControlText().isBlank()){
-//                this.loginLabel.setVisible(true);
-//                return null;
-//            }
-//            else{
-//                this.loginLabel.setVisible(false);
-//                return change;
-//            }
-//        });
-//        TextFormatter <String> tf = new TextFormatter<String>(loginRequired);
-//        usernameText.setTextFormatter(tf);
     }
 
     @FXML

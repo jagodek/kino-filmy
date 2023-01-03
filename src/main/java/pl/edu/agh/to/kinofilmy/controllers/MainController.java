@@ -16,12 +16,11 @@ public class MainController {
     private final KinoFilmyApplicationController applicationController;
 
     private Stage mainStage;
-
+    private Roles roles;
 
 
     public MainController(KinoFilmyApplicationController applicationController) {
         this.applicationController = applicationController;
-
     }
 
     public void setMainStage(Stage mainStage) {
@@ -38,14 +37,28 @@ public class MainController {
     private Button logOutButton;
 
     @FXML
-    private void initialize(){
-
-    }
+    private Button manageScreensButton;
 
     @FXML
-    public void handleNewUserAction(ActionEvent event){
-        applicationController.showNewUserForm(mainStage);
+    private Button manageShowingsButton;
+
+    @FXML
+    private Button showStatisticsButton;
+
+    @FXML
+    private void initialize() {
+        if (this.roles != null) {
+            if (!roles.isManageUsers()) {
+                newUserButton.setDisable(true);
+            }
+
+        if (!roles.isManageCinema()) {
+            manageScreensButton.setDisable(true);
+            manageFilmsButton.setDisable(true);
+        }
     }
+    }
+
 
     @FXML
     public void handleManageFilmsAction(ActionEvent event){
@@ -65,4 +78,13 @@ public class MainController {
     public void logOutAction(){
         applicationController.logOut();
     }
+
+    @FXML
+    public void handleManageScreensAction(ActionEvent event){applicationController.showScreenManagement(mainStage);}
+
+    @FXML
+    public void handleManageShowingAction(ActionEvent event){applicationController.showShowingManagement(mainStage);}
+
+    @FXML
+    public void handleShowStatisticsAction(ActionEvent event){applicationController.showStatistics(mainStage);}
 }

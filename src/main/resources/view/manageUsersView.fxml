@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter">
     <center>
         <TableView fx:id="usersTable" prefHeight="500" prefWidth="500" BorderPane.alignment="CENTER">
             <columns>
@@ -20,27 +20,40 @@
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
         </TableView>
     </center>
-    <right>
-        <VBox prefWidth="160.0">
-            <Button fx:id="addUserButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddUserAction" prefWidth="100" text="Add user">
+   <left>
+        <VBox prefWidth="100" BorderPane.alignment="CENTER">
+         <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#handleRefreshAction" prefWidth="100.0" text="Refresh">
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+            <Button fx:id="addUserButton" mnemonicParsing="false" onAction="#handleAddUserAction" prefWidth="100" text="Add user">
+                <VBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                </VBox.margin>
+            </Button>
+
+            <Button fx:id="detailsButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEditUserAction" prefWidth="100.0" text="Manage user">
                 <VBox.margin>
                     <Insets bottom="10" left="10" right="10" />
                 </VBox.margin>
             </Button>
 
-            <Button fx:id="detailsButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleEditUserAction" prefWidth="100" text="Manage user">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteUserAction" prefWidth="100" text="Delete user">
                 <VBox.margin>
                     <Insets bottom="10" left="10" right="10" />
                 </VBox.margin>
             </Button>
-
-            <Button fx:id="deleteButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleDeleteUserAction" prefWidth="100" text="Delete user">
-                <VBox.margin>
-                    <Insets bottom="10" left="10" right="10" />
-                </VBox.margin>
-            </Button>
+         <Button mnemonicParsing="false" onAction="#handleManageRolesAction" prefWidth="100.0" text="Manage roles">
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" />
+            </VBox.margin>
+         </Button>
         </VBox>
-    </right>
+   </left>
 </BorderPane>

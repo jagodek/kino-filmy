@@ -69,7 +69,7 @@ public class Film {
     }
 
     @Lob
-    @Column(length = 10485760)
+    @Column(length = 1048576)
     public byte[] getIcon() {
         return icon;
     }

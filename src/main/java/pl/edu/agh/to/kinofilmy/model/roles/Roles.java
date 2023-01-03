@@ -22,13 +22,17 @@ public class Roles {
 
     private boolean manageCinema;
 
-    public Roles(String roleName, boolean manageUsers, boolean sellTickets, boolean manageCinema, boolean checkTickets, boolean manageRoles) {
+    private boolean getStatistics;
+
+    public Roles(String roleName, boolean manageUsers, boolean sellTickets, boolean manageCinema,
+                 boolean checkTickets, boolean manageRoles, boolean getStatistics) {
         this.roleName = roleName;
         this.manageUsers = manageUsers;
         this.sellTickets = sellTickets;
         this.checkTickets = checkTickets;
         this.manageRoles = manageRoles;
         this.manageCinema = manageCinema;
+        this.getStatistics = getStatistics;
     }
 
     public Roles() {
@@ -89,6 +93,14 @@ public class Roles {
     public void setManageRoles(boolean manageRoles){this.manageRoles = manageRoles;}
 
     public boolean isManageRoles(){return this.manageRoles;}
+
+    public boolean isGetStatistics() {
+        return getStatistics;
+    }
+
+    public void setGetStatistics(boolean getStatistics) {
+        this.getStatistics = getStatistics;
+    }
 
     @Override
     public String toString() {

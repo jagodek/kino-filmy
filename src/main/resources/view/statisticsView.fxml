@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.ShowStatisticsController">
+         <top>
+            <HBox prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox alignment="BASELINE_RIGHT">
+                           <children>
+                              <Label text="Type of statistics">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="TypeOfStatisticsChoiceBox" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BASELINE_RIGHT">
+                           <children>
+                              <Label text="Time period">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="TimePeriodChoiceBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="95.0" text="Place" />
+                <TableColumn prefWidth="172.0" text="Film Title" />
+                  <TableColumn prefWidth="322.0" text="Tickets Sold" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </BorderPane.margin>
+            </TableView>
+         </center>
+      </BorderPane>

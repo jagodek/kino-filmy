@@ -1,6 +1,5 @@
 package pl.edu.agh.to.kinofilmy.controllers.manageUserControllers;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +12,7 @@ import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
@@ -337,8 +337,6 @@ public class NewUserController {
         return new Pair<>(true,"");
     }
 
-
-
     @FXML
     public void handleSubmitAction(ActionEvent event){
         Employee newEmployee = new Employee(
@@ -351,7 +349,7 @@ public class NewUserController {
                 phoneInput.getText()
         );
 
-        this.employeeService.addEmployee(newEmployee);
+        this.employeeService.save(newEmployee);
         this.newUserStage.close();
     }
 }
