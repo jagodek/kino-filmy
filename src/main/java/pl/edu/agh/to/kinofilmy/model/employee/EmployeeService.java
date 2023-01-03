@@ -19,11 +19,11 @@ public class EmployeeService {
         this.repository = repository;
     }
 
-    public Optional<Roles> login(String username, String password) {
+    public Optional<Employee> login(String username, String password) {
         Optional<Employee> employee = repository.findEmployeeByUsername(username);
         if(employee.isPresent()){
             if (employee.get().getPassword().equals(password)){
-                return Optional.of(employee.get().getRole());
+                return employee;
             }
         }
         return Optional.empty();

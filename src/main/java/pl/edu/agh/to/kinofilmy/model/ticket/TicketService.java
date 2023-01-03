@@ -7,6 +7,7 @@ import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -21,6 +22,18 @@ public class TicketService {
 
     public void save(Ticket ticket){
         this.ticketRepository.save(ticket);
+    }
+    public boolean clipTicket(Long id){
+       Optional<Ticket> optionalTicket = this.ticketRepository.findById(id);
+       if(optionalTicket.isPresent()){
+           if(optionalTicket.get().getState().equals(TicketState.Clipped.getState())) return false;
+
+           optionalTicket.get().setState(TicketState.Clipped.getState());
+           return true;
+       }
+       else{
+           return false;
+       }
     }
 
     public List<Seat> getAvailableSeats(Showing showing){

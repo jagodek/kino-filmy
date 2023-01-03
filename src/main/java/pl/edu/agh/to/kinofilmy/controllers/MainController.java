@@ -45,6 +45,9 @@ public class MainController {
     private Button buyTicketButton;
 
     @FXML
+    private Button clipTicketButton;
+
+    @FXML
     private void initialize(){
 
     }
@@ -77,4 +80,6 @@ public class MainController {
 
     @FXML
     public void handleBuyTicketAction(ActionEvent event){applicationController.showTicketPurchaseView(mainStage);}
+    @FXML
+    public void handleClipTicketAction(ActionEvent event){applicationController.showTicketClippingView(mainStage);}
 }

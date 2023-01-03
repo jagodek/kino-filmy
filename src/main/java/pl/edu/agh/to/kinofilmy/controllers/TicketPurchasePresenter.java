@@ -13,6 +13,7 @@ import pl.edu.agh.to.kinofilmy.model.showing.ShowingDisplay;
 import pl.edu.agh.to.kinofilmy.model.showing.ShowingService;
 import pl.edu.agh.to.kinofilmy.model.ticket.Ticket;
 import pl.edu.agh.to.kinofilmy.model.ticket.TicketService;
+import pl.edu.agh.to.kinofilmy.model.ticket.TicketState;
 
 import java.time.Instant;
 import java.util.Date;
@@ -67,12 +68,12 @@ public class TicketPurchasePresenter {
         Showing showing = this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem());
         this.ticketService.save(new Ticket(
                 showing,
-                1L,
+                applicationController.getUserId(),
                 showing.getPrice(),
                 Date.from(Instant.now()),
                 this.ticketService.getFirstAvailableSeat(showing).getRowNumber(),
                 this.ticketService.getFirstAvailableSeat(showing).getSeatNumber(),
-                "sold"
+                TicketState.Sold.getState()
         ));
     }
 
