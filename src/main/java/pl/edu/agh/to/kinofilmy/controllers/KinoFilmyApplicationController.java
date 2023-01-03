@@ -13,9 +13,13 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
+import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.EditScreenController;
+import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController;
+import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.ScreenManagementPresenter;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 
 import java.io.IOException;
 
@@ -195,14 +199,12 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             userManagementStage.setScene(scene);
             userManagementStage.showAndWait();
         } catch (IOException e) {
-            // TODO don't do this in common apps
             e.printStackTrace();
         }
     }
 
     public void showEditUserForm(Stage parent, Employee employee){
         try{
-            System.out.println("shoe "+employee);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/editUserView.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
@@ -221,11 +223,75 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             editUserStage.setScene(scene);
             editUserStage.showAndWait();
         } catch (IOException e) {
-            // TODO don't do this in common apps
             e.printStackTrace();
         }
     }
 
+    public void showScreenManagement(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/manageScreensView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage screenManagementStage = new Stage();
+            screenManagementStage.setTitle("Manage users");
+            screenManagementStage.initModality(Modality.WINDOW_MODAL);
+            screenManagementStage.initOwner(parent);
+            ScreenManagementPresenter presenter = loader.getController();
+            presenter.setScreenManagementStage(screenManagementStage);
+            Scene scene = new Scene(layout);
+            screenManagementStage.setScene(scene);
+            screenManagementStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showNewScreenForm(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/newScreenForm.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            GridPane layout = loader.load();
+
+            Stage addScreenStage = new Stage();
+            addScreenStage.setTitle("Add new user");
+            addScreenStage.initModality(Modality.WINDOW_MODAL);
+            addScreenStage.initOwner(parent);
+            NewScreenController controller = loader.getController();
+            controller.setNewScreenStage(addScreenStage);
+            Scene scene = new Scene(layout);
+            addScreenStage.setScene(scene);
+            addScreenStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showEditScreenForm(Stage parent, Screen screen){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/editScreenView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            GridPane layout = loader.load();
+
+            Stage editUserStage = new Stage();
+            editUserStage.setTitle("Edit user");
+            editUserStage.initModality(Modality.WINDOW_MODAL);
+            editUserStage.initOwner(parent);
+
+            EditScreenController presenter = loader.getController();
+            presenter.setStage(editUserStage);
+            presenter.setScreen(screen);
+
+            Scene scene = new Scene(layout);
+            editUserStage.setScene(scene);
+            editUserStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }

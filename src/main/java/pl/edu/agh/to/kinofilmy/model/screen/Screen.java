@@ -26,6 +26,13 @@ public class Screen {
         this.rowNumber = rowNumber;
     }
 
+    public Screen(ScreenDisplay screenDisplay) {
+        this.setId(screenDisplay.getId());
+        this.setName(screenDisplay.getName());
+        this.setSeatsNumber(screenDisplay.getSeatsNumber());
+        this.setRowNumber(screenDisplay.getRowNumber());
+    }
+
     public Screen() {}
 
     @Id

@@ -6,24 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
-import java.util.Objects;
-import java.util.Optional;
-
 @Controller
 public class EditUserPresenter {
-    @Autowired
-    private KinoFilmyApplicationController applicationController;
-    @Autowired
     private EmployeeService employeeService;
-    @Autowired
     private RolesService rolesService;
 
     private Stage editUserStage;
@@ -53,6 +44,10 @@ public class EditUserPresenter {
     @FXML
     private Button submit;
 
+    public EditUserPresenter(EmployeeService employeeService, RolesService rolesService) {
+        this.employeeService = employeeService;
+        this.rolesService = rolesService;
+    }
 
     public void setStage(Stage stage) {
         this.editUserStage = stage;
@@ -61,7 +56,6 @@ public class EditUserPresenter {
         this.user = employee;
         firstNameInput.setText(this.user.getFirstname());
         lastNameInput.setText(this.user.getLastname());
-        //roleInput.setValue(this.user.getRole());
         emailInput.setText(this.user.getEmail());
         phoneInput.setText(this.user.getPhoneNumber());
         usernameInput.setText(this.user.getUsername());
@@ -70,10 +64,7 @@ public class EditUserPresenter {
 
     @FXML
     public void initialize(){
-        for (Roles role :
-                this.rolesService.findAll()) {
-
-//            new MenuItem().setText(role.getRoleName())
+        for (Roles role : this.rolesService.findAll()) {
             this.roleInput.getItems().add(role);
         }
         this.roleInput.setOnAction((event -> {
@@ -83,40 +74,7 @@ public class EditUserPresenter {
 
     @FXML
     public void handleSubmitAction(ActionEvent event){
-        Roles role = roleInput.getValue();
-        boolean isEdited = false;
-
-        if(!Objects.equals(firstNameInput.getText(), this.user.getFirstname())){
-            this.user.setFirstname(firstNameInput.getText());
-            isEdited = true;
-        }
-        if(!Objects.equals(lastNameInput.getText(), this.user.getLastname())){
-            this.user.setLastname(lastNameInput.getText());
-            isEdited = true;
-        }
-        if(!Objects.equals(emailInput.getText(), this.user.getEmail())){
-            this.user.setEmail(emailInput.getText());
-            isEdited = true;
-        }
-        if(!Objects.equals(phoneInput.getText(), this.user.getPhoneNumber())){
-            this.user.setPhoneNumber(phoneInput.getText());
-            isEdited = true;
-        }
-        if(!Objects.equals(role, this.user.getRole())){
-            this.user.setRole(role);
-            isEdited = true;
-        }
-        if(!Objects.equals(usernameInput.getText(), this.user.getUsername())){
-            this.user.setUsername(usernameInput.getText());
-            isEdited = true;
-        }
-        if(!Objects.equals(passwordInput.getText(), this.user.getPassword())){
-            this.user.setPassword(passwordInput.getText());
-            isEdited = true;
-        }
-        if(isEdited){
-            this.employeeService.addEmployee(this.user);
-        }
+        this.employeeService.update(user);
         this.editUserStage.close();
 
     }

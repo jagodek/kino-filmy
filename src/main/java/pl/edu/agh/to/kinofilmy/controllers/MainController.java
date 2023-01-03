@@ -30,6 +30,9 @@ public class MainController {
     private Button manageFilmsButton;
 
     @FXML
+    private Button manageScreensButton;
+
+    @FXML
     private void initialize(){
 
     }
@@ -43,4 +46,7 @@ public class MainController {
     public void handleManageFilmsAction(ActionEvent event){
         applicationController.showFilmManagement(mainStage);
     }
+
+    @FXML
+    public void handleManageScreensAction(ActionEvent event){applicationController.showScreenManagement(mainStage);}
 }

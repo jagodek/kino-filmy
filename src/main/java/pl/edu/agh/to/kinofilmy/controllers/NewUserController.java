@@ -11,8 +11,6 @@ import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
-import javax.validation.constraints.NotEmpty;
-
 @Controller
 public class NewUserController {
 
@@ -84,7 +82,7 @@ public class NewUserController {
                 phoneInput.getText()
         );
 
-        this.employeeService.addEmployee(newEmployee);
+        this.employeeService.save(newEmployee);
         this.newUserStage.close();
     }
 }

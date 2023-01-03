@@ -46,6 +46,16 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
+    public Employee(EmployeeDisplay employeeDisplay) {
+        this.setFirstname(employeeDisplay.getFirstname());
+        this.setLastname(employeeDisplay.getLastname());
+        this.setUsername(employeeDisplay.getUsername());
+        this.setPassword(employeeDisplay.getPassword());
+        this.setEmail(employeeDisplay.getEmail());
+        this.setPhoneNumber(employeeDisplay.getPhoneNumber());
+        this.setRole(employeeDisplay.getRole());
+    }
+
     public Employee() {
 
     }
