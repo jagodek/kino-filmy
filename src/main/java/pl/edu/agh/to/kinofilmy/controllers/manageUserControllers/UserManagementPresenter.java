@@ -55,7 +55,7 @@ public class UserManagementPresenter {
 
     @FXML
     private void handleAddUserAction(){
-        applicationController.showAddUserForm(userManagementStage);
+        applicationController.showNewUserForm(userManagementStage);
     }
 
     @FXML

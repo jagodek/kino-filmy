@@ -43,4 +43,13 @@ public class MainController {
     public void handleManageFilmsAction(ActionEvent event){
         applicationController.showFilmManagement(mainStage);
     }
+
+
+    @FXML
+    private Button userManagementButton;
+
+    @FXML
+    public void handleManageUsersAction(ActionEvent event){
+        applicationController.showUserManagement(mainStage);
+    }
 }

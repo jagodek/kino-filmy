@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
+import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
@@ -172,6 +176,55 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void showEditUserForm(Stage parent, Employee employee){
+        try{
+            System.out.println("shoe "+employee);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/editUserView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            GridPane layout = loader.load();
+
+            Stage editUserStage = new Stage();
+            editUserStage.setTitle("Edit user");
+            editUserStage.initModality(Modality.WINDOW_MODAL);
+            editUserStage.initOwner(parent);
+
+            EditUserPresenter presenter = loader.getController();
+            presenter.setStage(editUserStage);
+            presenter.setEmployee(employee);
+
+            Scene scene = new Scene(layout);
+            editUserStage.setScene(scene);
+            editUserStage.showAndWait();
+        } catch (IOException e) {
+            // TODO don't do this in common apps
+            e.printStackTrace();
+        }
+    }
+
+
+    public void showUserManagement(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/manageUsersView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage userManagementStage = new Stage();
+            userManagementStage.setTitle("Manage users");
+            userManagementStage.initModality(Modality.WINDOW_MODAL);
+            userManagementStage.initOwner(parent);
+            UserManagementPresenter presenter = loader.getController();
+            presenter.setUserManagementStage(userManagementStage);
+            Scene scene = new Scene(layout);
+            userManagementStage.setScene(scene);
+            userManagementStage.showAndWait();
+        } catch (IOException e) {
+            // TODO don't do this in common apps
+            e.printStackTrace();
         }
     }
 

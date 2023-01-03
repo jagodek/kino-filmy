@@ -95,6 +95,8 @@ public class FilmManagementController {
 
     }
 
+
+
     public void setFilmManagementStage(Stage filmManagementStage) {
         this.filmManagementStage = filmManagementStage;
     }

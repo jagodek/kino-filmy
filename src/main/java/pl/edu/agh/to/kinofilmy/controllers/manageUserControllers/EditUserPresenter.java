@@ -74,7 +74,7 @@ public class EditUserPresenter {
 
     @FXML
     public void handleSubmitAction(ActionEvent event){
-        Optional<Roles> rolesOptional = rolesService.getRole(roleInput.getText());
+        Optional<Roles> rolesOptional = rolesService.findRolesByName(roleInput.getText());
         if(rolesOptional.isPresent()){
             boolean isEdited = false;
             if(!Objects.equals(firstNameInput.getText(), this.user.getFirstname())){

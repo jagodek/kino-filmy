@@ -48,16 +48,16 @@ public class KinoFilmyApplication extends Application {
 //	}
 
 
-	@Bean
-	public CommandLineRunner insertMovies(FilmRepository repository) {
-		return args -> {
-			File fi = new File("/home/michal/Documents/sem5/to/Projekt/jk-sr-1120-kino-filmy/src/main/resources/posters/interstellar.jpg");
-			byte[] fileContent = Files.readAllBytes(fi.toPath());
-			Film film = new Film("Interstellar",LocalTime.of(2,49,0,0),"Science Fiction","Christopher Nolan",fileContent);
-
-			repository.save(film);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner insertMovies(FilmRepository repository) {
+//		return args -> {
+//			File fi = new File("/home/michal/Documents/sem5/to/Projekt/jk-sr-1120-kino-filmy/src/main/resources/posters/interstellar.jpg");
+//			byte[] fileContent = Files.readAllBytes(fi.toPath());
+//			Film film = new Film("Interstellar",LocalTime.of(2,49,0,0),"Science Fiction","Christopher Nolan",fileContent);
+//
+//			repository.save(film);
+//		};
+//	}
 
 
 
