@@ -35,6 +35,9 @@ public class MainController {
     private Button manageFilmsButton;
 
     @FXML
+    private Button logOutButton;
+
+    @FXML
     private void initialize(){
 
     }
@@ -56,5 +59,10 @@ public class MainController {
     @FXML
     public void handleManageUsersAction(ActionEvent event){
         applicationController.showUserManagement(mainStage);
+    }
+
+
+    public void logOutAction(){
+        applicationController.logOut();
     }
 }
