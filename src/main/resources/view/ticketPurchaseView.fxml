@@ -30,6 +30,12 @@
                     <Insets bottom="5.0" left="10.0" top="5.0"/>
                 </VBox.margin>
             </Button>
+            <Button fx:id="getSuggestedButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleShowSuggestedAction"
+                    text="Suggested">
+                <VBox.margin>
+                    <Insets bottom="5.0" left="10.0" top="5.0"/>
+                </VBox.margin>
+            </Button>
         </VBox>
     </left>
     <center>

@@ -1,5 +1,7 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
@@ -17,6 +19,9 @@ import pl.edu.agh.to.kinofilmy.model.ticket.TicketState;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TicketPurchasePresenter {
@@ -42,6 +47,8 @@ public class TicketPurchasePresenter {
     private Button buyButton;
     @FXML
     private Button chooseSeatButton;
+    @FXML
+    private Button getSuggestedButton;
 
     public TicketPurchasePresenter(TicketService ticketService, ShowingService showingService, KinoFilmyApplicationController applicationController) {
         this.ticketService = ticketService;
@@ -64,7 +71,7 @@ public class TicketPurchasePresenter {
     }
 
     @FXML
-    private void handleBuyAction(){
+    private void handleBuyAction(ActionEvent event){
         Showing showing = this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem());
         this.ticketService.save(new Ticket(
                 showing,
@@ -78,12 +85,26 @@ public class TicketPurchasePresenter {
     }
 
     @FXML
-    private void handleCheckAction(){
+    private void handleCheckAction(ActionEvent event){
 
     }
 
     @FXML
-    private void handleChooseSeatAction(){
+    private void handleChooseSeatAction(ActionEvent event){
+
+    }
+
+    @FXML
+    private void handleShowSuggestedAction(ActionEvent event){
+        Optional<Showing> optionalShowing = this.showingService.getSuggested();
+        if(optionalShowing.isPresent()){
+            List<ShowingDisplay> suggested = new LinkedList<>();
+            suggested.add(new ShowingDisplay(optionalShowing.get()));
+            this.showingsTable.setItems(FXCollections.observableList(suggested));
+        }
+        else{
+            this.applicationController.displayMessage(this.ticketPurchaseStage, "No suggested seances");
+        }
 
     }
 }

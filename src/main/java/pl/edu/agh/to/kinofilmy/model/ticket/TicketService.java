@@ -47,4 +47,7 @@ public class TicketService {
     public Seat getFirstAvailableSeat(Showing showing){
         return this.getAvailableSeats(showing).get(0);
     }
+    public int countTicketsForShowing(Showing showing){
+        return  this.ticketRepository.countByShowing(showing);
+    }
 }

@@ -43,5 +43,6 @@ public class TicketClippingPresenter {
         else{
             applicationController.displayMessage(stage, "Failed to clip the ticket");
         }
+        this.stage.close();
     }
 }

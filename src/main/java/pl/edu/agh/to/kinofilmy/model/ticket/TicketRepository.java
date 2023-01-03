@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findAllByShowing(Showing showing);
+    int countByShowing(Showing showing);
 }
