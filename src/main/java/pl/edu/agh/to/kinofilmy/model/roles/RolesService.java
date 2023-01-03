@@ -4,15 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class RolesService {
 
-    @Autowired
-    private RolesRepository repository;
+    private final RolesRepository repository;
 
-    public Iterable<Roles> findAll(){
+    public RolesService(RolesRepository repository) {
+        this.repository = repository;
+    }
+
+    public List<Roles> findAll(){
         return this.repository.findAll();
     }
 
