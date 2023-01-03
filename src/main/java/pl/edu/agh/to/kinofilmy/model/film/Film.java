@@ -44,6 +44,14 @@ public class Film {
         this.icon = icon;
     }
 
+    public Film(FilmDisplay filmDisplay){
+        this.setId(filmDisplay.getId());
+        this.setTitle(filmDisplay.getTitle());
+        this.setRuntime(filmDisplay.getRuntime());
+        this.setGenre(filmDisplay.getGenre());
+        this.setDirector(filmDisplay.getDirector());
+    }
+
     public String getTitle() {
         return title;
     }

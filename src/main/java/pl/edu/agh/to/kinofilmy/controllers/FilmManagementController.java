@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
 import pl.edu.agh.to.kinofilmy.model.film.FilmService;
 
@@ -26,6 +27,8 @@ public class FilmManagementController {
     private Stage filmManagementStage;
 
     private ObservableList<FilmDisplay> filmList;
+
+    final KinoFilmyApplicationController applicationController;
 
     @FXML
     private Button newFilmButton;
@@ -57,8 +60,9 @@ public class FilmManagementController {
     @FXML
     private TableColumn<FilmDisplay, String> directorColumn;
 
-    public FilmManagementController(FilmService filmService) {
+    public FilmManagementController(FilmService filmService, KinoFilmyApplicationController applicationController) {
         this.filmService = filmService;
+        this.applicationController = applicationController;
     }
 
     private void refreshFilmData(){
@@ -108,17 +112,28 @@ public class FilmManagementController {
 
     @FXML
     public void handleNewFilmAction(ActionEvent event){
-
+        Film film = new Film();
+        applicationController.showFilmForm(filmManagementStage, film, true);
+        filmService.save(film);
+        refreshFilmData();
     }
 
     @FXML
     public void handleEditFilmAction(ActionEvent event){
-
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        applicationController.showFilmForm(filmManagementStage, film, false);
+        filmService.save(film);
+        refreshFilmData();
     }
 
     @FXML
     public void handleDeleteFilmAction(ActionEvent event){
-
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        filmService.delete(film);
+        refreshFilmData();
     }
 
+    public Stage getFilmManagementStage() {
+        return filmManagementStage;
+    }
 }

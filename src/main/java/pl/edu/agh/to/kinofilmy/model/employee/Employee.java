@@ -1,7 +1,5 @@
 package pl.edu.agh.to.kinofilmy.model.employee;
 
-import org.hibernate.annotations.Type;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import javax.persistence.*;

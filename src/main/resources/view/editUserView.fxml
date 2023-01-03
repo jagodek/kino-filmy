@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter"
+          prefHeight="300" prefWidth="300"
+          alignment="CENTER">
+    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin></Label>
+    <TextField fx:id="firstNameInput" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+        </GridPane.margin></TextField>
+
+    <Label text="Surname:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin></Label>
+    <TextField fx:id="lastNameInput" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin></TextField>
+
+    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin></Label>
+    <TextField fx:id="roleInput" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin></TextField>
+
+    <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin></Label>
+    <TextField fx:id="emailInput" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin></TextField>
+
+    <Label text="Phone number:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+        <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+        </GridPane.margin></Label>
+    <TextField fx:id="phoneInput" GridPane.columnIndex="1" GridPane.rowIndex="6">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin></TextField>
+    <Label text="Username:" GridPane.rowIndex="3">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin>
+    </Label>
+    <TextField fx:id="usernameInput" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin>
+    </TextField>
+    <Label text="Password:" GridPane.rowIndex="4">
+        <GridPane.margin>
+            <Insets left="10.0" />
+        </GridPane.margin>
+    </Label>
+    <TextField fx:id="passwordInput" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+        </GridPane.margin>
+    </TextField>
+
+    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="Zmień" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7">
+        <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </GridPane.margin></Button>
+
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints maxWidth="164.0" minWidth="164.0" prefWidth="164.0" />
+        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+
+</GridPane>

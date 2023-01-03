@@ -1,9 +1,9 @@
 package pl.edu.agh.to.kinofilmy.model.employee;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +25,13 @@ public class EmployeeService {
         return Optional.empty();
     }
 
+    public List<Employee> getEmployees(){
+        return this.repository.findAll();
+    }
+
     public void addEmployee(Employee employee) {
         this.repository.save(employee);
     }
+
+    public void deleteEmployee(Employee employee){this.repository.delete(employee);}
 }

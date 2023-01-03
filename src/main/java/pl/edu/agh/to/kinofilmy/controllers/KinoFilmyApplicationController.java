@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import java.io.IOException;
@@ -64,8 +65,8 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             loginStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             loginStage.setScene(scene);
-            LoginPresenter presenter = loader.getController();
-            presenter.setLoginStage(loginStage);
+            LoginController controller = loader.getController();
+            controller.setLoginStage(loginStage);
 
             loginStage.showAndWait();
 
@@ -131,12 +132,46 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             manageFilmsStage.initModality(Modality.NONE);
             manageFilmsStage.initOwner(parent);
             FilmManagementController controller = loader.getController();
-            controller.setFilmManagementStage(manageFilmsStage);
-            Scene scene = new Scene(layout);
-            manageFilmsStage.setScene(scene);
-            manageFilmsStage.show();
+            if(controller.getFilmManagementStage() == null) {
+                controller.setFilmManagementStage(manageFilmsStage);
+                Scene scene = new Scene(layout);
+                manageFilmsStage.setScene(scene);
+                manageFilmsStage.show();
+            } else {
+                if(!controller.getFilmManagementStage().isShowing()){
+                    controller.setFilmManagementStage(manageFilmsStage);
+                    Scene scene = new Scene(layout);
+                    manageFilmsStage.setScene(scene);
+                    manageFilmsStage.show();
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean showFilmForm(Stage parent, Film film, boolean newFilm){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/filmFormView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage filmFormStage = new Stage();
+            if(newFilm) filmFormStage.setTitle("Add new film");
+            else filmFormStage.setTitle("Edit film");
+            filmFormStage.initModality(Modality.WINDOW_MODAL);
+            filmFormStage.initOwner(parent);
+            FilmFormPresenter presenter = loader.getController();
+            presenter.setFilmFormStage(filmFormStage);
+            presenter.setFilm(film, newFilm);
+            Scene scene = new Scene(layout);
+            filmFormStage.setScene(scene);
+            filmFormStage.showAndWait();
+            return presenter.isApproved();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

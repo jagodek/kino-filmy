@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 @Controller
-public class LoginPresenter {
+public class LoginController {
 
     @Autowired
     private KinoFilmyApplicationController applicationController;

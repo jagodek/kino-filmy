@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,18 @@ public class FilmService {
         this.repository.save(film);
     }
 
+    public void delete(Film film){
+        this.repository.delete(film);
+    }
+
     public Film filmDisplayToFilm(FilmDisplay filmDisplay){
-        return new Film();
+        try{
+            Film film = new Film(filmDisplay);
+            film.setIcon(repository.getReferenceById(filmDisplay.getId()).getIcon());
+            return film;
+        } catch (EntityNotFoundException e) {
+            return new Film(filmDisplay);
+        }
     }
 
     public Image getFilmImageById(long id){
