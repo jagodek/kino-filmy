@@ -1,8 +1,10 @@
 package pl.edu.agh.to.kinofilmy.controllers.manageUserControllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -16,10 +18,8 @@ import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 @Controller
 public class UserManagementPresenter {
     private Stage userManagementStage;
-    @Autowired
-    private KinoFilmyApplicationController applicationController;
-    @Autowired
-    private EmployeeService employeeService;
+    private final KinoFilmyApplicationController applicationController;
+    private final EmployeeService employeeService;
 
     @FXML
     private TableView<Employee> usersTable;
@@ -37,6 +37,15 @@ public class UserManagementPresenter {
     private Button detailsButton;
     @FXML
     private Button addUserButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button refreshButton;
+
+    public UserManagementPresenter(KinoFilmyApplicationController applicationController, EmployeeService employeeService) {
+        this.applicationController = applicationController;
+        this.employeeService = employeeService;
+    }
 
     @FXML
     private void initialize(){
@@ -46,25 +55,47 @@ public class UserManagementPresenter {
         this.roleColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getRole()));
         this.emailColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getEmail()));
         this.phoneNumberColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getEmail()));
-        this.usersTable.setItems(FXCollections.observableArrayList(employeeService.getEmployees()));
+        refreshEmployeeData();
+
+        detailsButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
+        deleteButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
+        //TODO usunięcie możliwości usunięcia użytkownika root
     }
 
     public void setUserManagementStage(Stage userManagementStage) {
         this.userManagementStage = userManagementStage;
     }
 
+    private void refreshEmployeeData(){
+        usersTable.getSelectionModel().clearSelection();
+        this.usersTable.setItems(FXCollections.observableArrayList(employeeService.getEmployees()));
+    }
+
     @FXML
     private void handleAddUserAction(){
         applicationController.showNewUserForm(userManagementStage);
+        refreshEmployeeData();
     }
 
     @FXML
     private void handleEditUserAction(){
         applicationController.showEditUserForm(userManagementStage, this.usersTable.getSelectionModel().getSelectedItem());
+        refreshEmployeeData();
+    }
+
+    @FXML
+    private void handleRefreshAction(ActionEvent event){
+        refreshEmployeeData();
     }
 
     @FXML
     private void handleDeleteUserAction(){
         employeeService.deleteEmployee(this.usersTable.getSelectionModel().getSelectedItem());
+        refreshEmployeeData();
+    }
+
+    @FXML
+    private void handleManageRolesAction(ActionEvent event){
+
     }
 }
