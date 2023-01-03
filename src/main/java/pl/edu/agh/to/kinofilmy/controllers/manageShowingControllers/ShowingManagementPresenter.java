@@ -56,6 +56,7 @@ public class ShowingManagementPresenter {
 
         deleteButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
         detailsButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
+        refresh();
     }
     @FXML
     private void handleAddShowingAction(){

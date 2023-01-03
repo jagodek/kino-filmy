@@ -2,14 +2,13 @@ package pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.to.kinofilmy.model.film.Film;
-import pl.edu.agh.to.kinofilmy.model.screen.Screen;
+import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
+import pl.edu.agh.to.kinofilmy.model.film.FilmService;
+import pl.edu.agh.to.kinofilmy.model.screen.ScreenDisplay;
+import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 import pl.edu.agh.to.kinofilmy.model.showing.ShowingService;
 
@@ -20,14 +19,19 @@ import java.util.Date;
 @Controller
 public class EditShowingController {
     private final ShowingService showingService;
+    private final FilmService filmService;
+    private final ScreenService screenService;
     private Stage editShowingStage;
 
     private Showing showing;
-
     @FXML
-    private ListView<Film> filmList;
+    private TableView<FilmDisplay> filmList;
     @FXML
-    private ListView<Screen> screenList;
+    private TableColumn<FilmDisplay, String> filmTitleColumn;
+    @FXML
+    private TableView<ScreenDisplay> screenList;
+    @FXML
+    private TableColumn<ScreenDisplay, String> screenNameColumn;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -35,8 +39,10 @@ public class EditShowingController {
     @FXML
     private Button submitButton;
 
-    public EditShowingController(ShowingService showingService) {
+    public EditShowingController(ShowingService showingService, FilmService filmService, ScreenService screenService) {
         this.showingService = showingService;
+        this.filmService = filmService;
+        this.screenService = screenService;
     }
 
     public void setEditShowingStage(Stage editShowingStage) {
@@ -54,11 +60,12 @@ public class EditShowingController {
 
     @FXML
     public void handleSubmitAction(ActionEvent event) {
-        this.showing.setFilm(filmList.getSelectionModel().getSelectedItem());
-        this.showing.setScreen(screenList.getSelectionModel().getSelectedItem());
+        this.showing.setFilm(filmService.filmDisplayToFilm(filmList.getSelectionModel().getSelectedItem()));
+        this.showing.setScreen(screenService.screenDisplayToScreen(screenList.getSelectionModel().getSelectedItem()));
         this.showing.setDate( Date.from(
                 datePicker.getValue()
                         .atTime(LocalTime.parse(timeInput.getText()))
                         .atZone(ZoneId.systemDefault()).toInstant()));
+        this.showingService.update(showing);
     }
 }

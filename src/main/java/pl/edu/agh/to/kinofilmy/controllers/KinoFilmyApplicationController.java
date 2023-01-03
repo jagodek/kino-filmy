@@ -343,7 +343,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     public void showEditShowingForm(Stage parent, Showing showing){
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getClassLoader().getResource("view/editShowingView.fxml"));
+            loader.setLocation(getClass().getClassLoader().getResource("view/editShowingForm.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             BorderPane layout = loader.load();
 

@@ -13,16 +13,24 @@
             prefHeight="400.0" prefWidth="600.0">
     <center>
         <HBox>
-            <ListView fx:id="filmList">
-
-            </ListView>
-            <ListView fx:id="screenList">
-
-            </ListView>
+            <TableView fx:id="filmList">
+                <columns>
+                    <TableColumn fx:id="filmTitleColumn"/>
+                </columns>
+            </TableView>
+            <TableView fx:id="screenList">
+                <columns >
+                    <TableColumn fx:id="screenNameColumn"/>
+                </columns>
+            </TableView>
         </HBox>
     </center>
     <bottom>
-        <DatePicker fx:id="datePicker"/>
+        <VBox>
+            <DatePicker fx:id="datePicker"/>
+            <TextField fx:id="timeInput"/>
+        </VBox>
+
     </bottom>
     <right>
         <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Add showing" prefWidth="100">

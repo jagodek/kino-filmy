@@ -26,9 +26,13 @@ public class NewShowingController {
     private final ScreenService screenService;
     private Stage newShowingStage;
     @FXML
-    private ListView<FilmDisplay> filmList;
+    private TableView<FilmDisplay> filmList;
     @FXML
-    private ListView<ScreenDisplay> screenList;
+    private TableColumn<FilmDisplay, String> filmTitleColumn;
+    @FXML
+    private TableView<ScreenDisplay> screenList;
+    @FXML
+    private TableColumn<ScreenDisplay, String> screenNameColumn;
     @FXML
     private DatePicker datePicker;
     @FXML
@@ -50,7 +54,10 @@ public class NewShowingController {
     public void initialize(){
         filmList.setItems(this.filmService.findAllAsFilmDisplay());
         screenList.setItems(this.screenService.findAllAsScreenDisplay());
-        filmList.setCellFactory();
+        filmList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        screenList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        filmTitleColumn.setCellValueFactory(val -> val.getValue().titleProperty());
+        screenNameColumn.setCellValueFactory(val -> val.getValue().getNameProperty());
     }
     @FXML
     public void handleSubmitAction(ActionEvent event){
