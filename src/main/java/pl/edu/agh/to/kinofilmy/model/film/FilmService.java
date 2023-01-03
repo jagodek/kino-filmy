@@ -1,17 +1,17 @@
 package pl.edu.agh.to.kinofilmy.model.film;
 
+import javafx.beans.property.LongProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
@@ -70,5 +70,18 @@ public class FilmService {
 
     public Optional<Film> getFilmById(long id){
         return this.repository.findById(id);
+    }
+
+
+    public ObservableList<FilmStatisticTickets> getMoviesByTicketsSold(){
+        Date date = new Date();
+        ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
+        for (Object[] pair:this.repository.findFilmsByTicketsSoldOnDate(date)) {
+            Film film = (Film) pair[0];
+            Long num = (Long) pair[1];
+            list.add(new FilmStatisticTickets(film.getId(),film.getTitle(),num));
+        }
+
+        return list;
     }
 }
