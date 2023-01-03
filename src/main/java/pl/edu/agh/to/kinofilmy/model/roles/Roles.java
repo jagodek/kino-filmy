@@ -14,15 +14,21 @@ public class Roles {
 
     private boolean manageUsers;
 
-    private boolean manageTickets;
+    private boolean sellTickets;
 
-    private boolean manageDatabase;
+    private boolean checkTickets;
 
-    public Roles(String roleName, boolean manageUsers, boolean manageTickets, boolean manageDatabase) {
+    private boolean manageRoles;
+
+    private boolean manageCinema;
+
+    public Roles(String roleName, boolean manageUsers, boolean sellTickets, boolean manageCinema, boolean checkTickets, boolean manageRoles) {
         this.roleName = roleName;
         this.manageUsers = manageUsers;
-        this.manageTickets = manageTickets;
-        this.manageDatabase = manageDatabase;
+        this.sellTickets = sellTickets;
+        this.checkTickets = checkTickets;
+        this.manageRoles = manageRoles;
+        this.manageCinema = manageCinema;
     }
 
     public Roles() {
@@ -56,21 +62,33 @@ public class Roles {
         this.manageUsers = manageUsers;
     }
 
-    public boolean isManageTickets() {
-        return manageTickets;
+    public boolean isSellTickets() {
+        return sellTickets;
     }
 
-    public void setManageTickets(boolean manageTickets) {
-        this.manageTickets = manageTickets;
+    public boolean isCheckTickets() {
+        return checkTickets;
     }
 
-    public boolean isManageDatabase() {
-        return manageDatabase;
+    public void setSellTickets(boolean sellTickets) {
+        this.sellTickets = sellTickets;
+    }
+    public void setCheckTickets(boolean checkTickets) {
+        this.checkTickets = checkTickets;
     }
 
-    public void setManageDatabase(boolean manageDatabase) {
-        this.manageDatabase = manageDatabase;
+
+    public boolean isManageCinema() {
+        return manageCinema;
     }
+
+    public void setManageCinema(boolean manageCinema) {
+        this.manageCinema = manageCinema;
+    }
+
+    public void setManageRoles(boolean manageRoles){this.manageRoles = manageRoles;}
+
+    public boolean isManageRoles(){return this.manageRoles;}
 
     @Override
     public String toString() {
