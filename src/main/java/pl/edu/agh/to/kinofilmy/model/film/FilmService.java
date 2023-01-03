@@ -60,4 +60,11 @@ public class FilmService {
         return new Image(new ByteArrayInputStream(byteImg));
     }
 
+    public boolean exists(long id){
+        if(this.repository.existsFilmById(id)){
+            return true;
+        }
+        return false;
+    }
+
 }

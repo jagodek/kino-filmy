@@ -291,5 +291,11 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     }
 
 
+    public void logOut(){
+        this.primaryStage.close();
+        this.userRole = null;
+        initRootLayout();
+    }
+
 
 }
