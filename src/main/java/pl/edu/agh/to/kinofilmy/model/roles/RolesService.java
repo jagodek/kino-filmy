@@ -23,4 +23,12 @@ public class RolesService {
     public Optional<Roles> findRolesByName(String name){
         return  this.repository.findRolesByRoleName(name);
     }
+
+    public void save(Roles roles){
+        repository.save(roles);
+    }
+
+    public void delete(Roles roles){
+        repository.delete(roles);
+    }
 }

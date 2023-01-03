@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
-import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController;
-import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.RolesManagementController;
-import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.*;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
@@ -173,6 +170,31 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             Scene scene = new Scene(layout);
             filmFormStage.setScene(scene);
             filmFormStage.showAndWait();
+            return presenter.isApproved();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean showRoleForm(Stage parent, Roles roles, boolean newRole){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/roleFormView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage roleFormStage = new Stage();
+            if(newRole) roleFormStage.setTitle("Add new role");
+            else roleFormStage.setTitle("Edit role");
+            roleFormStage.initModality(Modality.WINDOW_MODAL);
+            roleFormStage.initOwner(parent);
+            RoleFormPresenter presenter = loader.getController();
+            presenter.setRoleFormStage(roleFormStage);
+            presenter.setRole(roles, newRole);
+            Scene scene = new Scene(layout);
+            roleFormStage.setScene(scene);
+            roleFormStage.showAndWait();
             return presenter.isApproved();
         } catch (IOException e) {
             e.printStackTrace();

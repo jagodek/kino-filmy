@@ -11,8 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
@@ -22,6 +22,8 @@ public class RolesManagementController {
     private Stage rolesManagementStage;
 
     private final RolesService rolesService;
+
+    private final KinoFilmyApplicationController applicationController;
 
     @FXML
     private TableView<Roles> rolesTable;
@@ -50,8 +52,9 @@ public class RolesManagementController {
     @FXML
     private TableColumn<Roles, Boolean> getStatsColumn;
 
-    public RolesManagementController(RolesService rolesService) {
+    public RolesManagementController(RolesService rolesService, KinoFilmyApplicationController applicationController) {
         this.rolesService = rolesService;
+        this.applicationController = applicationController;
     }
 
     @FXML
@@ -87,21 +90,27 @@ public class RolesManagementController {
 
     @FXML
     private void handleResetAction(ActionEvent event){
-
+        resetData();
     }
 
     @FXML
     private void handleAddAction(ActionEvent event){
-
+        Roles role = new Roles();
+        if(applicationController.showRoleForm(rolesManagementStage, role, true)) rolesService.save(role);
+        resetData();
     }
 
     @FXML
     private void handleDeleteAction(ActionEvent event){
-
+        //TODO nie pozwalaj na usuwanie gdy są użytkownicy podłączenie pod role
+        rolesService.delete(rolesTable.getSelectionModel().getSelectedItem());
+        resetData();
     }
 
     @FXML
     private void handleEditAction(ActionEvent event){
-
+        Roles role = rolesTable.getSelectionModel().getSelectedItem();
+        if(applicationController.showRoleForm(rolesManagementStage, role, false)) rolesService.save(role);
+        resetData();
     }
 }

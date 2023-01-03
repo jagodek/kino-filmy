@@ -115,16 +115,14 @@ public class FilmManagementController {
     @FXML
     public void handleNewFilmAction(ActionEvent event){
         Film film = new Film();
-        applicationController.showFilmForm(filmManagementStage, film, true);
-        filmService.save(film);
+        if(applicationController.showFilmForm(filmManagementStage, film, true)) filmService.save(film);
         refreshFilmData();
     }
 
     @FXML
     public void handleEditFilmAction(ActionEvent event){
         Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
-        applicationController.showFilmForm(filmManagementStage, film, false);
-        filmService.save(film);
+        if(applicationController.showFilmForm(filmManagementStage, film, false)) filmService.save(film);
         refreshFilmData();
     }
 
