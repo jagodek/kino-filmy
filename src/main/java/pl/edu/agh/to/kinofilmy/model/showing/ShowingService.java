@@ -2,19 +2,26 @@ package pl.edu.agh.to.kinofilmy.model.showing;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.to.kinofilmy.model.screen.Screen;
-import pl.edu.agh.to.kinofilmy.model.screen.ScreenDisplay;
+import pl.edu.agh.to.kinofilmy.model.ticket.TicketService;
 
+import javax.transaction.Transactional;
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ShowingService {
     private final ShowingRepository repository;
+    private  final TicketService ticketService;
 
-    public ShowingService(ShowingRepository repository) {
+    public ShowingService(ShowingRepository repository, TicketService ticketService) {
         this.repository = repository;
+        this.ticketService = ticketService;
     }
 
     public Showing showingDisplayToShowing(ShowingDisplay showingDisplay){
@@ -37,7 +44,7 @@ public class ShowingService {
         Optional<Showing> optionalShowing = this.repository.findShowingById(showing.getId());
         if(optionalShowing.isPresent()){
             Showing old = optionalShowing.get();
-
+            System.out.println(Objects.equals(old.getDate(), showing.getDate()));
             if(!Objects.equals(old.getScreen(), showing.getScreen())){
                 old.setScreen(showing.getScreen());
             }
@@ -55,5 +62,21 @@ public class ShowingService {
         if(optionalShowing.isPresent()){
             this.repository.delete(optionalShowing.get());
         }
+    }
+
+    public Optional<Showing> getSuggested(){
+        List<Showing> showings = this.repository.findShowingByDateAfter(Date.from(Instant.now()));
+        return showings.stream()
+                .map(showing -> new Pair<Showing, Integer>(showing, this.ticketService.countTicketsForShowing(showing)))
+                .max((pair1, pair2) -> {
+                    if (pair1.getValue() > pair2.getValue()) {
+                        return 1;
+                    }
+                    if (pair1.getValue() < pair2.getValue()) {
+                        return -1;
+                    }
+                    return 0;
+                })
+                .map(Pair::getKey);
     }
 }

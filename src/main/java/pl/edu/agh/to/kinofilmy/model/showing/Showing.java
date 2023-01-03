@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -20,11 +22,13 @@ public class Showing {
     private Screen screen;
     private Film film;
     private Date date;
+    private Float price;
 
-    public Showing(Screen screen, Film film, Date date) {
+    public Showing(Screen screen, Film film, Date date, Float price) {
         this.screen = screen;
         this.film = film;
         this.date = date;
+        this.price = price;
     }
 
     public Showing(ShowingDisplay showingDisplay){
@@ -32,6 +36,7 @@ public class Showing {
         this.setDate(showingDisplay.getDate());
         this.setFilm(showingDisplay.getFilm());
         this.setScreen(showingDisplay.getScreen());
+        this.setPrice(showingDisplay.getPrice());
     }
 
     public  Showing(){}
@@ -69,6 +74,14 @@ public class Showing {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
@@ -53,11 +54,12 @@ public class LoginController {
 
     @FXML
     public void handleOkAction(ActionEvent event){
-        Optional<Roles> rolesOptional = employeeService.login(usernameText.getText(), passwordText.getText());
-        if(rolesOptional.isEmpty()){
+        Optional<Employee> employeeOptional = employeeService.login(usernameText.getText(), passwordText.getText());
+        if(employeeOptional.isEmpty()){
             applicationController.displayMessage(loginStage, "Incorrect username or password.");
         } else {
-            applicationController.setUserRole(rolesOptional.get());
+            applicationController.setUserRole(employeeOptional.get().getRole());
+            applicationController.setUserId(employeeOptional.get().getId());
             loginStage.close();
         }
     }

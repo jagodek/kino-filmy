@@ -2,6 +2,7 @@ package pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
@@ -19,7 +20,6 @@ import java.util.Date;
 @Controller
 public class ShowingManagementPresenter {
     private Stage showingManagementStage;
-
     private  final KinoFilmyApplicationController applicationController;
     private final ShowingService showingService;
 
@@ -28,11 +28,13 @@ public class ShowingManagementPresenter {
     @FXML
     private TableColumn<ShowingDisplay, String> filmColumn;
     @FXML
-    private  TableColumn<ShowingDisplay, String> screenColumn;
+    private TableColumn<ShowingDisplay, String> screenColumn;
     @FXML
     private TableColumn<ShowingDisplay, Date> dateColumn;
     @FXML
-    private Button addShowingButton ;
+    private TableColumn<ShowingDisplay, Float> priceColumn;
+    @FXML
+    private Button addShowingButton;
     @FXML
     private  Button detailsButton;
     @FXML
@@ -53,19 +55,20 @@ public class ShowingManagementPresenter {
         this.filmColumn.setCellValueFactory(val -> val.getValue().filmTitleProperty());
         this.screenColumn.setCellValueFactory(val -> val.getValue().screenNameProperty());
         this.dateColumn.setCellValueFactory(val -> val.getValue().dateProperty());
+        this.priceColumn.setCellValueFactory(val -> val.getValue().priceProperty());
 
         deleteButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
         detailsButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
         refresh();
     }
     @FXML
-    private void handleAddShowingAction(){
+    private void handleAddShowingAction(ActionEvent actionEvent){
         applicationController.showNewShowingForm(showingManagementStage);
         refresh();
     }
 
     @FXML
-    private void handleEditShowingAction(){
+    private void handleEditShowingAction(ActionEvent actionEvent){
         applicationController.showEditShowingForm(
                 showingManagementStage,
                 showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem()));
@@ -73,7 +76,7 @@ public class ShowingManagementPresenter {
     }
 
     @FXML
-    private void handleDeleteShowingAction(){
+    private void handleDeleteShowingAction(ActionEvent actionEvent){
         Showing showing = showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem());
         showingService.delete(showing);
         refresh();

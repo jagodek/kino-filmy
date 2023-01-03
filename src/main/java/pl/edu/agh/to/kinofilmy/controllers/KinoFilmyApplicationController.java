@@ -31,6 +31,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     private Stage primaryStage;
 
     private Roles userRole;
+    private Long userId;
 
     private ApplicationContext applicationContext;
 
@@ -413,6 +414,52 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             e.printStackTrace();
         }
     }
+
+    public void showTicketPurchaseView(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/ticketPurchaseView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage buyTicketStage = new Stage();
+            buyTicketStage.setTitle("Puchase ticket");
+            buyTicketStage.initModality(Modality.WINDOW_MODAL);
+            buyTicketStage.initOwner(parent);
+
+            TicketPurchasePresenter presenter = loader.getController();
+            presenter.setTicketPurchaseStage(buyTicketStage);
+
+            Scene scene = new Scene(layout);
+            buyTicketStage.setScene(scene);
+            buyTicketStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTicketClippingView(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/ticketClipView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage clipTicketStage = new Stage();
+            clipTicketStage.setTitle("Clip ticket");
+            clipTicketStage.initModality(Modality.WINDOW_MODAL);
+            clipTicketStage.initOwner(parent);
+
+            TicketClippingPresenter presenter = loader.getController();
+            presenter.setStage(clipTicketStage);
+
+            Scene scene = new Scene(layout);
+            clipTicketStage.setScene(scene);
+            clipTicketStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -430,6 +477,9 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
     public void setUserRole(Roles userRole) {
         this.userRole = userRole;
     }
+    public void setUserId(Long id){this.userId = id;}
+
+    public Long getUserId(){return this.userId;}
 
 
     public void logOut(){

@@ -38,6 +38,8 @@ public class NewShowingController {
     @FXML
     private TextField timeInput;
     @FXML
+    private TextField priceInput;
+    @FXML
     private Button submitButton;
 
     public NewShowingController(ShowingService showingService, FilmService filmService, ScreenService screenService) {
@@ -70,11 +72,12 @@ public class NewShowingController {
                     Date.from(
                             datePicker.getValue()
                             .atTime(LocalTime.parse(timeInput.getText()))
-                            .atZone(ZoneId.systemDefault()).toInstant())
+                            .atZone(ZoneId.systemDefault()).toInstant()),
+                    Float.parseFloat(priceInput.getText())
             );
+            System.out.println(Float.parseFloat(priceInput.getText()));
             showingService.save(showing);
         }
-
-
+        this.newShowingStage.close();
     }
 }

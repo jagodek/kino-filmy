@@ -23,20 +23,39 @@
                     <TableColumn fx:id="screenNameColumn"/>
                 </columns>
             </TableView>
+            <BorderPane.margin>
+                <Insets left="10.0" right="10.0" top="10.0" bottom="10.0"/>
+            </BorderPane.margin>
         </HBox>
     </center>
     <bottom>
-        <VBox>
-            <DatePicker fx:id="datePicker"/>
-            <TextField fx:id="timeInput"/>
-        </VBox>
+        <HBox>
+            <DatePicker fx:id="datePicker">
+                <HBox.margin>
+                    <Insets left="5.0"/>
+                </HBox.margin>
+            </DatePicker>
+            <TextField fx:id="timeInput">
+                <HBox.margin>
+                    <Insets left="5.0"/>
+                </HBox.margin>
+            </TextField>
+            <TextField fx:id="priceInput">
+                <HBox.margin>
+                    <Insets left="5.0"/>
+                </HBox.margin>
+            </TextField>
+            <BorderPane.margin>
+                <Insets left="5.0" right="5.0" top="5.0" bottom="5.0"/>
+            </BorderPane.margin>
+        </HBox>
 
     </bottom>
-    <right>
+    <left>
         <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Add showing" prefWidth="100">
             <VBox.margin>
-                <Insets bottom="10" left="10" right="10"/>
+                <Insets top="10" left="10" right="10"/>
             </VBox.margin>
         </Button>
-    </right>
+    </left>
 </BorderPane>

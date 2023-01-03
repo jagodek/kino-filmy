@@ -46,6 +46,12 @@ public class MainController {
     private Button showStatisticsButton;
 
     @FXML
+    private Button buyTicketButton;
+
+    @FXML
+    private Button clipTicketButton;
+
+    @FXML
     private void initialize() {
         if (this.roles != null) {
             if (!roles.isManageUsers()) {
@@ -87,4 +93,9 @@ public class MainController {
 
     @FXML
     public void handleShowStatisticsAction(ActionEvent event){applicationController.showStatistics(mainStage);}
+
+    @FXML
+    public void handleBuyTicketAction(ActionEvent event){applicationController.showTicketPurchaseView(mainStage);}
+    @FXML
+    public void handleClipTicketAction(ActionEvent event){applicationController.showTicketClippingView(mainStage);}
 }

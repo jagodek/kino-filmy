@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -57,5 +59,17 @@ public class ScreenService {
 
     public Optional<Screen> getFilmById(long id){
         return this.repository.findScreenById(id);
+    }
+
+    public List<Seat> getSeats(Screen screen){
+        List<Seat> seats = new LinkedList<>();
+        for (int i = 1, j = 1, k = 1; i <= screen.getSeatsNumber(); i++, k++) {
+            seats.add(new Seat(screen, k, j));
+            if(i == screen.getSeatsNumber()/screen.getRowNumber()) {
+                j++;
+                k = 1;
+            }
+        }
+        return seats;
     }
 }
