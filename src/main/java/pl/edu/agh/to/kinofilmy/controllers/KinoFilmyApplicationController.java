@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController;
+import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.RolesManagementController;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
@@ -224,6 +225,27 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             userManagementStage.showAndWait();
         } catch (IOException e) {
             // TODO don't do this in common apps
+            e.printStackTrace();
+        }
+    }
+
+    public void showRolesManagement(Stage parent){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/rolesManagementView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage rolesManagementStage = new Stage();
+            rolesManagementStage.setTitle("Manage roles");
+            rolesManagementStage.initModality(Modality.WINDOW_MODAL);
+            rolesManagementStage.initOwner(parent);
+            RolesManagementController controller = loader.getController();
+            controller.setRolesManagementStage(rolesManagementStage);
+            Scene scene = new Scene(layout);
+            rolesManagementStage.setScene(scene);
+            rolesManagementStage.showAndWait();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

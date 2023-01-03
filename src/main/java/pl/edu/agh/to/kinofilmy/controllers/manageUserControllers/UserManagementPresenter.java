@@ -96,6 +96,6 @@ public class UserManagementPresenter {
 
     @FXML
     private void handleManageRolesAction(ActionEvent event){
-
+        applicationController.showRolesManagement(userManagementStage);
     }
 }
