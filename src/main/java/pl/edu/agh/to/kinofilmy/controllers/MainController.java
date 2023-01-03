@@ -42,6 +42,9 @@ public class MainController {
     private Button manageShowingsButton;
 
     @FXML
+    private Button buyTicketButton;
+
+    @FXML
     private void initialize(){
 
     }
@@ -71,4 +74,7 @@ public class MainController {
 
     @FXML
     public void handleManageShowingAction(ActionEvent event){applicationController.showShowingManagement(mainStage);}
+
+    @FXML
+    public void handleBuyTicketAction(ActionEvent event){applicationController.showTicketPurchaseView(mainStage);}
 }

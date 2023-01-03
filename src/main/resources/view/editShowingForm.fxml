@@ -29,11 +29,12 @@
         <VBox>
             <DatePicker fx:id="datePicker"/>
             <TextField fx:id="timeInput"/>
+            <TextField fx:id="priceInput"/>
         </VBox>
 
     </bottom>
     <right>
-        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Add showing" prefWidth="100">
+        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Change" prefWidth="100">
             <VBox.margin>
                 <Insets bottom="10" left="10" right="10"/>
             </VBox.margin>

@@ -10,10 +10,12 @@ import pl.edu.agh.to.kinofilmy.model.film.FilmService;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenDisplay;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
+import pl.edu.agh.to.kinofilmy.model.showing.ShowingDisplay;
 import pl.edu.agh.to.kinofilmy.model.showing.ShowingService;
 
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 @Controller
@@ -32,10 +34,13 @@ public class EditShowingController {
     private TableView<ScreenDisplay> screenList;
     @FXML
     private TableColumn<ScreenDisplay, String> screenNameColumn;
+
     @FXML
     private DatePicker datePicker;
     @FXML
     private TextField timeInput;
+    @FXML
+    private TextField priceInput;
     @FXML
     private Button submitButton;
 
@@ -51,11 +56,21 @@ public class EditShowingController {
 
     public void setShowing(Showing showing) {
         this.showing = showing;
+        filmList.getSelectionModel().select(new FilmDisplay(showing.getFilm()));
+        screenList.getSelectionModel().select(new ScreenDisplay(showing.getScreen()));
+        datePicker.setValue(showing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        timeInput.setText(showing.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalTime().toString());
+        priceInput.setText(showing.getPrice().toString());
     }
 
     @FXML
     public void initialize(){
-
+        filmList.setItems(this.filmService.findAllAsFilmDisplay());
+        screenList.setItems(this.screenService.findAllAsScreenDisplay());
+        filmList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        screenList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        filmTitleColumn.setCellValueFactory(val -> val.getValue().titleProperty());
+        screenNameColumn.setCellValueFactory(val -> val.getValue().getNameProperty());
     }
 
     @FXML
@@ -66,6 +81,8 @@ public class EditShowingController {
                 datePicker.getValue()
                         .atTime(LocalTime.parse(timeInput.getText()))
                         .atZone(ZoneId.systemDefault()).toInstant()));
+        this.showing.setPrice(Float.parseFloat(priceInput.getText()));
         this.showingService.update(showing);
+        this.editShowingStage.close();
     }
 }

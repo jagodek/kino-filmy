@@ -29,6 +29,7 @@
         <VBox>
             <DatePicker fx:id="datePicker"/>
             <TextField fx:id="timeInput"/>
+            <TextField fx:id="priceInput"/>
         </VBox>
 
     </bottom>

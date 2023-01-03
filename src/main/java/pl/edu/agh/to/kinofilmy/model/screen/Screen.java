@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *  Screen represents each room where the movies are played, mainly capacity and name
@@ -79,4 +81,5 @@ public class Screen {
                 ", rowNumber=" + rowNumber +
                 '}';
     }
+
 }

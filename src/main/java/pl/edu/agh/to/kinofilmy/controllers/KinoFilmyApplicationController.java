@@ -413,6 +413,29 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             e.printStackTrace();
         }
     }
+
+    public void showTicketPurchaseView(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/ticketPurchaseView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage editShowingStage = new Stage();
+            editShowingStage.setTitle("Puchase ticket");
+            editShowingStage.initModality(Modality.WINDOW_MODAL);
+            editShowingStage.initOwner(parent);
+
+            TicketPurchasePresenter presenter = loader.getController();
+            presenter.setTicketPurchaseStage(editShowingStage);
+
+            Scene scene = new Scene(layout);
+            editShowingStage.setScene(scene);
+            editShowingStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }

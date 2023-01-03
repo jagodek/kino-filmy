@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenDisplay;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ShowingService {
     private final ShowingRepository repository;
 
@@ -37,7 +39,7 @@ public class ShowingService {
         Optional<Showing> optionalShowing = this.repository.findShowingById(showing.getId());
         if(optionalShowing.isPresent()){
             Showing old = optionalShowing.get();
-
+            System.out.println(Objects.equals(old.getDate(), showing.getDate()));
             if(!Objects.equals(old.getScreen(), showing.getScreen())){
                 old.setScreen(showing.getScreen());
             }

@@ -11,6 +11,8 @@ public class ShowingDisplay {
     private final StringProperty screenName;
     private final StringProperty filmTitle;
     private final ObjectProperty<Date> date;
+
+    private final ObjectProperty<Float> price;
     private final ObjectProperty<Screen> screen;
     private final ObjectProperty<Film> film;
 
@@ -19,6 +21,7 @@ public class ShowingDisplay {
         this.screenName = new SimpleStringProperty(showing.getScreen().getName());
         this.filmTitle = new SimpleStringProperty(showing.getFilm().getTitle());
         this.date = new SimpleObjectProperty<>(showing.getDate());
+        this.price = new SimpleObjectProperty<>(showing.getPrice());
         this.screen = new SimpleObjectProperty<>(showing.getScreen());
         this.film = new SimpleObjectProperty<>(showing.getFilm());
     }
@@ -46,6 +49,8 @@ public class ShowingDisplay {
         return date.get();
     }
 
+    public Float getPrice(){return price.get();}
+
     public LongProperty idProperty() {
         return id;
     }
@@ -67,5 +72,9 @@ public class ShowingDisplay {
 
     public ObjectProperty<Date> dateProperty() {
         return date;
+    }
+
+    public ObjectProperty<Float> priceProperty() {
+        return price;
     }
 }
