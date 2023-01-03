@@ -11,7 +11,7 @@ import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;
 
 @Controller
 public class EditScreenController {
-    private ScreenService screenService;
+    private final ScreenService screenService;
 
     private Stage editUserStage;
     private Screen screen;

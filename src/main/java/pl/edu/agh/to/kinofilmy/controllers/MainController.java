@@ -33,6 +33,9 @@ public class MainController {
     private Button manageScreensButton;
 
     @FXML
+    private Button manageShowingsButton;
+
+    @FXML
     private void initialize(){
 
     }
@@ -49,4 +52,7 @@ public class MainController {
 
     @FXML
     public void handleManageScreensAction(ActionEvent event){applicationController.showScreenManagement(mainStage);}
+
+    @FXML
+    public void handleManageShowingAction(ActionEvent event){applicationController.showShowingManagement(mainStage);}
 }

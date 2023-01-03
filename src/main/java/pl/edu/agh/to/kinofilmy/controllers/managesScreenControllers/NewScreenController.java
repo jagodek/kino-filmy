@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;
 
+import java.util.Date;
+
 @Controller
 public class NewScreenController {
 
@@ -42,7 +44,6 @@ public class NewScreenController {
 
     @FXML
     public void initialize(){
-
     }
 
     @FXML

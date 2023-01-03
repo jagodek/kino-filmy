@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.ShowingManagementPresenter"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <TableView fx:id="showingsTable" prefWidth="500" prefHeight="500" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="filmColumn" prefWidth="100" text="Film"/>
+                <TableColumn fx:id="screenColumn" prefWidth="100" text="Screen"/>
+                <TableColumn fx:id="dateColumn" prefWidth="100" text="Data"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </center>
+    <right>
+        <VBox prefWidth="100">
+            <Button fx:id="addShowingButton" mnemonicParsing="false" onAction="#handleAddShowingAction" text="Add showing" prefWidth="100">
+                <VBox.margin>
+                    <Insets bottom="10" left="10" right="10"/>
+                </VBox.margin>
+            </Button>
+
+            <Button fx:id="detailsButton" mnemonicParsing="false" onAction="#handleEditShowingAction" text="Manage" prefWidth="100">
+                <VBox.margin>
+                    <Insets bottom="10" left="10" right="10"/>
+                </VBox.margin>
+            </Button>
+
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteShowingAction" text="Delete" prefWidth="100">
+                <VBox.margin>
+                    <Insets bottom="10" left="10" right="10"/>
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </right>
+</BorderPane>

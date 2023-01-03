@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.EditShowingController;
+import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.NewShowingController;
+import pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.ShowingManagementPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.EditUserPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.UserManagementPresenter;
 import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.EditScreenController;
@@ -20,6 +23,7 @@ import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
+import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import java.io.IOException;
 
@@ -276,18 +280,85 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             loader.setControllerFactory(applicationContext::getBean);
             GridPane layout = loader.load();
 
-            Stage editUserStage = new Stage();
-            editUserStage.setTitle("Edit user");
-            editUserStage.initModality(Modality.WINDOW_MODAL);
-            editUserStage.initOwner(parent);
+            Stage editScreenStage = new Stage();
+            editScreenStage.setTitle("Edit user");
+            editScreenStage.initModality(Modality.WINDOW_MODAL);
+            editScreenStage.initOwner(parent);
 
             EditScreenController presenter = loader.getController();
-            presenter.setStage(editUserStage);
+            presenter.setStage(editScreenStage);
             presenter.setScreen(screen);
 
             Scene scene = new Scene(layout);
-            editUserStage.setScene(scene);
-            editUserStage.showAndWait();
+            editScreenStage.setScene(scene);
+            editScreenStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showShowingManagement(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/manageShowingsView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage showingManagementStage = new Stage();
+            showingManagementStage.setTitle("Manage users");
+            showingManagementStage.initModality(Modality.WINDOW_MODAL);
+            showingManagementStage.initOwner(parent);
+
+            ShowingManagementPresenter presenter = loader.getController();
+            presenter.setShowingManagementStage(showingManagementStage);
+            Scene scene = new Scene(layout);
+            showingManagementStage.setScene(scene);
+            showingManagementStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showNewShowingForm(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/newShowingForm.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage addShowingStage = new Stage();
+            addShowingStage.setTitle("Add new user");
+            addShowingStage.initModality(Modality.WINDOW_MODAL);
+            addShowingStage.initOwner(parent);
+            NewShowingController controller = loader.getController();
+            controller.setNewShowingStage(addShowingStage);
+            Scene scene = new Scene(layout);
+            addShowingStage.setScene(scene);
+            addShowingStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showEditShowingForm(Stage parent, Showing showing){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/editShowingView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage editShowingStage = new Stage();
+            editShowingStage.setTitle("Edit showing");
+            editShowingStage.initModality(Modality.WINDOW_MODAL);
+            editShowingStage.initOwner(parent);
+
+            EditShowingController presenter = loader.getController();
+            presenter.setEditShowingStage(editShowingStage);
+            presenter.setShowing(showing);
+
+            Scene scene = new Scene(layout);
+            editShowingStage.setScene(scene);
+            editShowingStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

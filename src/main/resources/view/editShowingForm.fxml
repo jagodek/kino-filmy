@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.EditShowingController"
+            prefHeight="400.0" prefWidth="600.0">
+    <center>
+        <ListView fx:id="filmList">
+
+        </ListView>
+        <ListView fx:id="screenList">
+
+        </ListView>
+    </center>
+    <bottom>
+        <DatePicker fx:id="datePicker"/>
+    </bottom>
+    <right>
+        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleSubmitAction" text="Add screen" prefWidth="100">
+        </Button>
+    </right>
+</BorderPane>

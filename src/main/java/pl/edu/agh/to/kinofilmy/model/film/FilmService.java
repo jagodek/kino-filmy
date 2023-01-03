@@ -11,6 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -60,4 +61,7 @@ public class FilmService {
         return new Image(new ByteArrayInputStream(byteImg));
     }
 
+    public Optional<Film> getFilmById(long id){
+        return this.repository.findById(id);
+    }
 }

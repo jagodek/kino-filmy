@@ -3,6 +3,7 @@ package pl.edu.agh.to.kinofilmy.model.screen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 
 import javax.transaction.Transactional;
 import java.util.Objects;
@@ -28,10 +29,6 @@ public class ScreenService {
         }
         return screenDisplayList;
     }
-
-    public Iterable<Screen> getScreens(){
-        return repository.findAll();
-    }
     public void save(Screen screen){
         this.repository.save(screen);
     }
@@ -56,6 +53,9 @@ public class ScreenService {
         if (optionalScreen.isPresent()){
             this.repository.delete(optionalScreen.get());
         }
+    }
 
+    public Optional<Screen> getFilmById(long id){
+        return this.repository.findScreenById(id);
     }
 }
