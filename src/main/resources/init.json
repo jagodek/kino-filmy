@@ -1,0 +1,18 @@
+{
+  "films": [
+    {
+      "title":"Goodfellas",
+      "runtime": "02:36",
+      "genre": "Crime",
+      "director": "Martin Scorsese",
+      "iconPath": "/posters/goodfellas.jpg"
+    },
+    {
+      "title": "The Thing",
+      "runtime": "01:49",
+      "genre": "Horror",
+      "director": "John Carpenter",
+      "iconPath": "/posters/thething.jpg"
+    }
+  ]
+}
