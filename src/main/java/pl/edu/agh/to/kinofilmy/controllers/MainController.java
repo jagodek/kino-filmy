@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.film.FilmService;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
 
 @Controller
@@ -15,8 +18,10 @@ public class MainController {
     private Stage mainStage;
 
 
+
     public MainController(KinoFilmyApplicationController applicationController) {
         this.applicationController = applicationController;
+
     }
 
     public void setMainStage(Stage mainStage) {

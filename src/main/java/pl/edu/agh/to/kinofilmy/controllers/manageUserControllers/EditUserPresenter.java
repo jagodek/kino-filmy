@@ -3,6 +3,7 @@ package pl.edu.agh.to.kinofilmy.controllers.manageUserControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class EditUserPresenter {
     private TextField lastNameInput;
 
     @FXML
-    private TextField roleInput;
+    private ChoiceBox<Roles> roleInput;
 
     @FXML
     private TextField usernameInput;
@@ -60,7 +61,7 @@ public class EditUserPresenter {
         this.user = employee;
         firstNameInput.setText(this.user.getFirstname());
         lastNameInput.setText(this.user.getLastname());
-        roleInput.setText(this.user.getRole().toString());
+        roleInput.setValue(this.user.getRole());
         emailInput.setText(this.user.getEmail());
         phoneInput.setText(this.user.getPhoneNumber());
         usernameInput.setText(this.user.getUsername());
@@ -69,13 +70,20 @@ public class EditUserPresenter {
 
     @FXML
     public void initialize(){
+        for (Roles role :this.rolesService.findAll()) {
+            this.roleInput.getItems().add(role);
+        }
+        this.roleInput.setOnAction((event -> {
+            this.roleInput.setValue(this.roleInput.getValue());
+        }));
+
+
 
     }
 
     @FXML
     public void handleSubmitAction(ActionEvent event){
-        Optional<Roles> rolesOptional = rolesService.findRolesByName(roleInput.getText());
-        if(rolesOptional.isPresent()){
+
             boolean isEdited = false;
             if(!Objects.equals(firstNameInput.getText(), this.user.getFirstname())){
                 this.user.setFirstname(firstNameInput.getText());
@@ -93,8 +101,8 @@ public class EditUserPresenter {
                 this.user.setPhoneNumber(phoneInput.getText());
                 isEdited = true;
             }
-            if(!Objects.equals(rolesOptional.get(), this.user.getRole())){
-                this.user.setRole(rolesOptional.get());
+            if(!Objects.equals(roleInput.getValue(), this.user.getRole())){
+                this.user.setRole(roleInput.getValue());
                 isEdited = true;
             }
             if(!Objects.equals(usernameInput.getText(), this.user.getUsername())){
@@ -111,9 +119,6 @@ public class EditUserPresenter {
             }
 
             this.editUserStage.close();
-        }
-        else {
-            applicationController.displayMessage(editUserStage, "Incorrect inputs");
-        }
+
     }
 }
