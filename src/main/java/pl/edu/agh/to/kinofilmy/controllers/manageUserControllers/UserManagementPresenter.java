@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
+import pl.edu.agh.to.kinofilmy.model.employee.EmployeeDisplay;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
@@ -21,18 +23,19 @@ public class UserManagementPresenter {
     private final KinoFilmyApplicationController applicationController;
     private final EmployeeService employeeService;
 
+    private ObservableList<EmployeeDisplay> employees;
     @FXML
-    private TableView<Employee> usersTable;
+    private TableView<EmployeeDisplay> usersTable;
     @FXML
-    private TableColumn<Employee, String> firstnameColumn;
+    private TableColumn<EmployeeDisplay, String> firstnameColumn;
     @FXML
-    private TableColumn<Employee, String> lastnameColumn;
+    private TableColumn<EmployeeDisplay, String> lastnameColumn;
     @FXML
-    private TableColumn<Employee, Roles> roleColumn;
+    private TableColumn<EmployeeDisplay, Roles> roleColumn;
     @FXML
-    private TableColumn<Employee, String> emailColumn;
+    private TableColumn<EmployeeDisplay, String> emailColumn;
     @FXML
-    private TableColumn<Employee, String> phoneNumberColumn;
+    private TableColumn<EmployeeDisplay, String> phoneNumberColumn;
     @FXML
     private Button detailsButton;
     @FXML
@@ -50,52 +53,47 @@ public class UserManagementPresenter {
     @FXML
     private void initialize(){
         this.usersTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        this.firstnameColumn.setCellValueFactory(val -> new SimpleStringProperty(val.getValue().getFirstname()));
-        this.lastnameColumn.setCellValueFactory(val -> new SimpleStringProperty(val.getValue().getLastname()));
-        this.roleColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getRole()));
-        this.emailColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getEmail()));
-        this.phoneNumberColumn.setCellValueFactory(val -> new SimpleObjectProperty<>(val.getValue().getEmail()));
-        refreshEmployeeData();
+        this.firstnameColumn.setCellValueFactory(val -> val.getValue().firstnameProperty());
+        this.lastnameColumn.setCellValueFactory(val -> val.getValue().lastnameProperty());
+        this.roleColumn.setCellValueFactory(val -> val.getValue().roleProperty());
+        this.emailColumn.setCellValueFactory(val -> val.getValue().emailProperty());
+        this.phoneNumberColumn.setCellValueFactory(val -> val.getValue().phoneNumberProperty());
 
-        detailsButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
         deleteButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
-        //TODO usunięcie możliwości usunięcia użytkownika root
+        detailsButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
+        refresh();
     }
 
     public void setUserManagementStage(Stage userManagementStage) {
         this.userManagementStage = userManagementStage;
     }
 
-    private void refreshEmployeeData(){
-        usersTable.getSelectionModel().clearSelection();
-        this.usersTable.setItems(FXCollections.observableArrayList(employeeService.getEmployees()));
-    }
-
     @FXML
     private void handleAddUserAction(){
         applicationController.showNewUserForm(userManagementStage);
-        refreshEmployeeData();
+        refresh();
     }
 
     @FXML
     private void handleEditUserAction(){
-        applicationController.showEditUserForm(userManagementStage, this.usersTable.getSelectionModel().getSelectedItem());
-        refreshEmployeeData();
-    }
-
-    @FXML
-    private void handleRefreshAction(ActionEvent event){
-        refreshEmployeeData();
+        if(this.usersTable.getSelectionModel().getSelectedItem() != null){
+            applicationController.showEditUserForm(
+                    userManagementStage,
+                    employeeService.employeeFromEmployeeDisplay(this.usersTable.getSelectionModel().getSelectedItem()));
+            refresh();
+        }
     }
 
     @FXML
     private void handleDeleteUserAction(){
-        employeeService.deleteEmployee(this.usersTable.getSelectionModel().getSelectedItem());
-        refreshEmployeeData();
+        employeeService.deleteEmployee(employeeService.employeeFromEmployeeDisplay(
+                this.usersTable.getSelectionModel().getSelectedItem()));
+        refresh();
     }
 
-    @FXML
-    private void handleManageRolesAction(ActionEvent event){
-        applicationController.showRolesManagement(userManagementStage);
+    private void refresh(){
+        usersTable.getSelectionModel().clearSelection();
+        this.employees = employeeService.findAllAsEmployeeDisplay();
+        this.usersTable.setItems(this.employees);
     }
 }

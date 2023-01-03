@@ -18,10 +18,8 @@ public class MainController {
     private Stage mainStage;
 
 
-
     public MainController(KinoFilmyApplicationController applicationController) {
         this.applicationController = applicationController;
-
     }
 
     public void setMainStage(Stage mainStage) {
@@ -38,14 +36,16 @@ public class MainController {
     private Button logOutButton;
 
     @FXML
+    private Button manageScreensButton;
+
+    @FXML
+    private Button manageShowingsButton;
+
+    @FXML
     private void initialize(){
 
     }
 
-    @FXML
-    public void handleNewUserAction(ActionEvent event){
-        applicationController.showNewUserForm(mainStage);
-    }
 
     @FXML
     public void handleManageFilmsAction(ActionEvent event){
@@ -65,4 +65,10 @@ public class MainController {
     public void logOutAction(){
         applicationController.logOut();
     }
+
+    @FXML
+    public void handleManageScreensAction(ActionEvent event){applicationController.showScreenManagement(mainStage);}
+
+    @FXML
+    public void handleManageShowingAction(ActionEvent event){applicationController.showShowingManagement(mainStage);}
 }

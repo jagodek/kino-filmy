@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
@@ -22,12 +21,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 public class EditUserPresenter {
-    @Autowired
-    private KinoFilmyApplicationController applicationController;
-    @Autowired
-    private EmployeeService employeeService;
-    @Autowired
-    private RolesService rolesService;
+    private final EmployeeService employeeService;
+    private final RolesService rolesService;
 
     private Stage editUserStage;
     private Employee user;
@@ -56,6 +51,10 @@ public class EditUserPresenter {
     @FXML
     private Button submit;
 
+    public EditUserPresenter(EmployeeService employeeService, RolesService rolesService) {
+        this.employeeService = employeeService;
+        this.rolesService = rolesService;
+    }
     @FXML
     private Label firstNameError;
     @FXML
