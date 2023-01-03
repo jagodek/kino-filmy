@@ -44,7 +44,7 @@ public class EmployeeService {
         Optional<Employee> optionalEmployee = this.repository.findEmployeeByUsername(employee.getUsername());
         if(optionalEmployee.isPresent()){
             Employee old = optionalEmployee.get();
-
+            System.out.println(old.getFirstname() + " " + employee.getFirstname());
             if(!Objects.equals(old.getFirstname(), employee.getFirstname())){
                 old.setFirstname(employee.getFirstname());
             }
@@ -69,7 +69,13 @@ public class EmployeeService {
         }
     }
 
-    public void deleteEmployee(Employee employee){this.repository.delete(employee);}
+    public void deleteEmployee(Employee employee){
+        Optional<Employee> optionalEmployee = this.repository.findEmployeeByUsername(employee.getUsername());
+        if(optionalEmployee.isPresent()){
+            this.repository.delete(optionalEmployee.get());
+        }
+
+    }
 
     public Employee employeeFromEmployeeDisplay(EmployeeDisplay employee){
         return new Employee(employee);

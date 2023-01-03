@@ -14,8 +14,8 @@ import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
 @Controller
 public class EditUserPresenter {
-    private EmployeeService employeeService;
-    private RolesService rolesService;
+    private final EmployeeService employeeService;
+    private final RolesService rolesService;
 
     private Stage editUserStage;
     private Employee user;
@@ -74,8 +74,14 @@ public class EditUserPresenter {
 
     @FXML
     public void handleSubmitAction(ActionEvent event){
+        this.user.setFirstname(firstNameInput.getText());
+        this.user.setLastname(lastNameInput.getText());
+        this.user.setRole(roleInput.getValue());
+        this.user.setUsername(usernameInput.getText());
+        this.user.setPassword(passwordInput.getText());
+        this.user.setEmail(emailInput.getText());
+        this.user.setPhoneNumber(phoneInput.getText());
         this.employeeService.update(user);
         this.editUserStage.close();
-
     }
 }

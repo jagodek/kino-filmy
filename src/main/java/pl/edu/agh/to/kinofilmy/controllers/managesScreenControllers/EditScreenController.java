@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import pl.edu.agh.to.kinofilmy.model.employee.Employee;
-import pl.edu.agh.to.kinofilmy.model.roles.Roles;
+import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;
 
+@Controller
 public class EditScreenController {
     private ScreenService screenService;
 
@@ -28,6 +28,10 @@ public class EditScreenController {
     @FXML
     private Button submit;
 
+    public EditScreenController(ScreenService screenService) {
+        this.screenService = screenService;
+    }
+
     public void setStage(Stage stage) {
         this.editUserStage = stage;
     }
@@ -45,6 +49,9 @@ public class EditScreenController {
 
     @FXML
     public void handleSubmitAction(ActionEvent event) {
+        this.screen.setName(nameInput.getText());
+        this.screen.setSeatsNumber(Integer.parseInt(seatsNumberInput.getText()));
+        this.screen.setRowNumber(Integer.parseInt(rowNumberInput.getText()));
         this.screenService.update(this.screen);
         this.editUserStage.close();
 

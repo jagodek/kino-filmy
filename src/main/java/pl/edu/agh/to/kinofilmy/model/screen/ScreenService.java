@@ -32,7 +32,7 @@ public class ScreenService {
     public Iterable<Screen> getScreens(){
         return repository.findAll();
     }
-    public void addScreen(Screen screen){
+    public void save(Screen screen){
         this.repository.save(screen);
     }
     public void update(Screen screen){
@@ -52,6 +52,10 @@ public class ScreenService {
         }
     }
     public void deleteScreen(Screen screen){
-        this.repository.delete(screen);
+        Optional<Screen> optionalScreen = this.repository.findScreenById(screen.getId());
+        if (optionalScreen.isPresent()){
+            this.repository.delete(optionalScreen.get());
+        }
+
     }
 }

@@ -53,7 +53,7 @@ public class NewScreenController {
                 Integer.parseInt(rowNumberInput.getText())
         );
 
-        this.screenService.addScreen(screen);
+        this.screenService.save(screen);
         this.newScreenStage.close();
     }
 }

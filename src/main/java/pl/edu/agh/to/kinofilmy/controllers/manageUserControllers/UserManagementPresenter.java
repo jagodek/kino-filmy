@@ -1,5 +1,6 @@
 package pl.edu.agh.to.kinofilmy.controllers.manageUserControllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,8 +19,8 @@ import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 @Controller
 public class UserManagementPresenter {
     private Stage userManagementStage;
-    private KinoFilmyApplicationController applicationController;
-    private EmployeeService employeeService;
+    private final KinoFilmyApplicationController applicationController;
+    private final EmployeeService employeeService;
 
     private ObservableList<EmployeeDisplay> employees;
     @FXML
@@ -38,6 +39,8 @@ public class UserManagementPresenter {
     private Button detailsButton;
     @FXML
     private Button addUserButton;
+    @FXML
+    private Button deleteButton;
 
     public UserManagementPresenter(KinoFilmyApplicationController applicationController, EmployeeService employeeService) {
         this.applicationController = applicationController;
@@ -52,6 +55,9 @@ public class UserManagementPresenter {
         this.roleColumn.setCellValueFactory(val -> val.getValue().roleProperty());
         this.emailColumn.setCellValueFactory(val -> val.getValue().emailProperty());
         this.phoneNumberColumn.setCellValueFactory(val -> val.getValue().phoneNumberProperty());
+
+        deleteButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
+        detailsButton.disableProperty().bind(Bindings.isEmpty(usersTable.getSelectionModel().getSelectedItems()));
         refresh();
     }
 

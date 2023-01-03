@@ -1,5 +1,6 @@
 package pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,11 +50,16 @@ public class ScreenManagementPresenter {
         this.nameColumn.setCellValueFactory(val -> val.getValue().getNameProperty());
         this.seatsNumberColumn.setCellValueFactory(val -> val.getValue().getSeatsNumberProperty());
         this.rowNumberColumn.setCellValueFactory(val -> val.getValue().getRowNumberProperty());
+
+        deleteButton.disableProperty().bind(Bindings.isEmpty(screensTable.getSelectionModel().getSelectedItems()));
+        detailsButton.disableProperty().bind(Bindings.isEmpty(screensTable.getSelectionModel().getSelectedItems()));
+        refresh();
     }
 
     @FXML
     private void handleAddScreenAction(){
         applicationController.showNewScreenForm(screenManagementStage);
+        refresh();
     }
 
     @FXML
@@ -61,12 +67,14 @@ public class ScreenManagementPresenter {
         applicationController.showEditScreenForm(
                 screenManagementStage,
                 screenService.screenDisplayToScreen(this.screensTable.getSelectionModel().getSelectedItem()));
+        refresh();
     }
 
     @FXML
     private void handleDeleteScreenAction(){
         Screen screen = screenService.screenDisplayToScreen(this.screensTable.getSelectionModel().getSelectedItem());
         screenService.deleteScreen(screen);
+        refresh();
     }
 
     private void refresh(){
