@@ -24,7 +24,7 @@
             </columnResizePolicy>
         </TableView>
     </center>
-    <right>
+    <left>
         <VBox prefWidth="100">
             <Button fx:id="addShowingButton" mnemonicParsing="false" onAction="#handleAddShowingAction" text="Add showing" prefWidth="100">
                 <VBox.margin>
@@ -44,5 +44,5 @@
                 </VBox.margin>
             </Button>
         </VBox>
-    </right>
+    </left>
 </BorderPane>

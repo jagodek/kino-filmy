@@ -23,7 +23,7 @@
             </columnResizePolicy>
         </TableView>
     </center>
-    <right>
+    <left>
         <VBox prefWidth="100">
             <Button fx:id="addScreenButton" mnemonicParsing="false" onAction="#handleAddScreenAction" text="Add screen" prefWidth="100">
                 <VBox.margin>
@@ -43,5 +43,5 @@
                 </VBox.margin>
             </Button>
         </VBox>
-    </right>
+    </left>
 </BorderPane>
