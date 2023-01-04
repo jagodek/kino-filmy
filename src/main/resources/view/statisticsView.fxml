@@ -55,11 +55,11 @@
             </HBox>
          </top>
          <center>
-            <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="place" prefWidth="95.0" text="Place" />
-                <TableColumn fx:id="title" prefWidth="172.0" text="Film Title" />
-                  <TableColumn fx:id="ticketsSold" prefWidth="322.0" text="Tickets Sold" />
+                <TableColumn prefWidth="95.0" text="Place" />
+                <TableColumn prefWidth="172.0" text="Film Title" />
+                  <TableColumn prefWidth="322.0" text="Tickets Sold" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
