@@ -15,11 +15,13 @@ import org.springframework.core.io.Resource;
 import pl.edu.agh.to.kinofilmy.controllers.KinoFilmyApplicationController;
 import pl.edu.agh.to.kinofilmy.json.JsonLoader;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeRepository;
+import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.film.FilmRepository;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesRepository;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenRepository;
 
 import java.io.InputStreamReader;
+import java.util.Optional;
 
 
 @SpringBootApplication
