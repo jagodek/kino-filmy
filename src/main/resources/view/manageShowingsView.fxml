@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.ShowingManagementPresenter"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.ShowingManagementPresenter">
     <center>
-        <TableView fx:id="showingsTable" prefWidth="500" prefHeight="500" BorderPane.alignment="CENTER">
+        <TableView fx:id="showingsTable" prefHeight="500" prefWidth="500" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="filmColumn" prefWidth="100" text="Film"/>
-                <TableColumn fx:id="screenColumn" prefWidth="100" text="Screen"/>
-                <TableColumn fx:id="dateColumn" prefWidth="100" text="Date"/>
-                <TableColumn fx:id="priceColumn" prefWidth="100" text="Price"/>
+                <TableColumn fx:id="filmColumn" prefWidth="100" text="Film" />
+                <TableColumn fx:id="screenColumn" prefWidth="100" text="Screen" />
+                <TableColumn fx:id="dateColumn" prefWidth="100" text="Date" />
+                <TableColumn fx:id="priceColumn" prefWidth="100" text="Price" />
             </columns>
             <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
         </TableView>
     </center>
     <left>
-        <VBox prefWidth="100">
-            <Button fx:id="addShowingButton" mnemonicParsing="false" onAction="#handleAddShowingAction" text="Add showing" prefWidth="100">
+        <VBox prefWidth="120.0">
+            <Button fx:id="addShowingButton" mnemonicParsing="false" onAction="#handleAddShowingAction" prefWidth="100" text="Add showing">
                 <VBox.margin>
-                    <Insets bottom="10" left="10" right="10"/>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </VBox.margin>
             </Button>
 
-            <Button fx:id="detailsButton" mnemonicParsing="false" onAction="#handleEditShowingAction" text="Manage" prefWidth="100">
+            <Button fx:id="detailsButton" mnemonicParsing="false" onAction="#handleEditShowingAction" prefWidth="100" text="Manage">
                 <VBox.margin>
-                    <Insets bottom="10" left="10" right="10"/>
+                    <Insets bottom="10" left="10" right="10" />
                 </VBox.margin>
             </Button>
 
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteShowingAction" text="Delete" prefWidth="100">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDeleteShowingAction" prefWidth="100" text="Delete">
                 <VBox.margin>
-                    <Insets bottom="10" left="10" right="10"/>
+                    <Insets bottom="10" left="10" right="10" />
                 </VBox.margin>
             </Button>
         </VBox>

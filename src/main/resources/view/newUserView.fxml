@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController">
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController">
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <GridPane.margin>
          <Insets left="10.0" />
@@ -46,7 +46,7 @@
          <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
       </GridPane.margin></TextField>
 
-    <Button fx:id="submit" disable="true" mnemonicParsing="false" onAction="#handleSubmitAction" text="Dodaj" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14">
+    <Button fx:id="submit" disable="true" mnemonicParsing="false" onAction="#handleSubmitAction" text="OK" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14">
       <GridPane.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </GridPane.margin></Button>
@@ -88,19 +88,19 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="25.0" />
       <RowConstraints />
    </rowConstraints>
 </GridPane>

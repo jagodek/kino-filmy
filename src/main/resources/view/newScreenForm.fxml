@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController"
-          prefHeight="400.0" prefWidth="600.0">
+<GridPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController">
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
         <GridPane.margin>
             <Insets left="10.0" />
@@ -40,7 +34,7 @@
 
 
 
-    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="Dodaj" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="OK" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
         <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </GridPane.margin></Button>
@@ -55,5 +49,6 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>
