@@ -20,8 +20,8 @@ public class TicketService {
         this.screenService = screenService;
     }
 
-    public void save(Ticket ticket){
-        this.ticketRepository.save(ticket);
+    public Long save(Ticket ticket){
+        return this.ticketRepository.save(ticket).getId();
     }
     public boolean clipTicket(Long id){
        Optional<Ticket> optionalTicket = this.ticketRepository.findById(id);
@@ -45,7 +45,9 @@ public class TicketService {
     }
 
     public Seat getFirstAvailableSeat(Showing showing){
-        return this.getAvailableSeats(showing).get(0);
+        List<Seat> seats = this.getAvailableSeats(showing);
+        if(seats.size() == 0) return null;
+        return seats.get(0);
     }
     public int countTicketsForShowing(Showing showing){
         return  this.ticketRepository.countByShowing(showing);

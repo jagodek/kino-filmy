@@ -73,15 +73,25 @@ public class TicketPurchasePresenter {
     @FXML
     private void handleBuyAction(ActionEvent event){
         Showing showing = this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem());
-        this.ticketService.save(new Ticket(
-                showing,
-                applicationController.getUserId(),
-                showing.getPrice(),
-                Date.from(Instant.now()),
-                this.ticketService.getFirstAvailableSeat(showing).getRowNumber(),
-                this.ticketService.getFirstAvailableSeat(showing).getSeatNumber(),
-                TicketState.Sold.getState()
-        ));
+        Seat seat = this.ticketService.getFirstAvailableSeat(showing);
+        if(seat == null){
+            applicationController.displayMessage(ticketPurchaseStage,
+                    "All ticket for this showing have been sold");
+        }
+        else{
+            Long id = this.ticketService.save(new Ticket(
+                            showing,
+                            applicationController.getUserId(),
+                            showing.getPrice(),
+                            Date.from(Instant.now()),
+                            seat.getRowNumber(),
+                            seat.getSeatNumber(),
+                            TicketState.Sold.getState()
+            ));
+            applicationController.displayMessage(ticketPurchaseStage,
+                    "Transaction successful. Your ticket number is "+id);
+        }
+
     }
 
     @FXML
