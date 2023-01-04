@@ -14,5 +14,39 @@
       "director": "John Carpenter",
       "iconPath": "/posters/thething.jpg"
     }
+  ],
+  "roles": [
+    {
+      "roleName": "Admin",
+      "manageUsers": true,
+      "sellTickets": true,
+      "checkTickets": true,
+      "manageRoles": true,
+      "manageCinema": true,
+      "getStatistics": true
+    }
+  ],
+  "users": [
+    {
+      "firstname": "Jan",
+      "lastname": "Kowalski",
+      "role": "Admin",
+      "email": "jkowalski@kino.com",
+      "phoneNumber": "+48 567 567 567",
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "screens": [
+    {
+      "name": "Sala 1",
+      "seatsNumber": 200,
+      "rowsNumber": 10
+    },
+    {
+      "name": "Sala 2",
+      "seatsNumber": 300,
+      "rowsNumber": 15
+    }
   ]
 }

@@ -17,6 +17,7 @@ import pl.edu.agh.to.kinofilmy.json.JsonLoader;
 import pl.edu.agh.to.kinofilmy.model.employee.EmployeeRepository;
 import pl.edu.agh.to.kinofilmy.model.film.FilmRepository;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesRepository;
+import pl.edu.agh.to.kinofilmy.model.screen.ScreenRepository;
 
 import java.io.InputStreamReader;
 
@@ -37,23 +38,30 @@ public class KinoFilmyApplication extends Application {
 
 
 	@Bean
-	public CommandLineRunner initializeApp(JsonLoader jsonLoader, RolesRepository rolesRepository, EmployeeRepository employeeRepository, FilmRepository filmRepository) {
+	public CommandLineRunner initializeApp(JsonLoader jsonLoader, RolesRepository rolesRepository,
+										   EmployeeRepository employeeRepository, FilmRepository filmRepository, ScreenRepository screenRepository) {
 		return args -> {
-//			Roles roles = new Roles("Admin", true, true, true,true,true,true);
-//			if(rolesRepository.findAll().isEmpty()) {
-//				if (rolesRepository.count() == 0) {
-//					rolesRepository.save(roles);
-//				}
-//			}
-//			if(employeeRepository.findAll().isEmpty()){
-//				Employee employee = new Employee("Jan", "Kowalski", rolesRepository.findByRoleName("Admin"), "admin", "admin", "jank@mail.pl", "+48 123 123 123");
-//				employeeRepository.save(employee);
-//			}
 			JSONObject obj = (JSONObject) new JSONParser().parse(new InputStreamReader(jsonFile.getInputStream()));
-			Object filmsJsonArrayObj = obj.get("films");
-			JSONArray filmsJsonArray = (JSONArray) filmsJsonArrayObj;
-			filmRepository.saveAll(jsonLoader.jsonObjectToFilmList(filmsJsonArray));
-
+			if(filmRepository.findAll().isEmpty()) {
+				Object filmsJsonArrayObj = obj.get("films");
+				JSONArray filmsJsonArray = (JSONArray) filmsJsonArrayObj;
+				filmRepository.saveAll(jsonLoader.jsonArrayToFilmList(filmsJsonArray));
+			}
+			if(rolesRepository.findAll().isEmpty()){
+				Object rolesJsonArrayObj = obj.get("roles");
+				JSONArray rolesJsonArray = (JSONArray) rolesJsonArrayObj;
+				rolesRepository.saveAll(jsonLoader.jsonArrayToRolesList(rolesJsonArray));
+			}
+			if(employeeRepository.findAll().isEmpty()){
+				Object usersJsonArrayObj = obj.get("users");
+				JSONArray usersJsonArray = (JSONArray) usersJsonArrayObj;
+				employeeRepository.saveAll(jsonLoader.jsonArrayToUsersList(usersJsonArray));
+			}
+			if(screenRepository.findAll().isEmpty()){
+				Object screensJsonArrayObj = obj.get("screens");
+				JSONArray screensJsonArray = (JSONArray) screensJsonArrayObj;
+				screenRepository.saveAll(jsonLoader.jsonArrayToScreensList(screensJsonArray));
+			}
 		};
 	}
 
