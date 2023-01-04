@@ -1,0 +1,52 @@
+{
+  "films": [
+    {
+      "title":"Goodfellas",
+      "runtime": "02:36",
+      "genre": "Crime",
+      "director": "Martin Scorsese",
+      "iconPath": "/posters/goodfellas.jpg"
+    },
+    {
+      "title": "The Thing",
+      "runtime": "01:49",
+      "genre": "Horror",
+      "director": "John Carpenter",
+      "iconPath": "/posters/thething.jpg"
+    }
+  ],
+  "roles": [
+    {
+      "roleName": "Admin",
+      "manageUsers": true,
+      "sellTickets": true,
+      "checkTickets": true,
+      "manageRoles": true,
+      "manageCinema": true,
+      "getStatistics": true
+    }
+  ],
+  "users": [
+    {
+      "firstname": "Jan",
+      "lastname": "Kowalski",
+      "role": "Admin",
+      "email": "jkowalski@kino.com",
+      "phoneNumber": "+48 567 567 567",
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "screens": [
+    {
+      "name": "Sala 1",
+      "seatsNumber": 200,
+      "rowsNumber": 10
+    },
+    {
+      "name": "Sala 2",
+      "seatsNumber": 300,
+      "rowsNumber": 15
+    }
+  ]
+}
