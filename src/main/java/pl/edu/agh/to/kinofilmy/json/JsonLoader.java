@@ -11,11 +11,13 @@ import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 
+import javax.xml.bind.DatatypeConverter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,19 @@ public class JsonLoader {
         this.rolesService = rolesService;
     }
 
+    public JSONObject filmToJSONObject(Film film){
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("title",film.getTitle());
+        jsonObject.put("runtime", film.getRuntime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        jsonObject.put("genre", film.getGenre());
+        jsonObject.put("director", film.getDirector());
+        String base64EncodedIcon = DatatypeConverter.printBase64Binary(film.getIcon());
+        jsonObject.put("filmIcon", base64EncodedIcon);
+
+        return jsonObject;
+    }
+
     public List<Film> jsonArrayToFilmList(JSONArray jsonArray) throws IOException, URISyntaxException {
         ArrayList<Film> filmArrayList = new ArrayList<>();
         for(Object obj: jsonArray){
@@ -37,8 +52,13 @@ public class JsonLoader {
             film.setRuntime(LocalTime.parse((String) jsonObject.get("runtime")));
             film.setGenre((String) jsonObject.get("genre"));
             film.setDirector((String) jsonObject.get("director"));
-            File fi = new File(KinoFilmyApplication.class.getResource((String) jsonObject.get("iconPath")).toURI());
-            film.setIcon(Files.readAllBytes(fi.toPath()));
+            if(jsonObject.containsKey("iconPath")) {
+                File fi = new File(KinoFilmyApplication.class.getResource((String) jsonObject.get("iconPath")).toURI());
+                film.setIcon(Files.readAllBytes(fi.toPath()));
+            } else if(jsonObject.containsKey("filmIcon")){
+                byte[] base64DecodedIcon = DatatypeConverter.parseBase64Binary((String) jsonObject.get("filmIcon"));
+                film.setIcon(base64DecodedIcon);
+            }
             filmArrayList.add(film);
         }
         return filmArrayList;
@@ -90,4 +110,5 @@ public class JsonLoader {
         }
         return screenArrayList;
     }
+
 }
