@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pl.edu.agh.to.kinofilmy.controllers.TicketPurchasePresenter"
+            prefHeight="400.0" prefWidth="600.0">
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <Button fx:id="buyButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleBuyAction" text="Buy">
+                <VBox.margin>
+                    <Insets bottom="5.0" left="10.0" top="15.0"/>
+                </VBox.margin>
+            </Button>
+            <Button fx:id="filmDetails" minWidth="90.0" mnemonicParsing="false" onAction="#handleCheckAction"
+                    text="Details">
+                <VBox.margin>
+                    <Insets bottom="5.0" left="10.0" top="5.0"/>
+                </VBox.margin>
+            </Button>
+            <Button fx:id="chooseSeatButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleChooseSeatAction"
+                    text="Choose seat">
+                <VBox.margin>
+                    <Insets bottom="5.0" left="10.0" top="5.0"/>
+                </VBox.margin>
+            </Button>
+            <Button fx:id="getSuggestedButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleShowSuggestedAction"
+                    text="Suggested">
+                <VBox.margin>
+                    <Insets bottom="5.0" left="10.0" top="5.0"/>
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="showingsTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="filmTitleColumn" editable="false" prefWidth="90.0" text="Title" />
+                <TableColumn fx:id="screenNameColumn" editable="false" prefWidth="150.0" text="Screen" />
+                <TableColumn fx:id="dateColumn" editable="false" prefWidth="130.0" text="Date" />
+                <TableColumn fx:id="priceColumn" editable="false" prefWidth="150.0" text="Price" />
+            </columns>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </TableView>
+    </center>
+</BorderPane>
