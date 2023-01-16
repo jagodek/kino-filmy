@@ -3,7 +3,6 @@ package pl.edu.agh.to.kinofilmy.model.screen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
-import pl.edu.agh.to.kinofilmy.model.film.Film;
 
 import javax.transaction.Transactional;
 import java.util.LinkedList;
@@ -63,11 +62,11 @@ public class ScreenService {
 
     public List<Seat> getSeats(Screen screen){
         List<Seat> seats = new LinkedList<>();
-        for (int i = 1, j = 1, k = 1; i <= screen.getSeatsNumber(); i++, k++) {
-            seats.add(new Seat(screen, k, j));
-            if(i == screen.getSeatsNumber()/screen.getRowNumber()) {
-                j++;
-                k = 1;
+        for (int seat = 1, seatInRow = 1, row = 1; seat <= screen.getSeatsNumber(); seat++, seatInRow++) {
+            seats.add(new Seat(screen, row, seatInRow));
+            if(seatInRow == screen.getSeatsNumber()/screen.getRowNumber()) {
+                row++;
+                seatInRow = 0;
             }
         }
         return seats;

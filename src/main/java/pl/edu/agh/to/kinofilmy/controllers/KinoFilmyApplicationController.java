@@ -332,7 +332,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             GridPane layout = loader.load();
 
             Stage editScreenStage = new Stage();
-            editScreenStage.setTitle("Edit user");
+            editScreenStage.setTitle("Edit showing");
             editScreenStage.initModality(Modality.WINDOW_MODAL);
             editScreenStage.initOwner(parent);
 
@@ -356,7 +356,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             BorderPane layout = loader.load();
 
             Stage showingManagementStage = new Stage();
-            showingManagementStage.setTitle("Manage users");
+            showingManagementStage.setTitle("Manage showing");
             showingManagementStage.initModality(Modality.WINDOW_MODAL);
             showingManagementStage.initOwner(parent);
 
@@ -381,8 +381,10 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             addShowingStage.setTitle("Add new user");
             addShowingStage.initModality(Modality.WINDOW_MODAL);
             addShowingStage.initOwner(parent);
+
             NewShowingController controller = loader.getController();
             controller.setNewShowingStage(addShowingStage);
+
             Scene scene = new Scene(layout);
             addShowingStage.setScene(scene);
             addShowingStage.showAndWait();
@@ -423,7 +425,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             BorderPane layout = loader.load();
 
             Stage buyTicketStage = new Stage();
-            buyTicketStage.setTitle("Puchase ticket");
+            buyTicketStage.setTitle("Purchase ticket");
             buyTicketStage.initModality(Modality.WINDOW_MODAL);
             buyTicketStage.initOwner(parent);
 
@@ -460,6 +462,32 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             e.printStackTrace();
         }
     }
+
+    public void showSeatChoiceView(Stage parent, Showing showing){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/chooseSeatView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage seatChoiceStage = new Stage();
+            seatChoiceStage.setTitle("Choose seat");
+            seatChoiceStage.initModality(Modality.WINDOW_MODAL);
+            seatChoiceStage.initOwner(parent);
+
+            SeatChoicePresenter presenter = loader.getController();
+            presenter.setStage(seatChoiceStage);
+            presenter.setShowing(showing);
+            presenter.initView();
+
+            Scene scene = new Scene(layout);
+            seatChoiceStage.setScene(scene);
+            seatChoiceStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }

@@ -29,8 +29,6 @@ public class TicketPurchasePresenter {
     private final ShowingService showingService;
     private final KinoFilmyApplicationController applicationController;
     private Stage ticketPurchaseStage;
-
-    private Seat seat;
     @FXML
     private TableView<ShowingDisplay> showingsTable;
     @FXML
@@ -101,7 +99,8 @@ public class TicketPurchasePresenter {
 
     @FXML
     private void handleChooseSeatAction(ActionEvent event){
-
+        this.applicationController.showSeatChoiceView(ticketPurchaseStage,
+                this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem()));
     }
 
     @FXML
@@ -115,6 +114,5 @@ public class TicketPurchasePresenter {
         else{
             this.applicationController.displayMessage(this.ticketPurchaseStage, "No suggested seances");
         }
-
     }
 }

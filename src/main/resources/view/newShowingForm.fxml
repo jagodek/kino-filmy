@@ -37,7 +37,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                <children>
-                  <Label text="Showing time">
+                  <Label text="Showing start time">
                      <HBox.margin>
                         <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
                      </HBox.margin>
