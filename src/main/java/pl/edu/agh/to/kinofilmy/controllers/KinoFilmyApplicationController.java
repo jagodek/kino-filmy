@@ -40,27 +40,25 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
 
     public void initRootLayout(){
         try {
+            login();
+
             this.primaryStage.setTitle("Kino-Filmy");
 
-            // load layout from FXML file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(KinoFilmyApplicationController.class.getResource("/view/mainView.fxml"));
             loader.setControllerFactory(applicationContext::getBean);
             BorderPane rootLayout = loader.load();
 
-            // set initial data into controller
             MainController controller = loader.getController();
             controller.setMainStage(primaryStage);
+            controller.setRoles(this.userRole);
 
-            // add layout to a scene and show them all
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
-            login();
             if(userRole != null){
                 primaryStage.show();
             }
         } catch (IOException e) {
-            // don't do this in common apps
             e.printStackTrace();
         }
     }

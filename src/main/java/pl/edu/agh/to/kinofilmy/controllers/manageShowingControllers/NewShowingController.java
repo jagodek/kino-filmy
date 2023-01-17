@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
 import pl.edu.agh.to.kinofilmy.model.film.FilmService;
+import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenDisplay;
 import pl.edu.agh.to.kinofilmy.model.screen.ScreenService;

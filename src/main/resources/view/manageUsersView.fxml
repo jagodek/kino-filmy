@@ -49,7 +49,7 @@
                     <Insets bottom="10" left="10" right="10" />
                 </VBox.margin>
             </Button>
-         <Button mnemonicParsing="false" onAction="#handleManageRolesAction" prefWidth="100.0" text="Manage roles">
+         <Button fx:id="manageRolesButton" mnemonicParsing="false" onAction="#handleManageRolesAction" prefWidth="100.0" text="Manage roles">
             <VBox.margin>
                <Insets bottom="10.0" left="10.0" right="10.0" />
             </VBox.margin>
