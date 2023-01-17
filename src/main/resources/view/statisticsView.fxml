@@ -46,6 +46,11 @@
                         </HBox>
                      </children>
                   </VBox>
+            <Button fx:id="chartButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#displayChart" text="Show chart">
+               <HBox.margin>
+                  <Insets left="100.0" top="10.0" />
+               </HBox.margin>
+            </Button>
                </children>
             </HBox>
          </top>
@@ -53,8 +58,8 @@
             <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="place" prefWidth="95.0" text="Place" />
-                <TableColumn fx:id="title" prefWidth="172.0" text="Film Title" />
-                  <TableColumn fx:id="ticketsSold" prefWidth="322.0" text="Tickets Sold" />
+                <TableColumn fx:id="title" prefWidth="367.0" text="Film Title" />
+                  <TableColumn fx:id="ticketsSold" prefWidth="127.0" text="Tickets Sold" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

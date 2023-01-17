@@ -1,5 +1,6 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -20,11 +21,13 @@ import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenCon
 import pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.ScreenManagementPresenter;
 import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
+import pl.edu.agh.to.kinofilmy.model.film.FilmStatisticTickets;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class KinoFilmyApplicationController implements ApplicationContextAware {
@@ -504,6 +507,31 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             Scene scene = new Scene(layout);
             showStatisticsStage.setScene(scene);
             showStatisticsStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showChart(Stage parent, ObservableList<FilmStatisticTickets> data){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/chartView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage showChartStage = new Stage();
+            showChartStage.setTitle("Chart");
+            showChartStage.initModality(Modality.WINDOW_MODAL);
+            showChartStage.initOwner(parent);
+
+            ChartController controller = loader.getController();
+            controller.setShowChartStage(showChartStage,data);
+            Scene scene = new Scene(layout);
+            showChartStage.setScene(scene);
+            showChartStage.showAndWait();
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
