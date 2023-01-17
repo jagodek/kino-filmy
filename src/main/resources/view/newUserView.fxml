@@ -4,7 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController">
+<GridPane alignment="CENTER"
+          prefHeight="600" prefWidth="800"
+          xmlns="http://javafx.com/javafx/11.0.2"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageUserControllers.NewUserController">
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <GridPane.margin>
          <Insets left="10.0" />

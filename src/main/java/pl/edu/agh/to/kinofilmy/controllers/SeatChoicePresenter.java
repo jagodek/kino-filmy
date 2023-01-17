@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -98,7 +99,7 @@ public class SeatChoicePresenter {
         for (int j = 0; j < seatsInRow; j++) {
             this.seatsDisplay.getColumnConstraints().add(new ColumnConstraints(20));
         }
-
+        this.seatsDisplay.setAlignment(Pos.CENTER);
         updateView();
     }
 

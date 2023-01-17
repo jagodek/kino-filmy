@@ -4,15 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.NewShowingController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.manageShowingControllers.NewShowingController">
     <center>
-        <HBox>
-            <TableView fx:id="filmList">
+        <HBox minWidth="800.0">
+            <TableView fx:id="filmList" prefHeight="600.0" prefWidth="400.0">
                 <columns>
                     <TableColumn fx:id="filmTitleColumn" prefWidth="245.0" />
                 </columns>
             </TableView>
-            <TableView fx:id="screenList">
+            <TableView fx:id="screenList" prefHeight="600.0" prefWidth="400.0">
                 <columns>
                     <TableColumn fx:id="screenNameColumn" prefWidth="245.0" />
                 </columns>
@@ -25,36 +25,42 @@
    <bottom>
       <VBox alignment="CENTER" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefWidth="800.0">
                <children>
-                  <Label text="Showing date">
+                  <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Showing date">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="300.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                     <DatePicker fx:id="datePicker" />
+                     <DatePicker fx:id="datePicker">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></DatePicker>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefWidth="800.0">
                <children>
-                  <Label text="Showing start time">
+                  <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Showing start time" textAlignment="RIGHT">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="300.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
-                     <TextField fx:id="timeInput" />
+                     <TextField fx:id="timeInput">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefWidth="8.0">
                <children>
-                  <Label text="Price">
+                  <Label alignment="CENTER_RIGHT" prefWidth="100.0" text="Price" textAlignment="RIGHT">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="100.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="300.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
                      <TextField fx:id="priceInput">
                      <HBox.margin>
-                        <Insets left="46.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                      </TextField>
                </children>
