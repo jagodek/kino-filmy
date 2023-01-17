@@ -1,25 +1,32 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.model.screen.Seat;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 import pl.edu.agh.to.kinofilmy.model.ticket.TicketService;
+
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Controller
 public class SeatChoicePresenter {
     private final TicketService ticketService;
     private Showing showing;
+    private List<Seat> selectedSeatsList;
 
-    private final BorderPane seatChoiceView = new BorderPane();
     private Stage seatChoiceStage;
     private Pane[][] seats;
-
+    private final Set<Seat> selectedSeats = new TreeSet<>();
     private int rows;
     private int seatsInRow;
     private int seatsInLastRow;
@@ -48,6 +55,10 @@ public class SeatChoicePresenter {
         this.seatChoiceStage = seatChoiceStage;
     }
 
+    public void setSelectedSeatsList(List<Seat> selectedSeatsList) {
+        this.selectedSeatsList = selectedSeatsList;
+    }
+
     public void initView(){
         int rowNumber = this.showing.getScreen().getRowNumber(), seatsNumber = this.showing.getScreen().getSeatsNumber();
         this.rows = rowNumber;
@@ -60,6 +71,8 @@ public class SeatChoicePresenter {
                 seats[i][j] = new Pane();
                 seats[i][j].setPrefSize(20, 20);
                 seats[i][j].setBorder(border);
+                seats[i][j].setOnMouseClicked(
+                        new SelectSeatEventHandler(seats[i][j], this.selectedSeats, this.showing.getScreen(), i, j, true));
             }
         }
         for (int i = 0; i < rows; i++) {
@@ -91,7 +104,9 @@ public class SeatChoicePresenter {
 
     private void updateView(){
         this.ticketService.getOccupiedSeats(this.showing).forEach(seat -> {
-            seats[seat.getRowNumber()-1][seat.getSeatNumber()-1].setBackground(occupiedBackground);
+            int i =seat.getRowNumber()-1, j = seat.getSeatNumber()-1;
+            seats[i][j].setBackground(occupiedBackground);
+            seats[i][j].setOnMouseClicked(new SelectSeatEventHandler(seats[i][j], this.selectedSeats, seat, false));
         });
         this.seatsDisplay.getChildren().clear();
         for (int i = 0; i < rows; i++) {
@@ -105,10 +120,11 @@ public class SeatChoicePresenter {
     private void handleRefreshAction(ActionEvent event){
         this.updateView();
     }
-
     @FXML
-    private void handleSelectAction(ActionEvent event){
-
+    private void handleConfirmAction(ActionEvent event){
+        this.selectedSeatsList.clear();
+        this.selectedSeatsList.addAll(this.selectedSeats);
+        this.seatChoiceStage.close();
     }
 
 

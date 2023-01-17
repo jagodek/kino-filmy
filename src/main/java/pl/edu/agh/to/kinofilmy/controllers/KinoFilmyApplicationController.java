@@ -22,9 +22,11 @@ import pl.edu.agh.to.kinofilmy.model.employee.Employee;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 import pl.edu.agh.to.kinofilmy.model.screen.Screen;
+import pl.edu.agh.to.kinofilmy.model.screen.Seat;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class KinoFilmyApplicationController implements ApplicationContextAware {
@@ -463,7 +465,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
-    public void showSeatChoiceView(Stage parent, Showing showing){
+    public void showSeatChoiceView(Stage parent, Showing showing, List<Seat> seatList){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/chooseSeatView.fxml"));
@@ -478,6 +480,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             SeatChoicePresenter presenter = loader.getController();
             presenter.setStage(seatChoiceStage);
             presenter.setShowing(showing);
+            presenter.setSelectedSeatsList(seatList);
             presenter.initView();
 
             Scene scene = new Scene(layout);
