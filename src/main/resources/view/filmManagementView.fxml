@@ -28,6 +28,16 @@
                   <Insets bottom="5.0" left="10.0" top="5.0" />
                </VBox.margin>
             </Button>
+             <Button fx:id="addToRecommendedButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleDeleteFilmAction" text="Delete film">
+                 <VBox.margin>
+                     <Insets bottom="5.0" left="10.0" top="5.0" />
+                 </VBox.margin>
+             </Button>
+             <Button fx:id="removeFromRecommendedButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleDeleteFilmAction" text="Delete film">
+                 <VBox.margin>
+                     <Insets bottom="5.0" left="10.0" top="5.0" />
+                 </VBox.margin>
+             </Button>
             <ImageView fx:id="filmImageDisplay" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true">
                <VBox.margin>
                   <Insets left="10.0" top="100.0" />

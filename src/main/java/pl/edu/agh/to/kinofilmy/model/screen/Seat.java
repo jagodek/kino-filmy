@@ -48,4 +48,6 @@ public class Seat implements Comparable<Seat>{
         if(this.rowNumber > other.rowNumber) return 1;
         return Integer.compare(this.seatNumber, other.seatNumber);
     }
+
+
 }

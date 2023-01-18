@@ -30,7 +30,6 @@ public class SeatChoicePresenter {
     private final Set<Seat> selectedSeats = new TreeSet<>();
     private int rows;
     private int seatsInRow;
-    private int seatsInLastRow;
 
     private final Background occupiedBackground = new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY));
     private final Background freeBackground = new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY));
@@ -64,8 +63,20 @@ public class SeatChoicePresenter {
         int rowNumber = this.showing.getScreen().getRowNumber(), seatsNumber = this.showing.getScreen().getSeatsNumber();
         this.rows = rowNumber;
         this.seatsInRow = seatsNumber / rowNumber;
-        this.seatsInLastRow = seatsNumber % rowNumber == 0 ? seatsNumber / rowNumber : seatsNumber % rowNumber;
+        int biggerRows;
+        int seatsInLastRow;
+        if(seatsNumber % rowNumber == 0){
+            seatsInLastRow = this.seatsInRow;
+            biggerRows = 0;
+        }
+        else{
+            seatsInLastRow = this.seatsInRow;
+            this.seatsInRow++;
+            biggerRows = seatsNumber % rowNumber;
+        }
         this.seats = new Pane[rows][seatsInRow];
+
+        System.out.println(rows + " " + seatsInRow + " " + seatsInLastRow + " " + biggerRows);
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < seatsInRow; j++) {
@@ -73,25 +84,29 @@ public class SeatChoicePresenter {
                 seats[i][j].setPrefSize(20, 20);
                 seats[i][j].setBorder(border);
                 seats[i][j].setOnMouseClicked(
-                        new SelectSeatEventHandler(seats[i][j], this.selectedSeats, this.showing.getScreen(), i, j, true));
+                        new SelectSeatEventHandler(
+                                seats[i][j], this.selectedSeats, this.showing.getScreen(),
+                                i, j, true));
             }
         }
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < seatsInRow; j++) {
                 seats[i][j].setBackground(freeBackground);
             }
         }
-        int k = seatsInLastRow;
-        for (int i = 0; i < seatsInRow; i++) {
-            if(k < seatsInRow){
-                seats[rows-1][i].setBackground(unavailableBackground);
-                k++;
-            }
-            if(k < seatsInRow){
-                seats[rows-1][seatsInRow-i-1].setBackground(unavailableBackground);
-                k++;
+
+        if(seatsNumber % rowNumber != 0){
+            for (int i = rows-1; i >= biggerRows; i--) {
+                seats[i][seatsInRow-1].setBackground(unavailableBackground);
+                seats[i][seatsInRow-1].setOnMouseClicked(
+                        new SelectSeatEventHandler(
+                                seats[i][seatsInRow-1], this.selectedSeats, this.showing.getScreen(),
+                                i, seatsInRow-1, false)
+                );
             }
         }
+
 
         for (int i = 0; i < rows; i++) {
             this.seatsDisplay.getRowConstraints().add(new RowConstraints(20));
@@ -105,14 +120,14 @@ public class SeatChoicePresenter {
 
     private void updateView(){
         this.ticketService.getOccupiedSeats(this.showing).forEach(seat -> {
-            int i =seat.getRowNumber()-1, j = seat.getSeatNumber()-1;
+            int i = seat.getRowNumber()-1, j = seat.getSeatNumber()-1;
             seats[i][j].setBackground(occupiedBackground);
             seats[i][j].setOnMouseClicked(new SelectSeatEventHandler(seats[i][j], this.selectedSeats, seat, false));
         });
         this.seatsDisplay.getChildren().clear();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < seatsInRow; j++) {
-                this.seatsDisplay.add(seats[i][j], i, j);
+                this.seatsDisplay.add(seats[i][j], j, i);
             }
         }
     }

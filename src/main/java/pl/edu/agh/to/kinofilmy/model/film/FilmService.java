@@ -72,7 +72,6 @@ public class FilmService {
         return this.repository.findById(id);
     }
 
-
     public ObservableList<FilmStatisticTickets> getMoviesByTicketsSold(){
         Date date = new Date();
         ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();

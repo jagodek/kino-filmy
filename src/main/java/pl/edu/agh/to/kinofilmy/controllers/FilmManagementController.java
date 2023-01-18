@@ -40,7 +40,10 @@ public class FilmManagementController {
     private Button deleteFilmButton;
     @FXML
     private Button refreshButton;
-
+    @FXML
+    private Button addToRecommendedButton;
+    @FXML
+    private Button removeFromRecommendedButton;
     @FXML
     private ImageView filmImageDisplay;
 
@@ -94,7 +97,6 @@ public class FilmManagementController {
         editFilmButton.disableProperty().bind(Bindings.isEmpty(filmsTable.getSelectionModel().getSelectedItems()));
 
         refreshFilmData();
-
     }
 
 
@@ -135,7 +137,19 @@ public class FilmManagementController {
         refreshFilmData();
     }
 
+    @FXML
+    public void handleAddToRecommended(ActionEvent event){
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    public void handleRemoveFromRecommended(ActionEvent event){
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+    }
+
     public Stage getFilmManagementStage() {
         return filmManagementStage;
     }
+
+
 }
