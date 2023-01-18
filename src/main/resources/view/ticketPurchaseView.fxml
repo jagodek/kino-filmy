@@ -10,7 +10,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="pl.edu.agh.to.kinofilmy.controllers.TicketPurchasePresenter"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0">
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <Button fx:id="buyButton" minWidth="90.0" mnemonicParsing="false" onAction="#handleBuyAction" text="Buy">

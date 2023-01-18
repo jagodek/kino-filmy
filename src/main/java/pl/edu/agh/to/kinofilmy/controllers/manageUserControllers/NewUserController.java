@@ -24,7 +24,6 @@ public class NewUserController {
 
     private final RolesService rolesService;
 
-
     private Stage newUserStage;
 
     @FXML
@@ -66,8 +65,6 @@ public class NewUserController {
     @FXML
     public Label rolesError;
 
-
-
     public NewUserController(KinoFilmyApplicationController applicationController, EmployeeService employeeService, RolesService rolesService){
         this.applicationController = applicationController;
         this.employeeService = employeeService;
@@ -87,10 +84,6 @@ public class NewUserController {
         this.roleInput.setOnAction((event -> {
             this.roleInput.setValue(this.roleInput.getValue());
         }));
-
-
-
-
 
         AtomicBoolean firstNameInputTouched = new AtomicBoolean(false);
         this.firstNameInput.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -114,7 +107,6 @@ public class NewUserController {
             setButton();
 
         });
-
 
         AtomicBoolean lastNameInputTouched = new AtomicBoolean(false);
         this.lastNameInput.focusedProperty().addListener((observable, oldValue, newValue) -> {
@@ -162,8 +154,6 @@ public class NewUserController {
             setButton();
 
         });
-
-
 
         AtomicBoolean usernameInputTouched = new AtomicBoolean(false);
         this.usernameInput.focusedProperty().addListener((observable, oldValue, newValue) -> {

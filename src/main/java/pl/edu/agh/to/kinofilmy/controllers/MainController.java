@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
-import pl.edu.agh.to.kinofilmy.model.film.FilmService;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
-import pl.edu.agh.to.kinofilmy.model.roles.RolesService;
 
 
 @Controller
@@ -27,8 +25,13 @@ public class MainController {
         this.mainStage = mainStage;
     }
 
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+        initialize();
+    }
+
     @FXML
-    private Button newUserButton;
+    private Button manageUsersButton;
 
     @FXML
     private Button manageFilmsButton;
@@ -55,14 +58,30 @@ public class MainController {
     private void initialize() {
         if (this.roles != null) {
             if (!roles.isManageUsers()) {
-                newUserButton.setDisable(true);
+                manageUsersButton.setDisable(true);
+                manageUsersButton.setVisible(false);
             }
-
-        if (!roles.isManageCinema()) {
-            manageScreensButton.setDisable(true);
-            manageFilmsButton.setDisable(true);
+            if (!roles.isManageCinema()) {
+                manageScreensButton.setDisable(true);
+                manageScreensButton.setVisible(false);
+                manageFilmsButton.setDisable(true);
+                manageFilmsButton.setVisible(false);
+                manageShowingsButton.setDisable(true);
+                manageShowingsButton.setVisible(false);
+            }
+            if(!roles.isCheckTickets()){
+                clipTicketButton.setDisable(true);
+                clipTicketButton.setVisible(false);
+            }
+            if(!roles.isGetStatistics()){
+                showStatisticsButton.setDisable(true);
+                showStatisticsButton.setVisible(false);
+            }
+            if(!roles.isSellTickets()){
+                buyTicketButton.setDisable(true);
+                buyTicketButton.setVisible(false);
+            }
         }
-    }
     }
 
 

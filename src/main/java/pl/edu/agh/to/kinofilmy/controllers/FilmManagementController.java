@@ -38,6 +38,8 @@ public class FilmManagementController {
 
     @FXML
     private Button deleteFilmButton;
+    @FXML
+    private Button refreshButton;
 
     @FXML
     private ImageView filmImageDisplay;

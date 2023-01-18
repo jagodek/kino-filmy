@@ -22,6 +22,7 @@ public class UserManagementPresenter {
     private Stage userManagementStage;
     private final KinoFilmyApplicationController applicationController;
     private final EmployeeService employeeService;
+    private Roles roles;
 
     private ObservableList<EmployeeDisplay> employees;
     @FXML
@@ -44,6 +45,8 @@ public class UserManagementPresenter {
     private Button deleteButton;
     @FXML
     private Button refreshButton;
+    @FXML
+    private Button manageRolesButton;
 
     public UserManagementPresenter(KinoFilmyApplicationController applicationController, EmployeeService employeeService) {
         this.applicationController = applicationController;
@@ -66,6 +69,13 @@ public class UserManagementPresenter {
 
     public void setUserManagementStage(Stage userManagementStage) {
         this.userManagementStage = userManagementStage;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+        if(!roles.isManageRoles())
+        this.manageRolesButton.setDisable(true);
+        this.manageRolesButton.setVisible(false);
     }
 
     @FXML

@@ -29,8 +29,7 @@ public class TicketPurchasePresenter {
     private final ShowingService showingService;
     private final KinoFilmyApplicationController applicationController;
     private Stage ticketPurchaseStage;
-
-    private Seat seat;
+    private final List<Seat> selectedSeats = new LinkedList<>();
     @FXML
     private TableView<ShowingDisplay> showingsTable;
     @FXML
@@ -73,25 +72,43 @@ public class TicketPurchasePresenter {
     @FXML
     private void handleBuyAction(ActionEvent event){
         Showing showing = this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem());
-        Seat seat = this.ticketService.getFirstAvailableSeat(showing);
-        if(seat == null){
-            applicationController.displayMessage(ticketPurchaseStage,
-                    "All ticket for this showing have been sold");
+        if(selectedSeats.size() == 0){
+            Seat seat = this.ticketService.getFirstAvailableSeat(showing);
+            if(seat == null){
+                applicationController.displayMessage(ticketPurchaseStage,
+                        "All ticket for this showing have been sold");
+            }
+            else{
+                Long id = this.ticketService.save(new Ticket(
+                        showing,
+                        applicationController.getUserId(),
+                        showing.getPrice(),
+                        Date.from(Instant.now()),
+                        seat.getRowNumber(),
+                        seat.getSeatNumber(),
+                        TicketState.Sold.getState()
+                ));
+                applicationController.displayMessage(ticketPurchaseStage,
+                        "Transaction successful. Your ticket identifier is "+id);
+            }
         }
         else{
-            Long id = this.ticketService.save(new Ticket(
-                            showing,
-                            applicationController.getUserId(),
-                            showing.getPrice(),
-                            Date.from(Instant.now()),
-                            seat.getRowNumber(),
-                            seat.getSeatNumber(),
-                            TicketState.Sold.getState()
-            ));
-            applicationController.displayMessage(ticketPurchaseStage,
-                    "Transaction successful. Your ticket number is "+id);
+            List<Long> ticketIds = new LinkedList<>();
+            selectedSeats.forEach(seat -> {
+                ticketIds.add(this.ticketService.save(new Ticket(
+                        showing,
+                        applicationController.getUserId(),
+                        showing.getPrice(),
+                        Date.from(Instant.now()),
+                        seat.getRowNumber(),
+                        seat.getSeatNumber(),
+                        TicketState.Sold.getState()
+                )));
+            });
+            final String[] msg = {"Transaction successful. Identifiers of your tickets are: "};
+            ticketIds.forEach(id -> msg[0] = msg[0] + id.toString() +" ");
+            applicationController.displayMessage(ticketPurchaseStage, msg[0]);
         }
-
     }
 
     @FXML
@@ -101,7 +118,9 @@ public class TicketPurchasePresenter {
 
     @FXML
     private void handleChooseSeatAction(ActionEvent event){
-
+        this.applicationController.showSeatChoiceView(ticketPurchaseStage,
+                this.showingService.showingDisplayToShowing(this.showingsTable.getSelectionModel().getSelectedItem()),
+                this.selectedSeats);
     }
 
     @FXML
@@ -115,6 +134,5 @@ public class TicketPurchasePresenter {
         else{
             this.applicationController.displayMessage(this.ticketPurchaseStage, "No suggested seances");
         }
-
     }
 }

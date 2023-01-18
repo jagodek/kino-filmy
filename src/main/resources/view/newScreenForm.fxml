@@ -4,28 +4,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController">
-    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+<GridPane hgap="30.0" prefHeight="600" prefWidth="800" vgap="30.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.agh.to.kinofilmy.controllers.managesScreenControllers.NewScreenController">
+    <Label text="Name:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
         <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="20.0" />
         </GridPane.margin></Label>
     <TextField fx:id="nameInput" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
         </GridPane.margin></TextField>
 
-    <Label text="Number of seats:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <Label text="Number of seats:" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
         <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="20.0" />
         </GridPane.margin></Label>
     <TextField fx:id="seatsNumberInput" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
         </GridPane.margin></TextField>
 
-    <Label text="Number of rows" GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <Label text="Number of rows" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
         <GridPane.margin>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="20.0" />
         </GridPane.margin></Label>
     <TextField fx:id="rowNumberInput" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <GridPane.margin>
@@ -34,16 +34,16 @@
 
 
 
-    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="OK" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+    <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" text="OK" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
         <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
         </GridPane.margin></Button>
 
 
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints maxWidth="164.0" minWidth="164.0" prefWidth="164.0" />
-        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+        <ColumnConstraints prefWidth="400.0" />
+        <ColumnConstraints prefWidth="400.0" />
+        <ColumnConstraints maxWidth="164.0" minWidth="0.0" prefWidth="0.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
@@ -51,4 +51,7 @@
         <RowConstraints />
       <RowConstraints />
     </rowConstraints>
+   <padding>
+      <Insets top="200.0" />
+   </padding>
 </GridPane>
