@@ -509,5 +509,26 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
+    public void showNotification(Stage parent){
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getClassLoader().getResource("view/notificationView.fxml"));
+            loader.setControllerFactory(applicationContext::getBean);
+            BorderPane layout = loader.load();
+
+            Stage notificationStage = new Stage();
+            notificationStage.setTitle("Send notification");
+            notificationStage.initModality(Modality.WINDOW_MODAL);
+            notificationStage.initOwner(parent);
+            NotificationController controller = loader.getController();
+            controller.setNotificationStage(notificationStage);
+            Scene scene = new Scene(layout);
+            notificationStage.setScene(scene);
+            notificationStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

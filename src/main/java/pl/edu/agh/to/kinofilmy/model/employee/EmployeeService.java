@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import pl.edu.agh.to.kinofilmy.model.roles.Roles;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -79,6 +81,14 @@ public class EmployeeService {
 
     public Employee employeeFromEmployeeDisplay(EmployeeDisplay employee){
         return new Employee(employee);
+    }
+
+    public List<String> getAllEmployeeEmailAddresses(){
+        LinkedList<String> emailList = new LinkedList<>();
+        for(Employee employee: repository.findAll()){
+            emailList.add(employee.getEmail());
+        }
+        return emailList;
     }
 
 
