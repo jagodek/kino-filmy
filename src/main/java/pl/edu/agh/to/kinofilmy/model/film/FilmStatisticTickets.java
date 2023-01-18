@@ -69,7 +69,7 @@ public class FilmStatisticTickets implements Comparable<FilmStatisticTickets> {
         if(getTicketsSold() == null || f.getTicketsSold() == null){
             return 0;
         }
-        return getTicketsSold().compareTo(f.getTicketsSold());
+        return getTicketsSold().compareTo(f.getTicketsSold())*(-1);
     }
 
 }

@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -74,15 +77,20 @@ public class FilmService {
 
 
     public ObservableList<FilmStatisticTickets> getMoviesByTicketsSold(String dateRange){
+
         Date date = new Date();
-        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        Page<Object[]> p =  this.repository.findFilmsByTicketsSoldOnYear(date, PageRequest.of(0,10));
+
         if(dateRange == "This Month") {
-            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnMonth(date,  PageRequest.of(0,10));
         }
         if(dateRange == "This Day"){
-            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnDate(date, PageRequest.of(0,10));
         }
+        List<Object[]> l = p.getContent();
         ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
+
         int c = 1;
         for (Object[] pair:l) {
             Film film = (Film) pair[0];
@@ -103,13 +111,16 @@ public class FilmService {
 
         ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
         int c = 1;
-        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        Page<Object[]> p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnYear(date,  PageRequest.of(0,10));
+
         if(dateRange == "This Month") {
-            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnMonth(date,  PageRequest.of(0,10));
         }
         if(dateRange == "This Day"){
-            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnDate(date,  PageRequest.of(0,10));
         }
+        List<Object[]> l = p.getContent();
 
         for (Object[] pair:l) {
             Film film = (Film) pair[0];
@@ -140,13 +151,16 @@ public class FilmService {
 
         ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
         int c = 1;
-        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        Page<Object[]> p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnYear(date,  PageRequest.of(0,10));
+
         if(dateRange == "This Month") {
-            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnMonth(date,  PageRequest.of(0,10));
         }
         if(dateRange == "This Day"){
-            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+            p = (Page<Object[]>) this.repository.findFilmsByTicketsSoldOnDate(date,  PageRequest.of(0,10));
         }
+        List<Object[]> l = p.getContent();
 
         for (Object[] pair:l) {
             Film film = (Film) pair[0];

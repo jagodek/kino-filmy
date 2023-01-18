@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import java.awt.*;
 import java.util.List;
 
+import static java.lang.Math.*;
+
 @Controller
 public class ChartController {
 
@@ -47,8 +49,13 @@ public class ChartController {
 
         }
         this.chart.getData().add(series);
-        System.out.println(this.chart.getWidth());
-        this.chart.setBarGap(600/(this.data.size()*20));
+
+        if(data.size()==1)
+            chart.setCategoryGap(300);
+        else{
+            chart.setCategoryGap(20);
+        }
+
         this.chart.setScaleY(1);
 
         xAxis.setTickLabelRotation(65);
