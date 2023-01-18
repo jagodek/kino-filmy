@@ -8,6 +8,39 @@
       "title":"Goodfellas"
     },
     {
+      "director": "Peter Jackson",
+      "genre":"Adventure",
+      "runtime":"02:58",
+      "title":"The Lord fo the Rings The Fellowship of the Ring",
+      "iconPath": "/posters/lotr_fotr.jpg"
+
+    },
+    {
+      "director": "Peter Jackson",
+      "genre":"Adventure",
+      "runtime":"02:59",
+      "title":"The Lord of the Rings: The Two Towers",
+      "iconPath": "/posters/lotr2.jpg"
+
+    },
+    {
+      "director": "Peter Jackson",
+      "genre":"Adventure",
+      "runtime":"03:21",
+      "title":"The Lord of the Rings: The Return of the King",
+      "iconPath": "/posters/lotr3.jpg"
+
+    },
+    {
+      "director": "Peter Jackson",
+      "genre":"Adventure",
+      "runtime":"02:58",
+      "title":"The Lord fo the Rings The Fellowship of the Ring",
+      "iconPath": "/posters/lotr_fotr.jpg"
+    },
+
+
+    {
       "title": "The Thing",
       "runtime": "01:49",
       "genre": "Horror",

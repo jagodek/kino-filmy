@@ -73,15 +73,105 @@ public class FilmService {
     }
 
 
-    public ObservableList<FilmStatisticTickets> getMoviesByTicketsSold(){
+    public ObservableList<FilmStatisticTickets> getMoviesByTicketsSold(String dateRange){
         Date date = new Date();
+        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        if(dateRange == "This Month") {
+            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+        }
+        if(dateRange == "This Day"){
+            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+        }
         ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
-        for (Object[] pair:this.repository.findFilmsByTicketsSoldOnDate(date)) {
+        int c = 1;
+        for (Object[] pair:l) {
             Film film = (Film) pair[0];
             Long num = (Long) pair[1];
-            list.add(new FilmStatisticTickets(film.getId(),film.getTitle(),num));
+            list.add(new FilmStatisticTickets(c,film.getId(),film.getTitle(),num));
+            c++;
         }
 
         return list;
     }
+
+
+
+
+
+    public ObservableList<FilmStatisticTickets> getMoviesByDirectorDay(String dateRange){
+        Date date = new Date();
+
+        ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
+        int c = 1;
+        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        if(dateRange == "This Month") {
+            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+        }
+        if(dateRange == "This Day"){
+            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+        }
+
+        for (Object[] pair:l) {
+            Film film = (Film) pair[0];
+            Long num = (Long) pair[1];
+            boolean edited = false;
+            for(int i =0;i<list.size();i++){
+                if (list.get(i).getString() == film.getDirector()){
+                    list.get(i).setTicketsSold(list.get(i).getTicketsSold() + num);
+                    edited = true;
+                    break;
+                }
+            }
+            if(!edited){
+                list.add(new FilmStatisticTickets(0,film.getId(),film.getDirector(),num));
+            }
+        }
+        Collections.sort(list);
+        for(int i =0;i<list.size();i++){
+            list.get(i).setPlace(c);
+            c++;
+        }
+        return list;
+    }
+
+
+    public ObservableList<FilmStatisticTickets> getMoviesByGenre(String dateRange){
+        Date date = new Date();
+
+        ObservableList<FilmStatisticTickets> list = FXCollections.observableArrayList();
+        int c = 1;
+        List<Object[]> l = this.repository.findFilmsByTicketsSoldOnYear(date);
+        if(dateRange == "This Month") {
+            l = this.repository.findFilmsByTicketsSoldOnMonth(date);
+        }
+        if(dateRange == "This Day"){
+            l = this.repository.findFilmsByTicketsSoldOnDate(date);
+        }
+
+        for (Object[] pair:l) {
+            Film film = (Film) pair[0];
+            Long num = (Long) pair[1];
+            boolean edited = false;
+            for(int i =0;i<list.size();i++){
+                if (list.get(i).getString() == film.getGenre()){
+                    list.get(i).setTicketsSold(list.get(i).getTicketsSold() + num);
+                    edited = true;
+                    break;
+                }
+            }
+            if(!edited){
+                list.add(new FilmStatisticTickets(0,film.getId(),film.getGenre(),num));
+            }
+        }
+        Collections.sort(list);
+        for(int i =0;i<list.size();i++){
+            list.get(i).setPlace(c);
+            c++;
+        }
+        return list;
+    }
+
+
+
+
 }
