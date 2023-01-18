@@ -1,5 +1,6 @@
 package pl.edu.agh.to.kinofilmy.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,6 +68,10 @@ public class TicketPurchasePresenter {
         this.screenNameColumn.setCellValueFactory(val -> val.getValue().screenNameProperty());
         this.dateColumn.setCellValueFactory(val -> val.getValue().dateProperty());
         this.priceColumn.setCellValueFactory(val -> val.getValue().priceProperty());
+
+        this.filmDetails.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
+        this.buyButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
+        this.chooseSeatButton.disableProperty().bind(Bindings.isEmpty(showingsTable.getSelectionModel().getSelectedItems()));
     }
 
     @FXML
@@ -113,7 +118,9 @@ public class TicketPurchasePresenter {
 
     @FXML
     private void handleCheckAction(ActionEvent event){
-
+        this.applicationController.displayMessage(ticketPurchaseStage,
+                showingService.showingDisplayToShowing(showingsTable.getSelectionModel().getSelectedItems().get(0))
+                        .toString());
     }
 
     @FXML
@@ -125,10 +132,9 @@ public class TicketPurchasePresenter {
 
     @FXML
     private void handleShowSuggestedAction(ActionEvent event){
-        Optional<Showing> optionalShowing = this.showingService.getSuggested();
-        if(optionalShowing.isPresent()){
-            List<ShowingDisplay> suggested = new LinkedList<>();
-            suggested.add(new ShowingDisplay(optionalShowing.get()));
+        List<Showing> suggestedShowings = this.showingService.getSuggested();
+        if(suggestedShowings.size() > 0){
+            List<ShowingDisplay> suggested = suggestedShowings.stream().map(ShowingDisplay::new).toList();
             this.showingsTable.setItems(FXCollections.observableList(suggested));
         }
         else{

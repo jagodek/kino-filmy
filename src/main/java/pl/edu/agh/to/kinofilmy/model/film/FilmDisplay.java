@@ -12,6 +12,8 @@ public class FilmDisplay {
     private StringProperty genre;
     private StringProperty director;
 
+    private BooleanProperty isRecommended;
+
 
     public FilmDisplay(Film film){
         this.id = new SimpleLongProperty(film.getId());
@@ -19,6 +21,7 @@ public class FilmDisplay {
         this.runtime = new SimpleObjectProperty<>(film.getRuntime());
         this.genre = new SimpleStringProperty(film.getGenre());
         this.director = new SimpleStringProperty(film.getDirector());
+        this.isRecommended = new SimpleBooleanProperty(film.isRecommended());
     }
 
     public long getId() {
@@ -60,4 +63,8 @@ public class FilmDisplay {
     public StringProperty directorProperty() {
         return director;
     }
+
+    public Boolean isRecommended(){return isRecommended.get();}
+
+    public BooleanProperty isRecommendedProperty(){return isRecommended;}
 }
