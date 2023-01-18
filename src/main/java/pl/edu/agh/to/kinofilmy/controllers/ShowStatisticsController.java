@@ -110,7 +110,7 @@ public class ShowStatisticsController {
 
 
     public void displayChart(){
-        this.applicationController.showChart(this.showStatisticsStage,this.list);
+        this.applicationController.showChart(this.showStatisticsStage,this.list,this.TimePeriodChoiceBox.getValue());
     }
 
 }

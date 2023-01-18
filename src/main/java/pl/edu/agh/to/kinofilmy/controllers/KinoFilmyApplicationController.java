@@ -512,7 +512,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
         }
     }
 
-    public void showChart(Stage parent, ObservableList<FilmStatisticTickets> data){
+    public void showChart(Stage parent, ObservableList<FilmStatisticTickets> data,String range){
         try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource("view/chartView.fxml"));
@@ -525,7 +525,7 @@ public class KinoFilmyApplicationController implements ApplicationContextAware {
             showChartStage.initOwner(parent);
 
             ChartController controller = loader.getController();
-            controller.setShowChartStage(showChartStage,data);
+            controller.setShowChartStage(showChartStage,data,range);
             Scene scene = new Scene(layout);
             showChartStage.setScene(scene);
             showChartStage.showAndWait();
