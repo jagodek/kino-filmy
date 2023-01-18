@@ -39,6 +39,7 @@ public class KinoFilmyApplication extends Application {
 
 
 
+
 	@Bean
 	public CommandLineRunner initializeApp(JsonLoader jsonLoader, RolesRepository rolesRepository,
 										   EmployeeRepository employeeRepository, FilmRepository filmRepository, ScreenRepository screenRepository) {

@@ -1,23 +1,34 @@
 package pl.edu.agh.to.kinofilmy.model.film;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
-public class FilmStatisticTickets {
+public class FilmStatisticTickets implements Comparable<FilmStatisticTickets> {
     private LongProperty id;
-    private StringProperty title;
+    private IntegerProperty place;
+    private StringProperty string;
     private LongProperty ticketsSold;
 
-    public FilmStatisticTickets(Long id, String title, Long ticketsSold) {
+    public FilmStatisticTickets(int place,Long id, String string, Long ticketsSold) {
+        this.place = new SimpleIntegerProperty(place);
         this.id = new SimpleLongProperty(id);
-        this.title = new SimpleStringProperty( title);
+        this.string = new SimpleStringProperty( string);
         this.ticketsSold = new SimpleLongProperty( ticketsSold);
     }
 
     public long getId() {
         return id.get();
+    }
+
+    public int getPlace() {
+        return place.get();
+    }
+
+    public IntegerProperty placeProperty() {
+        return place;
+    }
+
+    public void setPlace(int place) {
+        this.place.set(place);
     }
 
     public LongProperty idProperty() {
@@ -28,19 +39,19 @@ public class FilmStatisticTickets {
         this.id.set(id);
     }
 
-    public String getTitle() {
-        return title.get();
+    public String getString() {
+        return string.get();
     }
 
-    public StringProperty titleProperty() {
-        return title;
+    public StringProperty stringString() {
+        return string;
     }
 
-    public void setTitle(String title) {
-        this.title.set(title);
+    public void setString(String string) {
+        this.string.set(string);
     }
 
-    public long getTicketsSold() {
+    public Long getTicketsSold() {
         return ticketsSold.get();
     }
 
@@ -51,4 +62,14 @@ public class FilmStatisticTickets {
     public void setTicketsSold(long ticketsSold) {
         this.ticketsSold.set(ticketsSold);
     }
+
+
+    @Override
+    public int compareTo(FilmStatisticTickets f){
+        if(getTicketsSold() == null || f.getTicketsSold() == null){
+            return 0;
+        }
+        return getTicketsSold().compareTo(f.getTicketsSold());
+    }
+
 }

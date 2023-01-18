@@ -117,4 +117,9 @@ public class UserManagementPresenter {
         applicationController.showRolesManagement(userManagementStage);
     }
 
+    @FXML
+    private void handleNotificationAction(ActionEvent event){
+        applicationController.showNotification(userManagementStage);
+    }
+
 }
