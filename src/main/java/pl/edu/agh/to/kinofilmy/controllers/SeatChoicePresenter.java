@@ -76,8 +76,6 @@ public class SeatChoicePresenter {
         }
         this.seats = new Pane[rows][seatsInRow];
 
-        System.out.println(rows + " " + seatsInRow + " " + seatsInLastRow + " " + biggerRows);
-
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < seatsInRow; j++) {
                 seats[i][j] = new Pane();
