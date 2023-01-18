@@ -83,5 +83,10 @@ public class Showing {
     public void setPrice(Float price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return getFilm().toString();
+    }
 }
 

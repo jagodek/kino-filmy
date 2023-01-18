@@ -16,6 +16,7 @@ public class Film {
     private LocalTime runtime;
     private String genre;
     private String director;
+    private boolean isRecommended;
 
     @Lob
     @Column(length = 10485760)
@@ -41,6 +42,7 @@ public class Film {
         this.genre = genre;
         this.director = director;
         this.icon = icon;
+        this.isRecommended = false;
     }
 
     public Film(FilmDisplay filmDisplay){
@@ -49,6 +51,7 @@ public class Film {
         this.setRuntime(filmDisplay.getRuntime());
         this.setGenre(filmDisplay.getGenre());
         this.setDirector(filmDisplay.getDirector());
+        this.setRecommended(filmDisplay.isRecommended());
     }
 
     public String getTitle() {
@@ -73,6 +76,10 @@ public class Film {
         return icon;
     }
 
+    public boolean isRecommended() {
+        return isRecommended;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -93,15 +100,15 @@ public class Film {
         this.icon = icon;
     }
 
+    public void setRecommended(boolean recommended) {
+        isRecommended = recommended;
+    }
+
     @Override
     public String toString() {
-        return "Film{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", runtime=" + runtime +
-                ", genre='" + genre + '\'' +
-                ", director='" + director + '\'' +
-                ", icon=" + Arrays.toString(icon) +
-                '}';
+        return " Title: '" + title + "'" +
+                ",\n runtime: " + runtime +
+                ",\n genre: '" + genre + "'" +
+                ",\n director: '" + director + "'";
     }
 }

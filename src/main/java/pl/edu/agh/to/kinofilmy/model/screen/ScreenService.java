@@ -62,11 +62,21 @@ public class ScreenService {
 
     public List<Seat> getSeats(Screen screen){
         List<Seat> seats = new LinkedList<>();
+        int seatsInRow = screen.getSeatsNumber() % screen.getRowNumber() == 0 ?
+                screen.getSeatsNumber()/screen.getRowNumber():
+                screen.getSeatsNumber()/screen.getRowNumber() + 1,
+            biggerRows = screen.getSeatsNumber() % screen.getRowNumber() == 0 ? 0 :
+                    screen.getSeatsNumber() % screen.getRowNumber();
         for (int seat = 1, seatInRow = 1, row = 1; seat <= screen.getSeatsNumber(); seat++, seatInRow++) {
             seats.add(new Seat(screen, row, seatInRow));
-            if(seatInRow == screen.getSeatsNumber()/screen.getRowNumber()) {
+            if(seatInRow == seatsInRow) {
                 row++;
                 seatInRow = 0;
+                biggerRows--;
+                if(biggerRows == 0){
+                    seatsInRow--;
+                    biggerRows = -1;
+                }
             }
         }
         return seats;

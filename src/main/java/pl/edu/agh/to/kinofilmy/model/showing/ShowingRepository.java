@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ShowingRepository extends JpaRepository<Showing, Long> {
     Optional<Showing> findShowingById(Long id);
     List<Showing> findShowingByDateAfter(Date date);
+    List<Showing> findShowingByFilmRecommendedEquals(Boolean isRecommended);
 }

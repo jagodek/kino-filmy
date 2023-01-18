@@ -6,7 +6,6 @@ import pl.edu.agh.to.kinofilmy.model.screen.Seat;
 import pl.edu.agh.to.kinofilmy.model.showing.Showing;
 
 import javax.transaction.Transactional;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,8 +39,9 @@ public class TicketService {
     public List<Seat> getOccupiedSeats(Showing showing){
         List<Ticket> ticketList = this.ticketRepository.findAllByShowing(showing);
         List<Seat> seats = this.screenService.getSeats(showing.getScreen());
-        seats.removeIf(seat -> ticketList.stream().anyMatch(ticket ->
+        seats.removeIf(seat -> ticketList.stream().allMatch(ticket ->
                 ticket.getSeat() != seat.getSeatNumber() || ticket.getSeatRow() != seat.getRowNumber()));
+
         return seats;
     }
 

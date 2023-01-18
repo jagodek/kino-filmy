@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import pl.edu.agh.to.kinofilmy.controllers.email.EmailService;
 import pl.edu.agh.to.kinofilmy.model.film.Film;
 import pl.edu.agh.to.kinofilmy.model.film.FilmDisplay;
 import pl.edu.agh.to.kinofilmy.model.film.FilmService;
@@ -23,6 +24,7 @@ import java.time.LocalTime;
 public class FilmManagementController {
 
     final FilmService filmService;
+    final EmailService emailService;
 
     private Stage filmManagementStage;
 
@@ -40,7 +42,10 @@ public class FilmManagementController {
     private Button deleteFilmButton;
     @FXML
     private Button refreshButton;
-
+    @FXML
+    private Button addToRecommendedButton;
+    @FXML
+    private Button removeFromRecommendedButton;
     @FXML
     private ImageView filmImageDisplay;
 
@@ -62,8 +67,12 @@ public class FilmManagementController {
     @FXML
     private TableColumn<FilmDisplay, String> directorColumn;
 
-    public FilmManagementController(FilmService filmService, KinoFilmyApplicationController applicationController) {
+    @FXML
+    private TableColumn<FilmDisplay, String> isRecommendedColumn;
+
+    public FilmManagementController(FilmService filmService, EmailService emailService, KinoFilmyApplicationController applicationController) {
         this.filmService = filmService;
+        this.emailService = emailService;
         this.applicationController = applicationController;
     }
 
@@ -89,12 +98,12 @@ public class FilmManagementController {
         runtimeColumn.setCellValueFactory(filmValue -> filmValue.getValue().runtimeProperty());
         genreColumn.setCellValueFactory(filmValue -> filmValue.getValue().genreProperty());
         directorColumn.setCellValueFactory(filmValue -> filmValue.getValue().directorProperty());
+        isRecommendedColumn.setCellValueFactory(filmValue -> filmValue.getValue().isRecommendedProperty().asString());
 
         deleteFilmButton.disableProperty().bind(Bindings.isEmpty(filmsTable.getSelectionModel().getSelectedItems()));
         editFilmButton.disableProperty().bind(Bindings.isEmpty(filmsTable.getSelectionModel().getSelectedItems()));
 
         refreshFilmData();
-
     }
 
 
@@ -133,6 +142,28 @@ public class FilmManagementController {
         Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
         filmService.delete(film);
         refreshFilmData();
+    }
+
+    @FXML
+    public void handleAddToRecommended(ActionEvent event){
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        if(!film.isRecommended()){
+            film.setRecommended(true);
+            filmService.save(film);
+            this.emailService.sendNotificationToAllEmployees("Recommended film",
+                    "Film " + film.getTitle() + " should be recommended to customers");
+        }
+    }
+
+    @FXML
+    public void handleRemoveFromRecommended(ActionEvent event){
+        Film film = filmService.filmDisplayToFilm(filmsTable.getSelectionModel().getSelectedItem());
+        if(film.isRecommended()){
+            film.setRecommended(false);
+            filmService.save(film);
+            this.emailService.sendNotificationToAllEmployees("Recommended film",
+                    "Film " + film.getTitle() + " should no longer be recommended to customers");
+        }
     }
 
     public Stage getFilmManagementStage() {

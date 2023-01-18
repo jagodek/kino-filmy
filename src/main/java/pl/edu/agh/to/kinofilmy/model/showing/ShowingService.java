@@ -8,10 +8,7 @@ import pl.edu.agh.to.kinofilmy.model.ticket.TicketService;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -64,9 +61,9 @@ public class ShowingService {
         }
     }
 
-    public Optional<Showing> getSuggested(){
+    public List<Showing> getSuggested(){
         List<Showing> showings = this.repository.findShowingByDateAfter(Date.from(Instant.now()));
-        return showings.stream()
+        Optional<Showing> trending = showings.stream()
                 .map(showing -> new Pair<Showing, Integer>(showing, this.ticketService.countTicketsForShowing(showing)))
                 .max((pair1, pair2) -> {
                     if (pair1.getValue() > pair2.getValue()) {
@@ -78,5 +75,12 @@ public class ShowingService {
                     return 0;
                 })
                 .map(Pair::getKey);
+        List<Showing> res = new LinkedList<>(this.repository.findShowingByFilmRecommendedEquals(true));
+        if(trending.isPresent()){
+            if(!res.contains(trending.get())){
+                res.add(trending.get());
+            }
+        }
+        return res;
     }
 }
